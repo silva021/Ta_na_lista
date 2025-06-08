@@ -1,0 +1,82 @@
+[versions]
+accompanistSystemuicontroller = "0.33.2-alpha"
+agp = "8.6.0"
+firebaseBom = "33.15.0"
+kotlin = "2.1.10"
+googleService = "4.4.2"
+#coreKtx = "1.16.0"
+junit = "4.13.2"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
+kotlinxCoroutinesCore = "1.10.1"
+kotlinxSerializationCore = "1.8.0"
+lifecycleRuntimeKtx = "2.9.1"
+activityCompose = "1.10.1"
+composeBom = "2025.06.00"
+materialIconsExtended = "1.7.8"
+navigation = "2.9.0"
+koin = "4.0.0"
+youtube = "2024.02.25"
+startup = "1.2.0"
+gson = "2.12.1"
+
+[bundles]
+koin = [
+    "koin-koin",
+    "koin-compose"
+]
+
+room = [
+    "room-runtime",
+    "room-ktx"
+]
+
+[libraries]
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
+#androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
+firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-storage-ktx = { module = "com.google.firebase:firebase-storage-ktx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material = { group = "androidx.compose.material", name = "material" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
+youtube = { group = "io.github.ilyapavlovskii", name = "youtubeplayer-compose", version.ref = "youtube"  }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson"  }
+startup = {  group = "androidx.startup", name = "startup-runtime", version.ref = "startup" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
+firebase-config-ktx = { module = "com.google.firebase:firebase-config-ktx" }
+firebase-firestore-ktx = { module = "com.google.firebase:firebase-firestore-ktx"}
+
+
+koin-koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-fragment = { module = "io.insert-koin:koin-androidx-fragment", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+
+room-runtime = { module = "androidx.room:room-runtime", version = "2.7.1" }
+room-compiler = { module = "androidx.room:room-compiler", version = "2.7.1" }
+room-ktx = { module = "androidx.room:room-ktx", version = "2.7.1" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleService" }
+kotlin-parcelize = { id = "kotlin-parcelize" }
+
+
+

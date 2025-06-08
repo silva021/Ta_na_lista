@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "458198753723",
+    "project_id": "ta-na-lista-1e018",
+    "storage_bucket": "ta-na-lista-1e018.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:458198753723:android:4630fbece80c4b6b3de49e",
+        "android_client_info": {
+          "package_name": "com.silva021.tanalista"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvEJ_1ffw2wzkR7MRanJN8LSVS7as4Qfs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
