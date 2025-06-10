@@ -1,13 +1,13 @@
 package com.silva021.tanalista.domain.model
 
 enum class UnitType(val label: String) {
-    UNIT("unid."),
+    UNIT("Unid"),
     DOZEN("dz"),
-    GRAM("g"),
-    KILOGRAM("kg"),
+    GRAM("G"),
+    KILOGRAM("KG"),
     MILLILITER("mL"),
     LITER("L"),
-    PACKAGE("pacote"),
-    BOX("caixa"),
-    OTHER("outro")
+    PACKAGE("Pacote"),
+    BOX("Caixa"),
+    OTHER("Outro")
 }

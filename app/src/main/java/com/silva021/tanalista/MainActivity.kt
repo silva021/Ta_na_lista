@@ -1,7 +1,6 @@
 package com.silva021.tanalista
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -14,10 +13,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.silva021.tanalista.domain.model.CategoryType
-import com.silva021.tanalista.domain.model.ListColor
 import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.ShoppingList
-import com.silva021.tanalista.domain.model.StockItem
 import com.silva021.tanalista.domain.model.StockStatus
 import com.silva021.tanalista.domain.model.UnitType
 import com.silva021.tanalista.ui.routes.Routes
@@ -27,7 +24,7 @@ import com.silva021.tanalista.ui.screen.register.RegisterScreen
 import com.silva021.tanalista.ui.screen.shopping.add.list.CreateListScreen
 import com.silva021.tanalista.ui.screen.shopping.add.shopping.AddShoppingItemScreen
 import com.silva021.tanalista.ui.screen.shopping.mylist.MyListsScreen
-import com.silva021.tanalista.ui.screen.stock.ProductStockListScreen
+import com.silva021.tanalista.ui.screen.shopping.stock.ProductStockListScreen
 import com.silva021.tanalista.ui.screen.welcome.WelcomeScreen
 import com.silva021.tanalista.ui.theme.Scaffold
 import com.silva021.tanalista.ui.theme.TaNaListaTheme
@@ -87,68 +84,17 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(Routes.MyListsScreen.route) {
-                            val shoppingLists = listOf(
-                                ShoppingList(
-                                    name = "Mercado",
-                                    items = listOf(
-                                        ShoppingItem(
-                                            name = "Arroz",
-                                            quantity = 2,
-                                            unitType = UnitType.KILOGRAM,
-                                        ),
-                                        ShoppingItem(
-                                            name = "Feijão",
-                                            quantity = 1,
-                                            unitType = UnitType.KILOGRAM,
-                                        ),
-                                        ShoppingItem(
-                                            name = "Leite",
-                                            quantity = 2,
-                                            unitType = UnitType.LITER,
-                                        ),
-                                        ShoppingItem(
-                                            name = "Ovos",
-                                            quantity = 12,
-                                            unitType = UnitType.UNIT,
-                                        ),
-                                        ShoppingItem(
-                                            name = "Pão",
-                                            quantity = 1,
-                                            unitType = UnitType.UNIT,
-                                        )
-                                    ),
-                                    color = ListColor.MINT_GREEN,
-                                    type = CategoryType.GROCERY
-                                ),
-                                ShoppingList(
-                                    name = "Farmácia",
-                                    items = listOf(
-                                        ShoppingItem(
-                                            name = "Dipirona",
-                                            quantity = 1,
-                                            unitType = UnitType.BOX
-                                        ),
-                                        ShoppingItem(
-                                            name = "Curativo",
-                                            quantity = 1,
-                                            unitType = UnitType.PACKAGE
-                                        )
-                                    ),
-                                    color = ListColor.PEACH,
-                                    type = CategoryType.PHARMACY
-                                )
-                            )
-
                             MyListsScreen(
-                                onDeleteClick = { /* TODO */ },
                                 onCardClick = {
                                     Routes.MyListsScreen.navigateToProductStockListScreen(
-                                        navController
+                                        navController,
+                                        it.id
                                     )
                                 },
                                 onEditClick = {
                                     Routes.MyListsScreen.navigateToProductStockListScreen(
-                                        navController
+                                        navController,
+                                        it.id
                                     )
                                 },
                                 onAddClick = {
@@ -166,83 +112,28 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
-                        composable(Routes.AddShoppingItemScreen.route) {
-                            var name by remember { mutableStateOf("") }
-                            var quantity by remember { mutableStateOf("") }
-                            var unit by remember { mutableStateOf("kg") }
-                            var category by remember { mutableStateOf("Alimentos") }
-                            var trackStock by remember { mutableStateOf(false) }
+                        composable(Routes.AddShoppingItemScreen.route) { backStackEntry ->
+                            val listId = backStackEntry.arguments?.getString(Routes.ProductStockListScreen.LIST_ID).orEmpty()
 
                             AddShoppingItemScreen(
-                                name = name,
-                                onNameChange = { name = it },
-                                quantity = quantity,
-                                onQuantityChange = { quantity = it },
-                                unit = unit,
-                                onUnitChange = { unit = it },
-                                selectedCategory = category,
-                                onCategoryChange = { category = it },
-                                trackStock = trackStock,
-                                onTrackStockChange = { trackStock = it },
-                                onSave = { /* salvar */ },
-                                onBackPressed = {
+                                listId = listId,
+                                onBack = {
                                     Routes.AddShoppingItemScreen.popBackStack(navController)
                                 }
                             )
                         }
 
-                        composable(Routes.ProductStockListScreen.route) {
-                            val stockItems = listOf(
-                                StockItem(
-                                    id = "arroz",
-                                    name = "Arroz",
-                                    currentQuantity = 2.0f,
-                                    unitType = UnitType.KILOGRAM,
-                                    minRequired = 5.0f,
-                                    status = StockStatus.LOW
-                                ),
-                                StockItem(
-                                    id = "feijao",
-                                    name = "Feijão",
-                                    currentQuantity = 1.0f,
-                                    unitType = UnitType.KILOGRAM,
-                                    minRequired = 3.0f,
-                                    status = StockStatus.CRITICAL
-                                ),
-                                StockItem(
-                                    id = "leite",
-                                    name = "Leite",
-                                    currentQuantity = 2.0f,
-                                    unitType = UnitType.LITER,
-                                    minRequired = 2.0f,
-                                    status = StockStatus.OK
-                                ),
-                                StockItem(
-                                    id = "ovos",
-                                    name = "Ovos",
-                                    currentQuantity = 12.0f,
-                                    unitType = UnitType.UNIT,
-                                    minRequired = 18.0f,
-                                    status = StockStatus.LOW
-                                ),
-                                StockItem(
-                                    id = "pao",
-                                    name = "Pão",
-                                    currentQuantity = 1.0f,
-                                    unitType = UnitType.UNIT,
-                                    minRequired = 4.0f,
-                                    status = StockStatus.CRITICAL
-                                )
-                            )
+                        composable(Routes.ProductStockListScreen.route) { backStackEntry ->
+                            val listId = backStackEntry.arguments?.getString(Routes.ProductStockListScreen.LIST_ID).orEmpty()
 
                             ProductStockListScreen(
-                                items = stockItems,
+                                listId = listId,
                                 onAdd = {
                                     Routes.ProductStockListScreen.navigateToAddShoppingItemScreen(
-                                        navController
+                                        navController,
+                                        listId
                                     )
                                 },
-                                onEditClick = {},
                                 onBackPressed = {
                                     Routes.ProductStockListScreen.popBackStack(navController)
                                 }

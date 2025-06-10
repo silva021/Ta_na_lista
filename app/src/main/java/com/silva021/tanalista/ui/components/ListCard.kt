@@ -30,7 +30,7 @@ fun ListCard(
     onEditClick: (ShoppingList) -> Unit,
     onDeleteClick: (ShoppingList) -> Unit,
 ) {
-    val backgroundColor = shoppingList.color.color
+    val backgroundColor = shoppingList.type.color
 
     Card(
         shape = RoundedCornerShape(24.dp),
@@ -53,12 +53,7 @@ fun ListCard(
                     text = shoppingList.name,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF1C3D3A)
-                )
-                Text(
-                    text = "${shoppingList.items.size} itens",
-                    fontSize = 16.sp,
-                    color = Color(0xFF1C3D3A)
+                    color = Color.White
                 )
             }
 
@@ -67,7 +62,7 @@ fun ListCard(
                     Icon(
                         imageVector = Icons.Default.Edit,
                         contentDescription = "Editar",
-                        tint = Color(0xFF1C3D3A)
+                        tint = Color.White
                     )
                 }
 
@@ -75,7 +70,7 @@ fun ListCard(
                     Icon(
                         imageVector = Icons.Default.Delete,
                         contentDescription = "Deletar",
-                        tint = Color(0xFF1C3D3A)
+                        tint = Color.White
                     )
                 }
             }

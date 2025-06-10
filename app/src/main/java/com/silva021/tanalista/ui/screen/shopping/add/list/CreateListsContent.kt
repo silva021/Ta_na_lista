@@ -48,10 +48,8 @@ fun CreateListContent(
 ) {
     var name by remember { mutableStateOf("") }
     var categoriesSelected by remember { mutableStateOf(CategoryType.OTHER) }
-    var colorSelected by remember { mutableStateOf(ListColor.MINT_GREEN) }
 
     val categories = CategoryType.values().toList()
-    val colors = ListColor.values().toList()
 
     Scaffold(
         backgroundColor = Palette.backgroundColor,
@@ -121,14 +119,6 @@ fun CreateListContent(
                         categorySelected = categoriesSelected,
                         onCategorySelected = { categoriesSelected = it }
                     )
-
-                    Spacer(modifier = Modifier.height(24.dp))
-
-                    ColorSelector(
-                        colors = colors,
-                        colorSelected = colorSelected,
-                        onColorSelected = { colorSelected = it }
-                    )
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -138,8 +128,6 @@ fun CreateListContent(
                         onCreateClick.invoke(
                             ShoppingList(
                                 name = name,
-                                items = listOf(),
-                                color = colorSelected,
                                 type = categoriesSelected
                             )
                         )

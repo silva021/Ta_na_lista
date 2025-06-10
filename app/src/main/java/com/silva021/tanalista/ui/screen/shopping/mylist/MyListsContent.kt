@@ -24,6 +24,7 @@ import com.silva021.tanalista.domain.model.CategoryType
 import com.silva021.tanalista.domain.model.ListColor
 import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.ShoppingList
+import com.silva021.tanalista.domain.model.StockStatus
 import com.silva021.tanalista.domain.model.UnitType
 import com.silva021.tanalista.ui.components.ListCard
 import com.silva021.tanalista.ui.theme.Palette
@@ -91,20 +92,8 @@ fun MyListsContent(
 fun PreviewMyListsContent() {
     ThemedScreen {
         val shoppingLists = listOf(
-            ShoppingList(
-                name = "Mercado", items = listOf(
-                    ShoppingItem(name = "Arroz", quantity = 2, unitType = UnitType.KILOGRAM),
-                    ShoppingItem(name = "Feijão", quantity = 1, unitType = UnitType.KILOGRAM),
-                    ShoppingItem(name = "Leite", quantity = 2, unitType = UnitType.LITER),
-                    ShoppingItem(name = "Ovos", quantity = 12, unitType = UnitType.UNIT),
-                    ShoppingItem(name = "Pão", quantity = 1, unitType = UnitType.UNIT)
-                ), color = ListColor.MINT_GREEN, type = CategoryType.GROCERY
-            ), ShoppingList(
-                name = "Farmácia", items = listOf(
-                    ShoppingItem(name = "Dipirona", quantity = 1, unitType = UnitType.BOX),
-                    ShoppingItem(name = "Curativo", quantity = 1, unitType = UnitType.PACKAGE)
-                ), color = ListColor.PEACH, type = CategoryType.PHARMACY
-            )
+            ShoppingList(name = "Mercado", type = CategoryType.GROCERY),
+            ShoppingList(name = "Farmácia", type = CategoryType.PHARMACY)
         )
 
         MyListsContent(

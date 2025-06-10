@@ -12,7 +12,6 @@ import org.koin.androidx.compose.koinViewModel
 fun MyListsScreen(
     viewModel: MyListsViewModel = koinViewModel(),
     onCardClick: (ShoppingList) -> Unit,
-    onDeleteClick: (ShoppingList) -> Unit,
     onEditClick: (ShoppingList) -> Unit,
     onAddClick: () -> Unit,
 ) {
@@ -31,7 +30,9 @@ fun MyListsScreen(
             MyListsContent(
                 lists = state.lists,
                 onCardClick = onCardClick,
-                onDeleteClick = onDeleteClick,
+                onDeleteClick = {
+                    viewModel.deleteList(it)
+                },
                 onAddClick = onAddClick,
                 onEditClick = onEditClick
             )

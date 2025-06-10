@@ -10,6 +10,5 @@ import com.silva021.tanalista.domain.model.ShoppingItem
 data class ShoppingListEntity(
     @PrimaryKey val id: String,
     val name: String,
-    val color: String,
     val type: String
 )

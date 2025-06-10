@@ -1,4 +1,4 @@
-package com.silva021.tanalista.ui.screen.stock
+package com.silva021.tanalista.ui.screen.shopping.stock
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -23,17 +23,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.util.ThemedScreen
-import com.silva021.tanalista.domain.model.StockItem
 import com.silva021.tanalista.domain.model.StockStatus
 import com.silva021.tanalista.domain.model.UnitType
 import com.silva021.tanalista.ui.theme.Palette
+import com.silva021.tanalista.util.factory.ShoppingFactory
 
 @Composable
-fun ProductStockListScreen(
-    items: List<StockItem>,
+fun ProductStockListContent(
+    items: List<ShoppingItem>,
     onAdd: () -> Unit,
-    onEditClick: (StockItem) -> Unit,
+    onEditClick: (ShoppingItem) -> Unit,
     onBackPressed: () -> Unit,
 ) {
     Scaffold(
@@ -88,49 +89,27 @@ fun ProductStockListScreen(
 fun PreviewShoppingListScreen() {
     ThemedScreen {
         val stockItems = listOf(
-            StockItem(
+            ShoppingFactory.createShoppingItem(
                 id = "arroz",
                 name = "Arroz",
-                currentQuantity = 2.0f,
+                quantity = 2f,
                 unitType = UnitType.KILOGRAM,
-                minRequired = 5.0f,
-                status = StockStatus.LOW
             ),
-            StockItem(
+            ShoppingFactory.createShoppingItem(
                 id = "feijao",
                 name = "Feijão",
-                currentQuantity = 1.0f,
+                quantity = 1f,
                 unitType = UnitType.KILOGRAM,
-                minRequired = 3.0f,
-                status = StockStatus.CRITICAL
             ),
-            StockItem(
+            ShoppingFactory.createShoppingItem(
                 id = "leite",
                 name = "Leite",
-                currentQuantity = 2.0f,
+                quantity = 25f,
                 unitType = UnitType.LITER,
-                minRequired = 2.0f,
-                status = StockStatus.OK
             ),
-            StockItem(
-                id = "ovos",
-                name = "Ovos",
-                currentQuantity = 12.0f,
-                unitType = UnitType.UNIT,
-                minRequired = 18.0f,
-                status = StockStatus.LOW
-            ),
-            StockItem(
-                id = "pao",
-                name = "Pão",
-                currentQuantity = 1.0f,
-                unitType = UnitType.UNIT,
-                minRequired = 4.0f,
-                status = StockStatus.CRITICAL
-            )
         )
 
-        ProductStockListScreen(
+        ProductStockListContent(
             items = stockItems,
             onAdd = {},
             onEditClick = {},

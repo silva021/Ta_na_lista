@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
@@ -26,11 +27,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.silva021.tanalista.domain.model.UnitType
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun DropdownMenuBox(selected: String, onSelect: (String) -> Unit) {
-    val options = listOf("kg", "g", "unid.", "xíc.", "L")
+fun DropdownMenuBox(selected: String, onSelect: (UnitType) -> Unit) {
+    val unitiesType = UnitType.entries.toList()
     var expanded by remember { mutableStateOf(false) }
 
     ExposedDropdownMenuBox(
@@ -41,7 +43,7 @@ fun DropdownMenuBox(selected: String, onSelect: (String) -> Unit) {
             value = selected,
             onValueChange = {},
             modifier = Modifier
-                .width(100.dp)
+                .width(160.dp)
                 .clickable { expanded = true },
             readOnly = true,
             shape = RoundedCornerShape(12.dp),
@@ -60,11 +62,11 @@ fun DropdownMenuBox(selected: String, onSelect: (String) -> Unit) {
             expanded = expanded,
             onDismissRequest = { expanded = false }
         ) {
-            options.forEach { selection ->
+            unitiesType.forEach { unitType ->
                 DropdownMenuItem(
-                    content = { Text(selection) },
+                    content = { Text(unitType.label) },
                     onClick = {
-                        onSelect(selection)
+                        onSelect(unitType)
                         expanded = false
                     }
                 )
@@ -76,7 +78,7 @@ fun DropdownMenuBox(selected: String, onSelect: (String) -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun DropdownMenuBoxPreview() {
-    var selectedUnit by remember { mutableStateOf("kg") }
+    var selectedUnit by remember { mutableStateOf(UnitType.KILOGRAM) }
 
     Surface(
         modifier = Modifier
@@ -84,7 +86,7 @@ fun DropdownMenuBoxPreview() {
             .padding(24.dp)
     ) {
         DropdownMenuBox(
-            selected = selectedUnit,
+            selected = selectedUnit.label,
             onSelect = { selectedUnit = it }
         )
     }

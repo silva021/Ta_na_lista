@@ -2,6 +2,7 @@ package com.silva021.tanalista.ui.screen.shopping.mylist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.silva021.tanalista.domain.model.ShoppingList
 import com.silva021.tanalista.domain.usecase.DeleteShoppingListsUseCase
 import com.silva021.tanalista.domain.usecase.GetShoppingListsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,5 +30,13 @@ class MyListsViewModel(
         }
     }
 
-
+    fun deleteList(list: ShoppingList) {
+        viewModelScope.launch {
+            try {
+                deleteShoppingLists(list)
+            } catch (e: Exception) {
+                _uiState.value = MyListsUiState.Error(e.message.toString())
+            }
+        }
+    }
 }
