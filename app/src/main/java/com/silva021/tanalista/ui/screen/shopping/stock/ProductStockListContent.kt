@@ -24,17 +24,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.domain.model.ShoppingItem
-import com.silva021.tanalista.util.ThemedScreen
-import com.silva021.tanalista.domain.model.StockStatus
 import com.silva021.tanalista.domain.model.UnitType
 import com.silva021.tanalista.ui.theme.Palette
+import com.silva021.tanalista.util.ThemedScreen
 import com.silva021.tanalista.util.factory.ShoppingFactory
 
 @Composable
 fun ProductStockListContent(
     items: List<ShoppingItem>,
     onAdd: () -> Unit,
-    onEditClick: (ShoppingItem) -> Unit,
+    onEditShoppingItem: (String) -> Unit,
+    onAdjustStock: (ShoppingItem) -> Unit,
     onBackPressed: () -> Unit,
 ) {
     Scaffold(
@@ -75,7 +75,11 @@ fun ProductStockListContent(
 
                 LazyColumn {
                     items(items) { item ->
-                        ProductStockItem(item, onEditClick)
+                        ProductStockItem(
+                            item = item,
+                            onAdjustStock = onAdjustStock,
+                            onEditShoppingItem = onEditShoppingItem
+                        )
                         Spacer(modifier = Modifier.height(16.dp))
                     }
                 }
@@ -112,8 +116,9 @@ fun PreviewShoppingListScreen() {
         ProductStockListContent(
             items = stockItems,
             onAdd = {},
-            onEditClick = {},
-            onBackPressed = {}
+            onAdjustStock = {},
+            onBackPressed = {},
+            onEditShoppingItem = { /* Handle edit */ }
         )
     }
 }

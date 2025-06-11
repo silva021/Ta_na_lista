@@ -9,8 +9,8 @@ import com.silva021.tanalista.domain.model.ShoppingList
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun MyListsScreen(
-    viewModel: MyListsViewModel = koinViewModel(),
+fun ShoppingListsScreen(
+    viewModel: ShoppingListsViewModel = koinViewModel(),
     onCardClick: (ShoppingList) -> Unit,
     onEditClick: (ShoppingList) -> Unit,
     onAddClick: () -> Unit,
@@ -27,7 +27,7 @@ fun MyListsScreen(
         }
 
         is MyListsUiState.Success -> {
-            MyListsContent(
+            ShoppingListsContent(
                 lists = state.lists,
                 onCardClick = onCardClick,
                 onDeleteClick = {

@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
-class MyListsViewModel(
+class ShoppingListsViewModel(
     private val getLists: GetShoppingListsUseCase,
     private val deleteShoppingLists: DeleteShoppingListsUseCase
 ) : ViewModel() {

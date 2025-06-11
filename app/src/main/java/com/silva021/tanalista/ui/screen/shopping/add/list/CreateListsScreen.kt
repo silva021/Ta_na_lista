@@ -16,17 +16,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.silva021.tanalista.domain.model.ShoppingList
 import com.silva021.tanalista.ui.theme.Scaffold
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun CreateListScreen(
+    listId: String = "",
     viewModel: CreateListViewModel = koinViewModel(),
     onBackPressed: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
+
+    LaunchedEffect(Unit) {
+        viewModel.getShoppingList(listId)
+    }
 
     LaunchedEffect(uiState) {
         when (val state = uiState) {
@@ -38,8 +44,8 @@ fun CreateListScreen(
             is CreateListUiState.Success -> {
                 scope.launch {
                     snackbarHostState.showSnackbar(message = "Lista criada com sucesso")
+                    onBackPressed()
                 }
-                onBackPressed()
             }
             else -> {}
         }
@@ -51,8 +57,12 @@ fun CreateListScreen(
         when (val state = uiState) {
             is CreateListUiState.Idle -> {
                 CreateListContent(
+                    shoppingList = state.shoppingList,
                     onCreateClick = {
                         viewModel.addShoppingList(it)
+                    },
+                    onEditClick = {
+                        viewModel.editShoppingList(it)
                     },
                     onBackPressed = onBackPressed
                 )

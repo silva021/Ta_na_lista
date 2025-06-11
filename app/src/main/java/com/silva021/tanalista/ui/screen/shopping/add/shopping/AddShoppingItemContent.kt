@@ -41,17 +41,23 @@ import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.UnitType
 import com.silva021.tanalista.ui.theme.Palette
+import java.util.UUID
 
 @Composable
 fun AddShoppingItemContent(
-    listId: String? = null,
+    listId: String,
+    shoppingItem: ShoppingItem? = null,
     onAddShoppingItem: (ShoppingItem) -> Unit,
+    onEditShoppingItem: (ShoppingItem) -> Unit = {},
     onBackPressed: () -> Unit,
 ) {
-    var name by remember { mutableStateOf("") }
-    var quantity by remember { mutableStateOf("") }
-    var minimumQuantity by remember { mutableStateOf("") }
-    var unit by remember { mutableStateOf(UnitType.UNIT) }
+    var name by remember { mutableStateOf(shoppingItem?.name ?: "") }
+    var quantity by remember { mutableStateOf(shoppingItem?.quantity?.toString() ?: "") }
+    var minimumQuantity by remember { mutableStateOf(shoppingItem?.minRequired?.toString() ?: "") }
+    var unit by remember { mutableStateOf(shoppingItem?.unitType ?: UnitType.UNIT) }
+
+    val isEditing = shoppingItem != null
+    val itemId = shoppingItem?.id ?: UUID.randomUUID().toString()
 
     Scaffold(
         backgroundColor = Palette.backgroundColor,
@@ -78,7 +84,7 @@ fun AddShoppingItemContent(
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                "Adicionar Item",
+                text = if (isEditing) "Editar Item" else "Adicionar Item",
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF1C3D3A)
@@ -151,15 +157,19 @@ fun AddShoppingItemContent(
 
                     Button(
                         onClick = {
-                            onAddShoppingItem.invoke(
-                                ShoppingItem(
-                                    name = name,
-                                    quantity = quantity.toFloat(),
-                                    listId = listId,
-                                    unitType = unit,
-                                    minRequired = minimumQuantity.toFloat()
-                                )
+                            val item = ShoppingItem(
+                                name = name,
+                                quantity = quantity.toFloat(),
+                                listId = listId,
+                                unitType = unit,
+                                minRequired = minimumQuantity.toFloat()
                             )
+
+                            if (isEditing) {
+                                onEditShoppingItem(item.copy(id = itemId))
+                            } else {
+                                onAddShoppingItem(item)
+                            }
                         },
                         shape = RoundedCornerShape(16.dp),
                         colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF70A090)),
@@ -167,7 +177,11 @@ fun AddShoppingItemContent(
                             .fillMaxWidth()
                             .height(50.dp),
                     ) {
-                        Text("Salvar", fontSize = 18.sp, color = Color.White)
+                        Text(
+                            if (isEditing) "Atualizar" else "Salvar",
+                            fontSize = 18.sp,
+                            color = Color.White
+                        )
                     }
                 }
             }
@@ -179,6 +193,7 @@ fun AddShoppingItemContent(
 @Composable
 fun AddShoppingItemContentPreview() {
     AddShoppingItemContent(
+        listId = "12345",
         onAddShoppingItem = { /* salvar */ },
         onBackPressed = { /* voltar */ }
     )

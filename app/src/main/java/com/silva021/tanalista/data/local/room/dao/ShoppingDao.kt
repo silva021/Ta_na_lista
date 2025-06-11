@@ -34,5 +34,16 @@ interface ShoppingListDao {
     fun getShoppingItems(listId: String): Flow<List<ShoppingItemEntity>>
 
     @Update
-    suspend fun updateItem(item: ShoppingItemEntity)
+    suspend fun updateShoppingItem(item: ShoppingItemEntity)
+
+    @Update
+    suspend fun updateShoppingList(list: ShoppingListEntity)
+
+    @Transaction
+    @Query("SELECT * FROM shopping_item WHERE id = :itemId")
+    fun getShoppingItemById(itemId: String): Flow<ShoppingItemEntity>
+
+    @Transaction
+    @Query("SELECT * FROM shopping_list WHERE id = :listId")
+    fun getShoppingListById(listId: String): Flow<ShoppingListEntity>
 }

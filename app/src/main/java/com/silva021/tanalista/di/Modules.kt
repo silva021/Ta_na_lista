@@ -11,7 +11,9 @@ import com.silva021.tanalista.domain.usecase.AddShoppingListUseCase
 import com.silva021.tanalista.domain.usecase.CreateUserUseCase
 import com.silva021.tanalista.domain.usecase.DeleteShoppingListsUseCase
 import com.silva021.tanalista.domain.usecase.DeleteUserAccountUseCase
+import com.silva021.tanalista.domain.usecase.GetShoppingItemByIdUseCase
 import com.silva021.tanalista.domain.usecase.GetShoppingItemsUseCase
+import com.silva021.tanalista.domain.usecase.GetShoppingListByIdUseCase
 import com.silva021.tanalista.domain.usecase.GetShoppingListsUseCase
 import com.silva021.tanalista.domain.usecase.GetUserUseCase
 import com.silva021.tanalista.domain.usecase.IsUserLoggedInUseCase
@@ -19,11 +21,12 @@ import com.silva021.tanalista.domain.usecase.LoginUseCase
 import com.silva021.tanalista.domain.usecase.LogoutUserUseCase
 import com.silva021.tanalista.domain.usecase.ResetPasswordUseCase
 import com.silva021.tanalista.domain.usecase.UpdateShoppingItemUseCase
+import com.silva021.tanalista.domain.usecase.UpdateShoppingListUseCase
 import com.silva021.tanalista.domain.usecase.UpdateUserUseCase
 import com.silva021.tanalista.ui.screen.login.LoginViewModel
 import com.silva021.tanalista.ui.screen.shopping.add.list.CreateListViewModel
 import com.silva021.tanalista.ui.screen.shopping.add.shopping.AddShoppingItemViewModel
-import com.silva021.tanalista.ui.screen.shopping.mylist.MyListsViewModel
+import com.silva021.tanalista.ui.screen.shopping.mylist.ShoppingListsViewModel
 import com.silva021.tanalista.ui.screen.shopping.stock.ProductStockListViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
@@ -33,13 +36,10 @@ val viewModelModule = module {
     viewModel { LoginViewModel(get(), get()) }
     viewModel { RegisterViewModel(get()) }
     viewModel { ForgotPasswordViewModel(get()) }
-    viewModel { MyListsViewModel(get(), get()) }
-    viewModel { CreateListViewModel(get()) }
-    viewModel { ProductStockListViewModel(
-        get(),
-        get()
-    ) }
-    viewModel { AddShoppingItemViewModel(get()) }
+    viewModel { ShoppingListsViewModel(get(), get()) }
+    viewModel { CreateListViewModel(get(), get(), get()) }
+    viewModel { ProductStockListViewModel(get(), get()) }
+    viewModel { AddShoppingItemViewModel(get(), get(), get()) }
 
 }
 
@@ -69,7 +69,9 @@ val usecasesModule = module {
     factory { DeleteShoppingListsUseCase(get()) }
     factory { GetShoppingItemsUseCase(get()) }
     factory { UpdateShoppingItemUseCase(get()) }
-
+    factory { GetShoppingItemByIdUseCase(get()) }
+    factory { GetShoppingListByIdUseCase(get()) }
+    factory { UpdateShoppingListUseCase(get()) }
 
     single<ShoppingRepository> { ShoppingRepositoryImpl(get()) }
 }

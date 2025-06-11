@@ -4,26 +4,24 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.silva021.tanalista.domain.model.CategoryType
-import com.silva021.tanalista.domain.model.ShoppingItem
-import com.silva021.tanalista.domain.model.ShoppingList
-import com.silva021.tanalista.domain.model.StockStatus
-import com.silva021.tanalista.domain.model.UnitType
+import androidx.navigation.navArgument
 import com.silva021.tanalista.ui.routes.Routes
+import com.silva021.tanalista.ui.routes.Routes.AddShoppingItemScreen.navigateToAddShoppingItemScreen
+import com.silva021.tanalista.ui.routes.Routes.CreateListScreen.navigateToCreateListScreen
+import com.silva021.tanalista.ui.routes.Routes.MyListsScreen.ITEM_ID
+import com.silva021.tanalista.ui.routes.Routes.MyListsScreen.LIST_ID
+import com.silva021.tanalista.ui.routes.Routes.ProductStockListScreen.navigateToProductStockListScreen
 import com.silva021.tanalista.ui.screen.forgotpassword.ForgotPasswordScreen
 import com.silva021.tanalista.ui.screen.login.LoginScreen
 import com.silva021.tanalista.ui.screen.register.RegisterScreen
 import com.silva021.tanalista.ui.screen.shopping.add.list.CreateListScreen
 import com.silva021.tanalista.ui.screen.shopping.add.shopping.AddShoppingItemScreen
-import com.silva021.tanalista.ui.screen.shopping.mylist.MyListsScreen
+import com.silva021.tanalista.ui.screen.shopping.mylist.ShoppingListsScreen
 import com.silva021.tanalista.ui.screen.shopping.stock.ProductStockListScreen
 import com.silva021.tanalista.ui.screen.welcome.WelcomeScreen
 import com.silva021.tanalista.ui.theme.Scaffold
@@ -84,26 +82,35 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(Routes.MyListsScreen.route) {
-                            MyListsScreen(
+                            ShoppingListsScreen(
                                 onCardClick = {
-                                    Routes.MyListsScreen.navigateToProductStockListScreen(
+                                    navigateToProductStockListScreen(
                                         navController,
                                         it.id
                                     )
                                 },
                                 onEditClick = {
-                                    Routes.MyListsScreen.navigateToProductStockListScreen(
+                                    navigateToCreateListScreen(
                                         navController,
                                         it.id
                                     )
                                 },
                                 onAddClick = {
-                                    Routes.MyListsScreen.navigateToCreateListScreen(navController)
+                                    navigateToCreateListScreen(navController)
                                 }
                             )
                         }
-                        composable(Routes.CreateListScreen.route) {
+                        composable(
+                            route = Routes.CreateListScreen.route,
+                            arguments = listOf(
+                                navArgument(LIST_ID) { type = NavType.StringType; nullable = true },
+                            )
+                        ) { backStackEntry ->
+                            val listId =
+                                backStackEntry.arguments?.getString(Routes.MyListsScreen.LIST_ID)
+                                    .orEmpty()
                             CreateListScreen(
+                                listId = listId,
                                 onBackPressed = {
                                     Routes.CreateListScreen.popBackStack(
                                         navController
@@ -112,26 +119,52 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
-                        composable(Routes.AddShoppingItemScreen.route) { backStackEntry ->
-                            val listId = backStackEntry.arguments?.getString(Routes.ProductStockListScreen.LIST_ID).orEmpty()
+                        composable(
+                            route = Routes.AddShoppingItemScreen.route,
+                            arguments = listOf(
+                                navArgument(LIST_ID) { type = NavType.StringType },
+                                navArgument(ITEM_ID) {
+                                    type = NavType.StringType; nullable = true
+                                }
+                            )
+                        ) { backStackEntry ->
+                            val listId =
+                                backStackEntry.arguments?.getString(LIST_ID)
+                                    .orEmpty()
+
+                            val itemId =
+                                backStackEntry.arguments?.getString(ITEM_ID)
+                                    .orEmpty()
 
                             AddShoppingItemScreen(
                                 listId = listId,
+                                itemId = itemId,
                                 onBack = {
                                     Routes.AddShoppingItemScreen.popBackStack(navController)
                                 }
                             )
                         }
 
-                        composable(Routes.ProductStockListScreen.route) { backStackEntry ->
-                            val listId = backStackEntry.arguments?.getString(Routes.ProductStockListScreen.LIST_ID).orEmpty()
+                        composable(
+                            route = Routes.ProductStockListScreen.route
+                        ) { backStackEntry ->
+                            val listId =
+                                backStackEntry.arguments?.getString(Routes.MyListsScreen.LIST_ID)
+                                    .orEmpty()
 
                             ProductStockListScreen(
                                 listId = listId,
                                 onAdd = {
-                                    Routes.ProductStockListScreen.navigateToAddShoppingItemScreen(
+                                    navigateToAddShoppingItemScreen(
                                         navController,
                                         listId
+                                    )
+                                },
+                                onEditShoppingItem = {
+                                    navigateToAddShoppingItemScreen(
+                                        navController = navController,
+                                        listId = listId,
+                                        itemId = it
                                     )
                                 },
                                 onBackPressed = {

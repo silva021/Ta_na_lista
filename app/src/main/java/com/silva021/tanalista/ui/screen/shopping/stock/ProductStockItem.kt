@@ -38,7 +38,11 @@ import com.silva021.tanalista.domain.model.UnitType
 import com.silva021.tanalista.util.ThemedScreen
 
 @Composable
-fun ProductStockItem(item: ShoppingItem, onEditClick: (ShoppingItem) -> Unit) {
+fun ProductStockItem(
+    item: ShoppingItem,
+    onEditShoppingItem: (String) -> Unit,
+    onAdjustStock: (ShoppingItem) -> Unit
+) {
     Card(
         shape = RoundedCornerShape(16.dp),
         elevation = 4.dp,
@@ -55,7 +59,7 @@ fun ProductStockItem(item: ShoppingItem, onEditClick: (ShoppingItem) -> Unit) {
                 Spacer(Modifier.weight(1f))
 
                 IconButton(
-                    onClick = { onEditClick(item) }) {
+                    onClick = { onEditShoppingItem(item.id) }) {
                     Icon(
                         imageVector = Icons.Default.Edit,
                         contentDescription = "Editar",
@@ -104,7 +108,7 @@ fun ProductStockItem(item: ShoppingItem, onEditClick: (ShoppingItem) -> Unit) {
                     color = Color(0xFFE57373),
                     shape = RoundedCornerShape(4.dp),
                     modifier = Modifier
-                        .clickable { onEditClick(item.copy(quantity = item.quantity - 1)) }
+                        .clickable { onAdjustStock(item.copy(quantity = item.quantity - 1)) }
                 ) {
                     Text(
                         "Consumir",
@@ -121,7 +125,7 @@ fun ProductStockItem(item: ShoppingItem, onEditClick: (ShoppingItem) -> Unit) {
                     color =  Color(0xFF81C784),
                     shape = RoundedCornerShape(4.dp),
                     modifier = Modifier
-                        .clickable { onEditClick(item.copy(quantity = item.quantity + 1)) }
+                        .clickable { onAdjustStock(item.copy(quantity = item.quantity + 1)) }
                 ) {
                     Spacer(Modifier.width(4.dp))
                     Text(
@@ -159,7 +163,8 @@ fun PreviewProductStockItem() {
         )
 
         ProductStockItem(
-            onEditClick = {},
+            onEditShoppingItem = {},
+            onAdjustStock = {},
             item = item,
         )
     }

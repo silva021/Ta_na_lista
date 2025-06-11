@@ -21,17 +21,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.domain.model.CategoryType
-import com.silva021.tanalista.domain.model.ListColor
-import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.ShoppingList
-import com.silva021.tanalista.domain.model.StockStatus
-import com.silva021.tanalista.domain.model.UnitType
 import com.silva021.tanalista.ui.components.ListCard
 import com.silva021.tanalista.ui.theme.Palette
 import com.silva021.tanalista.util.ThemedScreen
 
 @Composable
-fun MyListsContent(
+fun ShoppingListsContent(
     lists: List<ShoppingList>,
     onCardClick: (ShoppingList) -> Unit,
     onEditClick: (ShoppingList) -> Unit,
@@ -96,7 +92,7 @@ fun PreviewMyListsContent() {
             ShoppingList(name = "Farmácia", type = CategoryType.PHARMACY)
         )
 
-        MyListsContent(
+        ShoppingListsContent(
             lists = shoppingLists,
             onCardClick = {},
             onDeleteClick = { /* TODO */ },

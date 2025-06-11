@@ -34,20 +34,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.domain.model.CategoryType
-import com.silva021.tanalista.domain.model.ListColor
 import com.silva021.tanalista.domain.model.ShoppingList
 import com.silva021.tanalista.ui.components.CategorySelector
-import com.silva021.tanalista.ui.components.ColorSelector
 import com.silva021.tanalista.ui.theme.Palette
 import com.silva021.tanalista.util.ThemedScreen
+import java.util.UUID
 
 @Composable
 fun CreateListContent(
+    shoppingList: ShoppingList? = null,
     onCreateClick: (ShoppingList) -> Unit,
+    onEditClick: (ShoppingList) -> Unit = {},
     onBackPressed: () -> Unit,
 ) {
-    var name by remember { mutableStateOf("") }
-    var categoriesSelected by remember { mutableStateOf(CategoryType.OTHER) }
+    var name by remember { mutableStateOf(shoppingList?.name ?: "") }
+    var categoriesSelected by remember { mutableStateOf(shoppingList?.type ?: CategoryType.OTHER) }
+    val isEditing = shoppingList != null
 
     val categories = CategoryType.values().toList()
 
@@ -125,12 +127,21 @@ fun CreateListContent(
 
                 Button(
                     onClick = {
-                        onCreateClick.invoke(
-                            ShoppingList(
-                                name = name,
-                                type = categoriesSelected
+                        if (isEditing) {
+                            onEditClick(
+                                shoppingList.copy(
+                                    name = name,
+                                    type = categoriesSelected
+                                )
                             )
-                        )
+                        } else {
+                            onCreateClick.invoke(
+                                ShoppingList(
+                                    name = name,
+                                    type = categoriesSelected
+                                )
+                            )
+                        }
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -139,7 +150,7 @@ fun CreateListContent(
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF70A090))
                 ) {
                     Text(
-                        "Criar Lista",
+                        if (isEditing) "Editar a lista" else "Criar Lista",
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
                         color = Color.White
