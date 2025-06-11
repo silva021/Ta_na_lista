@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.UnitType
 
 @OptIn(ExperimentalMaterialApi::class)
