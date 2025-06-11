@@ -3,8 +3,8 @@ package com.silva021.tanalista.ui.screen.forgotpassword
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.pgolcursos.biblequiz.ui.model.ResetPasswordState
-import com.pgolcursos.biblequiz.ui.screen.auth.forgotpassword.ForgotPasswordViewModel
+import com.silva021.tanalista.ui.model.ResetPasswordState
+import com.silva021.tanalista.ui.screen.forgotpassword.ForgotPasswordViewModel
 import com.silva021.tanalista.ui.theme.Scaffold
 import org.koin.androidx.compose.koinViewModel
 

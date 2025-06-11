@@ -1,4 +1,4 @@
-package com.pgolcursos.biblequiz.data.datastore
+package com.silva021.tanalista.data.datastore
 
 object Keys {
     const val IsUserLoggedIn = ("is_user_logged_in")

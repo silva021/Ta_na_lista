@@ -1,4 +1,4 @@
-package com.pgolcursos.biblequiz.domain.model
+package com.silva021.tanalista.domain.model
 
 data class User(
     val userUid: String,

@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.pgolcursos.biblequiz.ui.model.TopBarModel
+import com.silva021.tanalista.ui.model.TopBarModel
 
 @Composable
 fun TopAppBar(
