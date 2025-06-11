@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,13 +37,18 @@ import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.StockStatus
 import com.silva021.tanalista.domain.model.UnitType
 import com.silva021.tanalista.util.ThemedScreen
+import com.silva021.tanalista.R
+import com.silva021.tanalista.ui.theme.Palette.DarkGreen
+import com.silva021.tanalista.ui.theme.Palette.NegativeAction
+import com.silva021.tanalista.ui.theme.Palette.PositiveAction
+import com.silva021.tanalista.ui.theme.Palette
 
 @Composable
 fun ProductStockItem(item: ShoppingItem, onEditClick: (ShoppingItem) -> Unit) {
     Card(
         shape = RoundedCornerShape(16.dp),
         elevation = 4.dp,
-        backgroundColor = Color.White,
+        backgroundColor = Palette.White,
         modifier = Modifier.fillMaxWidth()
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -58,13 +64,13 @@ fun ProductStockItem(item: ShoppingItem, onEditClick: (ShoppingItem) -> Unit) {
                     onClick = { onEditClick(item) }) {
                     Icon(
                         imageVector = Icons.Default.Edit,
-                        contentDescription = "Editar",
-                        tint = Color(0xFF1C3D3A)
+                        contentDescription = stringResource(id = R.string.edit),
+                        tint = DarkGreen
                     )
                 }
             }
 
-            Text("${item.quantity} ${item.unitType.label}", fontSize = 16.sp)
+            Text("${item.quantity} " + stringResource(id = item.unitType.labelRes), fontSize = 16.sp)
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -90,9 +96,9 @@ fun ProductStockItem(item: ShoppingItem, onEditClick: (ShoppingItem) -> Unit) {
                         shape = RoundedCornerShape(18.dp)
                     ) {
                         Text(
-                            this.label,
+                            stringResource(id = this.labelRes),
                             modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
-                            color = Color.White,
+                            color = Palette.White,
                             fontSize = 12.sp
                         )
                     }
@@ -101,15 +107,15 @@ fun ProductStockItem(item: ShoppingItem, onEditClick: (ShoppingItem) -> Unit) {
                 Spacer(modifier = Modifier.weight(1f))
 
                 Surface(
-                    color = Color(0xFFE57373),
+                    color = NegativeAction,
                     shape = RoundedCornerShape(4.dp),
                     modifier = Modifier
                         .clickable { onEditClick(item.copy(quantity = item.quantity - 1)) }
                 ) {
                     Text(
-                        "Consumir",
+                        stringResource(id = R.string.consume),
                         modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
-                        color = Color.White,
+                        color = Palette.White,
                         fontSize = 12.sp,
                         fontWeight = Bold
                     )
@@ -118,16 +124,16 @@ fun ProductStockItem(item: ShoppingItem, onEditClick: (ShoppingItem) -> Unit) {
                 Spacer(modifier = Modifier.width(6.dp))
 
                 Surface(
-                    color =  Color(0xFF81C784),
+                    color =  PositiveAction,
                     shape = RoundedCornerShape(4.dp),
                     modifier = Modifier
                         .clickable { onEditClick(item.copy(quantity = item.quantity + 1)) }
                 ) {
                     Spacer(Modifier.width(4.dp))
                     Text(
-                        "Repor",
+                        stringResource(id = R.string.replenish),
                         modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
-                        color = Color.White,
+                        color = Palette.White,
                         fontSize = 12.sp,
                         fontWeight = Bold
                     )

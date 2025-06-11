@@ -1,31 +1,34 @@
 package com.silva021.tanalista.domain.model
 
+import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
+import com.silva021.tanalista.ui.theme.Palette
+import com.silva021.tanalista.R
 
 enum class StockStatus(
-    val label: String,
+    @StringRes val labelRes: Int,
     val barColor: Color,
     val textColor: Color
 ) {
     EMPTY(
-        label = "Sem estoque",
-        barColor = Color(0xFFBDBDBD),
-        textColor = Color(0xFF616161)
+        labelRes = R.string.stock_empty,
+        barColor = Palette.StatusBarEmpty,
+        textColor = Palette.StatusTextEmpty
     ),
     CRITICAL(
-        label = "Muito baixo",
-        barColor = Color(0xFFE57373),
-        textColor = Color(0xFFC62828)
+        labelRes = R.string.stock_critical,
+        barColor = Palette.StatusBarCritical,
+        textColor = Palette.StatusTextCritical
     ),
     LOW(
-        label = "Baixo",
-        barColor = Color(0xFFFFF176),
-        textColor = Color(0xFFF57F17)
+        labelRes = R.string.stock_low,
+        barColor = Palette.StatusBarLow,
+        textColor = Palette.StatusTextLow
     ),
     OK(
-        label = "Bom estoque",
-        barColor = Color(0xFF81C784),
-        textColor = Color(0xFF2E7D32)
+        labelRes = R.string.stock_ok,
+        barColor = Palette.StatusBarOk,
+        textColor = Palette.StatusTextOk
     );
 
     companion object {

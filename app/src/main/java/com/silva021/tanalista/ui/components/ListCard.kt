@@ -18,10 +18,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.domain.model.ShoppingList
+import com.silva021.tanalista.ui.theme.Palette
 
 @Composable
 fun ListCard(
@@ -53,7 +55,7 @@ fun ListCard(
                     text = shoppingList.name,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.White
+                    color = Palette.White
                 )
             }
 
@@ -61,16 +63,16 @@ fun ListCard(
                 IconButton(onClick = { onEditClick(shoppingList) }) {
                     Icon(
                         imageVector = Icons.Default.Edit,
-                        contentDescription = "Editar",
-                        tint = Color.White
+                        contentDescription = stringResource(id = R.string.edit),
+                        tint = Palette.White
                     )
                 }
 
                 IconButton(onClick = { onDeleteClick(shoppingList) }) {
                     Icon(
                         imageVector = Icons.Default.Delete,
-                        contentDescription = "Deletar",
-                        tint = Color.White
+                        contentDescription = stringResource(id = R.string.delete),
+                        tint = Palette.White
                     )
                 }
             }

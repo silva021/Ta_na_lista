@@ -1,3 +1,60 @@
 <resources>
     <string name="app_name">Ta na lista</string>
+    <string name="logo_text">Tá na Lista</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Senha</string>
+    <string name="hint_name">Nome</string>
+    <string name="button_register">Cadastrar</string>
+    <string name="button_login">Login</string>
+    <string name="forgot_password">Esqueci minha senha</string>
+    <string name="no_account_register">Não tem conta? Cadastre-se</string>
+    <string name="have_account_login">Já tem conta? Entrar.</string>
+    <string name="login_with_google">Entrar com Google</string>
+    <string name="start">Começar</string>
+    <string name="welcome_message">Organize suas compras,\ncontrole seu estoque e nunca\nesqueça nada.</string>
+    <string name="hint_list_name">Nome da lista</string>
+    <string name="button_create_list">Criar Lista</string>
+    <string name="button_add_item">Adicionar Item</string>
+    <string name="hint_item_name">Nome do item</string>
+    <string name="hint_quantity">Quantidade</string>
+    <string name="hint_minimum_quantity">Quantidade mínima</string>
+    <string name="unit_measure">Unidade de Medida</string>
+    <string name="button_save">Salvar</string>
+    <string name="fab_add">Adicionar</string>
+    <string name="title_my_lists">Minhas Listas</string>
+    <string name="no_lists">Você ainda não tem nenhuma lista</string>
+    <string name="back">Voltar</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Deletar</string>
+    <string name="title_stock">Estoque</string>
+    <string name="item_label">Item</string>
+    <string name="consume">Consumir</string>
+    <string name="replenish">Repor</string>
+    <string name="categories">Categorias</string>
+    <string name="list_color">Cor da lista</string>
+    <string name="logo">Logo</string>
+    <string name="google">Google</string>
+    <!-- Category labels -->
+    <string name="category_grocery">Mercado</string>
+    <string name="category_pet">Pet</string>
+    <string name="category_cleaning">Limpeza</string>
+    <string name="category_pharmacy">Farmácia</string>
+    <string name="category_other">Outros</string>
+
+    <!-- Stock status labels -->
+    <string name="stock_empty">Sem estoque</string>
+    <string name="stock_critical">Muito baixo</string>
+    <string name="stock_low">Baixo</string>
+    <string name="stock_ok">Bom estoque</string>
+
+    <!-- Unit labels -->
+    <string name="unit_unit">Unid</string>
+    <string name="unit_dozen">dz</string>
+    <string name="unit_gram">G</string>
+    <string name="unit_kilogram">KG</string>
+    <string name="unit_milliliter">mL</string>
+    <string name="unit_liter">L</string>
+    <string name="unit_package">Pacote</string>
+    <string name="unit_box">Caixa</string>
+    <string name="unit_other">Outro</string>
 </resources>

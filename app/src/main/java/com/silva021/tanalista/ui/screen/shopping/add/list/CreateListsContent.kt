@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -39,6 +40,8 @@ import com.silva021.tanalista.domain.model.ShoppingList
 import com.silva021.tanalista.ui.components.CategorySelector
 import com.silva021.tanalista.ui.components.ColorSelector
 import com.silva021.tanalista.ui.theme.Palette
+import com.silva021.tanalista.ui.theme.Palette.DarkGreen
+import com.silva021.tanalista.ui.theme.Palette.FieldBackground
 import com.silva021.tanalista.util.ThemedScreen
 
 @Composable
@@ -60,7 +63,7 @@ fun CreateListContent(
                 title = { },
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Voltar")
+                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(id = R.string.back))
                     }
                 }
             )
@@ -77,10 +80,10 @@ fun CreateListContent(
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                text = "Tá na Lista",
+                text = stringResource(id = R.string.logo_text),
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF1C3D3A)
+                color = DarkGreen
             )
 
             Spacer(modifier = Modifier.height(32.dp))
@@ -89,7 +92,7 @@ fun CreateListContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(32.dp))
-                    .background(Color.White)
+                    .background(Palette.White)
                     .padding(24.dp)
             ) {
 
@@ -98,13 +101,13 @@ fun CreateListContent(
                     onValueChange = {
                         name = it
                     },
-                    placeholder = { Text("Nome da lista") },
+                    placeholder = { Text(stringResource(id = R.string.hint_list_name)) },
                     singleLine = true,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp),
                     colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = Color(0xFFF9F7F5),
+                        backgroundColor = FieldBackground,
                         unfocusedIndicatorColor = Color.Transparent,
                         focusedIndicatorColor = Color.Transparent
                     ),
@@ -136,13 +139,13 @@ fun CreateListContent(
                         .fillMaxWidth()
                         .height(56.dp),
                     shape = RoundedCornerShape(20.dp),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF70A090))
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Palette.buttonColor)
                 ) {
                     Text(
-                        "Criar Lista",
+                        stringResource(id = R.string.button_create_list),
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
-                        color = Color.White
+                        color = Palette.White
                     )
                 }
 

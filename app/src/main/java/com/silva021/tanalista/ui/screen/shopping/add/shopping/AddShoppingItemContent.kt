@@ -33,6 +33,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -41,6 +42,9 @@ import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.UnitType
 import com.silva021.tanalista.ui.theme.Palette
+import com.silva021.tanalista.ui.theme.Palette.DarkGreen
+import com.silva021.tanalista.ui.theme.Palette.FieldBackground
+import com.silva021.tanalista.ui.theme.Palette.PositiveAction
 
 @Composable
 fun AddShoppingItemContent(
@@ -62,7 +66,7 @@ fun AddShoppingItemContent(
                 title = { },
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Voltar")
+                    Icon(Icons.Default.ArrowBack, contentDescription = stringResource(id = R.string.back))
                     }
                 })
         }
@@ -78,10 +82,10 @@ fun AddShoppingItemContent(
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                "Adicionar Item",
+                stringResource(id = R.string.button_add_item),
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF1C3D3A)
+                color = DarkGreen
             )
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -89,18 +93,18 @@ fun AddShoppingItemContent(
             Surface(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(24.dp),
-                color = Color.White,
+                color = Palette.White,
                 elevation = 2.dp
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     OutlinedTextField(
                         value = name,
                         onValueChange = { name = it },
-                        placeholder = { Text("Nome do item") },
+                        placeholder = { Text(stringResource(id = R.string.hint_item_name)) },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(12.dp),
                         colors = TextFieldDefaults.textFieldColors(
-                            backgroundColor = Color(0xFFF9F7F5),
+                            backgroundColor = FieldBackground,
                             unfocusedIndicatorColor = Color.Transparent,
                             focusedIndicatorColor = Color.Transparent
                         ),
@@ -112,10 +116,10 @@ fun AddShoppingItemContent(
                     OutlinedTextField(
                         value = quantity,
                         onValueChange = { quantity = it },
-                        placeholder = { Text("Quantidade") },
+                        placeholder = { Text(stringResource(id = R.string.hint_quantity)) },
                         modifier = Modifier.fillMaxWidth(),
                         colors = TextFieldDefaults.textFieldColors(
-                            backgroundColor = Color(0xFFF9F7F5),
+                            backgroundColor = FieldBackground,
                             unfocusedIndicatorColor = Color.Transparent,
                             focusedIndicatorColor = Color.Transparent
                         ),
@@ -125,22 +129,22 @@ fun AddShoppingItemContent(
 
                     Spacer(modifier = Modifier.height(12.dp))
 
-                    Text("Unidade de Medida", fontSize = 16.sp)
+                    Text(stringResource(id = R.string.unit_measure), fontSize = 16.sp)
 
                     Spacer(modifier = Modifier.height(6.dp))
 
-                    DropdownMenuBox(unit.label, { unit = it })
+                    DropdownMenuBox(stringResource(id = unit.labelRes), { unit = it })
 
                     Spacer(modifier = Modifier.height(12.dp))
 
                     OutlinedTextField(
                         value = minimumQuantity,
                         onValueChange = { minimumQuantity = it },
-                        placeholder = { Text("Quantidade mínima") },
+                        placeholder = { Text(stringResource(id = R.string.hint_minimum_quantity)) },
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(12.dp),
                         colors = TextFieldDefaults.textFieldColors(
-                            backgroundColor = Color(0xFFF9F7F5),
+                            backgroundColor = FieldBackground,
                             unfocusedIndicatorColor = Color.Transparent,
                             focusedIndicatorColor = Color.Transparent
                         ),
@@ -162,12 +166,12 @@ fun AddShoppingItemContent(
                             )
                         },
                         shape = RoundedCornerShape(16.dp),
-                        colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF70A090)),
+                        colors = ButtonDefaults.buttonColors(backgroundColor = PositiveAction),
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(50.dp),
                     ) {
-                        Text("Salvar", fontSize = 18.sp, color = Color.White)
+                        Text(stringResource(id = R.string.button_save), fontSize = 18.sp, color = Palette.White)
                     }
                 }
             }

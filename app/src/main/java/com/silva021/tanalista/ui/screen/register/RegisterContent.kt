@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -36,8 +37,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.R
 import com.silva021.tanalista.util.ThemedScreen
+import com.silva021.tanalista.ui.theme.Palette
 import com.silva021.tanalista.ui.theme.Palette.backgroundColor
 import com.silva021.tanalista.ui.theme.Palette.buttonColor
+import com.silva021.tanalista.ui.theme.Palette.TextPrimary
+import com.silva021.tanalista.ui.theme.Palette.FieldBackground
+import com.silva021.tanalista.ui.theme.Palette.DarkGreen
 
 @Composable
 fun RegisterContent(
@@ -61,7 +66,7 @@ fun RegisterContent(
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
                 painter = painterResource(R.drawable.ic_logo),
-                contentDescription = "Logo",
+                contentDescription = stringResource(id = R.string.logo),
                 tint = Color.Unspecified,
                 modifier = Modifier.size(32.dp)
             )
@@ -70,10 +75,10 @@ fun RegisterContent(
             Spacer(modifier = Modifier.width(8.dp))
 
             Text(
-                text = "Tá na Lista",
+                text = stringResource(id = R.string.logo_text),
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF2B2B2B)
+                color = TextPrimary
             )
         }
 
@@ -83,7 +88,7 @@ fun RegisterContent(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(32.dp))
-                .background(Color.White)
+                .background(Palette.White)
                 .padding(24.dp)
         ) {
 
@@ -91,13 +96,13 @@ fun RegisterContent(
             TextField(
                 value = name,
                 onValueChange = { name = it },
-                placeholder = { Text("Nome") },
+                placeholder = { Text(stringResource(id = R.string.hint_name)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 16.dp),
                 visualTransformation = PasswordVisualTransformation(),
                 colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color(0xFFF9F7F5),
+                    backgroundColor = FieldBackground,
                     unfocusedIndicatorColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent
                 ),
@@ -108,12 +113,12 @@ fun RegisterContent(
             TextField(
                 value = email,
                 onValueChange = { email = it },
-                placeholder = { Text("Email") },
+                placeholder = { Text(stringResource(id = R.string.hint_email)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 16.dp),
                 colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color(0xFFF9F7F5),
+                    backgroundColor = FieldBackground,
                     unfocusedIndicatorColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent
                 ),
@@ -124,13 +129,13 @@ fun RegisterContent(
             TextField(
                 value = password,
                 onValueChange = { password = it },
-                placeholder = { Text("Senha") },
+                placeholder = { Text(stringResource(id = R.string.hint_password)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 24.dp),
                 visualTransformation = PasswordVisualTransformation(),
                 colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color(0xFFF9F7F5),
+                    backgroundColor = FieldBackground,
                     unfocusedIndicatorColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent
                 ),
@@ -148,17 +153,17 @@ fun RegisterContent(
                     backgroundColor = buttonColor
                 )
             ) {
-                Text("Cadastrar", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                Text(stringResource(id = R.string.button_register), fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Palette.White)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Já tem conta? Entrar.",
+                text = stringResource(id = R.string.have_account_login),
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .clickable { onLoginClick() },
-                color = Color(0xFF2B2B2B)
+                color = TextPrimary
             )
         }
     }

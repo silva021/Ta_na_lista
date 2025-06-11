@@ -52,4 +52,34 @@ object Palette {
 
     val backgroundColor = Color(0xFFfefef8)
     val buttonColor = Color(0xFF70A090)
+
+    // Extras
+    val TextPrimary = Color(0xFF2B2B2B)
+    val FieldBackground = Color(0xFFF9F7F5)
+    val BorderGray = Color(0xFFE0E0E0)
+    val DarkGreen = Color(0xFF1C3D3A)
+    val TagBackgroundSelected = Color(0xFFECE7DF)
+    val TagBackgroundUnselected = Color(0xFFF6F2EA)
+    val ProgressBackground = Color(0xFFE5E5E5)
+    val NegativeAction = Color(0xFFE57373)
+    val PositiveAction = Color(0xFF81C784)
+    val StatusBarEmpty = Color(0xFFBDBDBD)
+    val StatusTextEmpty = Color(0xFF616161)
+    val StatusBarCritical = Color(0xFFE57373)
+    val StatusTextCritical = Color(0xFFC62828)
+    val StatusBarLow = Color(0xFFFFF176)
+    val StatusTextLow = Color(0xFFF57F17)
+    val StatusBarOk = Color(0xFF81C784)
+    val StatusTextOk = Color(0xFF2E7D32)
+
+    // Cores de categoria
+    val CategoryGrocery = Color(0xFF4CAF50)
+    val CategoryPet = Color(0xFFFFC107)
+    val CategoryCleaning = Color(0xFF2196F3)
+    val CategoryPharmacy = Color(0xFFF44336)
+    val CategoryOther = Color(0xFF9E9E9E)
+
+    // Extras de tema
+    val SurfaceLight = Color(0xFFFFFBFE)
+    val OnSurfaceDark = Color(0xFF1C1B1F)
 }

@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -26,8 +27,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.util.ThemedScreen
 import com.silva021.tanalista.R
+import com.silva021.tanalista.ui.theme.Palette
 import com.silva021.tanalista.ui.theme.Palette.backgroundColor
 import com.silva021.tanalista.ui.theme.Palette.buttonColor
+import com.silva021.tanalista.ui.theme.Palette.TextPrimary
 
 @Composable
 fun WelcomeContent(
@@ -44,15 +47,15 @@ fun WelcomeContent(
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = "Tá na Lista",
+            text = stringResource(id = R.string.logo_text),
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF2B2B2B)
+            color = TextPrimary
         )
 
         Image(
             painter = painterResource(id = R.drawable.shopping_illustration),
-            contentDescription = "Ilustração de carrinho, lista e sacola",
+            contentDescription = stringResource(id = R.string.logo),
             modifier = Modifier
                 .height(200.dp)
                 .padding(vertical = 16.dp),
@@ -60,9 +63,9 @@ fun WelcomeContent(
         )
 
         Text(
-            text = "Organize suas compras,\ncontrole seu estoque e nunca\nesqueça nada.",
+            text = stringResource(id = R.string.welcome_message),
             textAlign = TextAlign.Center,
-            color = Color(0xFF2B2B2B),
+            color = TextPrimary,
             fontSize = 18.sp,
             modifier = Modifier.padding(horizontal = 8.dp)
         )
@@ -78,10 +81,10 @@ fun WelcomeContent(
                 .height(56.dp)
         ) {
             Text(
-                text = "Começar",
+                text = stringResource(id = R.string.start),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White
+                color = Palette.White
             )
         }
 

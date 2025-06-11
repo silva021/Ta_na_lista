@@ -5,6 +5,7 @@ import androidx.compose.material.RadioButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.silva021.tanalista.ui.theme.Palette
 
 @Composable
 fun CustomRadioButton(
@@ -21,10 +22,10 @@ fun CustomRadioButton(
             onClick?.invoke()
         },
         colors = RadioButtonDefaults.colors(
-            selectedColor = Color.White,
+            selectedColor = Palette.White,
             unselectedColor = Color.Gray,
 //            disabledSelectedColor = Color.Black,
-//            disabledUnselectedColor = Color.White,
+//            disabledUnselectedColor = Palette.White,
         )
     )
 }

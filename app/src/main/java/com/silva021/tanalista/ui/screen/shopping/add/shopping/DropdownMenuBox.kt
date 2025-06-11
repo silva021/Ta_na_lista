@@ -25,6 +25,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import com.silva021.tanalista.ui.theme.Palette.FieldBackground
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.silva021.tanalista.domain.model.UnitType
@@ -49,7 +51,7 @@ fun DropdownMenuBox(selected: String, onSelect: (UnitType) -> Unit) {
             shape = RoundedCornerShape(12.dp),
             singleLine = true,
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFFF9F7F5),
+                backgroundColor = FieldBackground,
                 unfocusedIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent
             ),
@@ -64,7 +66,7 @@ fun DropdownMenuBox(selected: String, onSelect: (UnitType) -> Unit) {
         ) {
             unitiesType.forEach { unitType ->
                 DropdownMenuItem(
-                    content = { Text(unitType.label) },
+                    content = { Text(stringResource(id = unitType.labelRes)) },
                     onClick = {
                         onSelect(unitType)
                         expanded = false
@@ -86,7 +88,7 @@ fun DropdownMenuBoxPreview() {
             .padding(24.dp)
     ) {
         DropdownMenuBox(
-            selected = selectedUnit.label,
+            selected = stringResource(id = selectedUnit.labelRes),
             onSelect = { selectedUnit = it }
         )
     }

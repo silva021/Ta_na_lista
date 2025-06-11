@@ -16,6 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.silva021.tanalista.ui.theme.Palette.DarkGreen
+import com.silva021.tanalista.ui.theme.Palette.TagBackgroundSelected
+import com.silva021.tanalista.ui.theme.Palette.TagBackgroundUnselected
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,7 +30,7 @@ fun TagOption(
     selected: Boolean,
     onClick: () -> Unit,
 ) {
-    val background = if (selected) Color(0xFFECE7DF) else Color(0xFFF6F2EA)
+    val background = if (selected) TagBackgroundSelected else TagBackgroundUnselected
 
     Surface(
         color = background,
@@ -43,11 +46,11 @@ fun TagOption(
             Icon(
                 imageVector = icon,
                 contentDescription = label,
-                tint = Color(0xFF1C3D3A),
+                tint = DarkGreen,
                 modifier = Modifier.size(18.dp)
             )
             Spacer(modifier = Modifier.width(8.dp))
-            Text(text = label, color = Color(0xFF1C3D3A))
+            Text(text = label, color = DarkGreen)
         }
     }
 }

@@ -19,9 +19,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.silva021.tanalista.domain.model.CategoryType
+import com.silva021.tanalista.ui.theme.Palette
+import com.silva021.tanalista.ui.theme.Palette.FieldBackground
 import kotlin.collections.forEach
+import com.silva021.tanalista.R
 
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalLayoutApi::class)
@@ -33,7 +37,7 @@ fun CategorySelector(
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
-            "Categorias",
+            stringResource(id = R.string.categories),
             style = MaterialTheme.typography.h6
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -48,14 +52,14 @@ fun CategorySelector(
                     selected = (type == categorySelected),
                     onClick = { onCategorySelected(type) },
                     colors = ChipDefaults.filterChipColors(
-                        backgroundColor = Color(0xFFF0F0F0),
-                        contentColor = Color.Black,
-                        leadingIconColor = Color.Black,
-                        selectedBackgroundColor =  Color(0xFF70A090),
-                        selectedContentColor = Color.White,
-                        selectedLeadingIconColor = Color.White
+                        backgroundColor = FieldBackground,
+                        contentColor = Palette.Black,
+                        leadingIconColor = Palette.Black,
+                        selectedBackgroundColor =  Palette.buttonColor,
+                        selectedContentColor = Palette.White,
+                        selectedLeadingIconColor = Palette.White
                     ),
-                    content = { Text(type.label) },
+                    content = { Text(stringResource(id = type.labelRes)) },
                     leadingIcon = {
                         Icon(
                             modifier = Modifier.padding(start = 6.dp).size(20.dp),

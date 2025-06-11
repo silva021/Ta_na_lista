@@ -11,11 +11,11 @@ private val LightColorScheme = lightColors(
     primary = Palette.PrimarySepia,
     secondary = Palette.PrimaryBeige,
     background = Color.Transparent,
-    surface = Color(0xFFFFFBFE),
+    surface = Palette.SurfaceLight,
     onPrimary = Palette.Purple80,
-    onSecondary = Color.Yellow,
-    onBackground = Color.White,
-    onSurface = Color(0xFF1C1B1F),
+    onSecondary = Palette.Yellow700,
+    onBackground = Palette.White,
+    onSurface = Palette.OnSurfaceDark,
 )
 
 
