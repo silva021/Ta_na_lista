@@ -18,7 +18,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -44,15 +46,15 @@ fun WelcomeContent(
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = "Tá na Lista",
+            text = stringResource(R.string.app_name),
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF2B2B2B)
+            color = colorResource(id = R.color.dark_text)
         )
 
         Image(
             painter = painterResource(id = R.drawable.shopping_illustration),
-            contentDescription = "Ilustração de carrinho, lista e sacola",
+            contentDescription = stringResource(R.string.shopping_illustration_desc),
             modifier = Modifier
                 .height(200.dp)
                 .padding(vertical = 16.dp),
@@ -60,9 +62,9 @@ fun WelcomeContent(
         )
 
         Text(
-            text = "Organize suas compras,\ncontrole seu estoque e nunca\nesqueça nada.",
+            text = stringResource(R.string.welcome_description),
             textAlign = TextAlign.Center,
-            color = Color(0xFF2B2B2B),
+            color = colorResource(id = R.color.dark_text),
             fontSize = 18.sp,
             modifier = Modifier.padding(horizontal = 8.dp)
         )
@@ -78,7 +80,7 @@ fun WelcomeContent(
                 .height(56.dp)
         ) {
             Text(
-                text = "Começar",
+                text = stringResource(R.string.action_start),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White

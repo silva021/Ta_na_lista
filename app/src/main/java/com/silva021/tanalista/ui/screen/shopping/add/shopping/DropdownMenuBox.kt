@@ -25,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.silva021.tanalista.domain.model.UnitType
@@ -49,7 +50,7 @@ fun DropdownMenuBox(selected: String, onSelect: (UnitType) -> Unit) {
             shape = RoundedCornerShape(12.dp),
             singleLine = true,
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xFFF9F7F5),
+                backgroundColor = colorResource(id = R.color.textfield_bg),
                 unfocusedIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent
             ),

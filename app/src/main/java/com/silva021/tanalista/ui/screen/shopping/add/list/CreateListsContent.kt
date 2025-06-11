@@ -29,6 +29,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -62,7 +64,7 @@ fun CreateListContent(
                 title = { },
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Voltar")
+                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.content_desc_back))
                     }
                 }
             )
@@ -79,10 +81,10 @@ fun CreateListContent(
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                text = "Tá na Lista",
+                text = stringResource(R.string.app_name),
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF1C3D3A)
+                color = colorResource(id = R.color.green_text)
             )
 
             Spacer(modifier = Modifier.height(32.dp))
@@ -100,13 +102,13 @@ fun CreateListContent(
                     onValueChange = {
                         name = it
                     },
-                    placeholder = { Text("Nome da lista") },
+                    placeholder = { Text(stringResource(R.string.placeholder_list_name)) },
                     singleLine = true,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp),
                     colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = Color(0xFFF9F7F5),
+                        backgroundColor = colorResource(id = R.color.textfield_bg),
                         unfocusedIndicatorColor = Color.Transparent,
                         focusedIndicatorColor = Color.Transparent
                     ),
@@ -147,10 +149,10 @@ fun CreateListContent(
                         .fillMaxWidth()
                         .height(56.dp),
                     shape = RoundedCornerShape(20.dp),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF70A090))
+                    colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.chip_selected))
                 ) {
                     Text(
-                        if (isEditing) "Editar a lista" else "Criar Lista",
+                        if (isEditing) stringResource(R.string.action_edit_list) else stringResource(R.string.action_create_list),
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
                         color = Color.White

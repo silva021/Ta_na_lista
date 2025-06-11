@@ -14,6 +14,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import com.silva021.tanalista.domain.model.ShoppingList
 import com.silva021.tanalista.ui.theme.Scaffold
 import kotlinx.coroutines.delay
@@ -43,7 +44,7 @@ fun CreateListScreen(
             }
             is CreateListUiState.Success -> {
                 scope.launch {
-                    snackbarHostState.showSnackbar(message = "Lista criada com sucesso")
+                    snackbarHostState.showSnackbar(message = stringResource(R.string.msg_list_created))
                     onBackPressed()
                 }
             }

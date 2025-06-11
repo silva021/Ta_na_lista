@@ -28,7 +28,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -61,7 +63,7 @@ fun RegisterContent(
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
                 painter = painterResource(R.drawable.ic_logo),
-                contentDescription = "Logo",
+                contentDescription = stringResource(R.string.logo_desc),
                 tint = Color.Unspecified,
                 modifier = Modifier.size(32.dp)
             )
@@ -70,10 +72,10 @@ fun RegisterContent(
             Spacer(modifier = Modifier.width(8.dp))
 
             Text(
-                text = "Tá na Lista",
+                text = stringResource(R.string.app_name),
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF2B2B2B)
+                color = colorResource(id = R.color.dark_text)
             )
         }
 
@@ -91,13 +93,13 @@ fun RegisterContent(
             TextField(
                 value = name,
                 onValueChange = { name = it },
-                placeholder = { Text("Nome") },
+                placeholder = { Text(stringResource(R.string.placeholder_name)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 16.dp),
                 visualTransformation = PasswordVisualTransformation(),
                 colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color(0xFFF9F7F5),
+                    backgroundColor = colorResource(id = R.color.textfield_bg),
                     unfocusedIndicatorColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent
                 ),
@@ -108,12 +110,12 @@ fun RegisterContent(
             TextField(
                 value = email,
                 onValueChange = { email = it },
-                placeholder = { Text("Email") },
+                placeholder = { Text(stringResource(R.string.placeholder_email)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 16.dp),
                 colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color(0xFFF9F7F5),
+                    backgroundColor = colorResource(id = R.color.textfield_bg),
                     unfocusedIndicatorColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent
                 ),
@@ -124,13 +126,13 @@ fun RegisterContent(
             TextField(
                 value = password,
                 onValueChange = { password = it },
-                placeholder = { Text("Senha") },
+                placeholder = { Text(stringResource(R.string.placeholder_password)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 24.dp),
                 visualTransformation = PasswordVisualTransformation(),
                 colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color(0xFFF9F7F5),
+                    backgroundColor = colorResource(id = R.color.textfield_bg),
                     unfocusedIndicatorColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent
                 ),
@@ -148,17 +150,17 @@ fun RegisterContent(
                     backgroundColor = buttonColor
                 )
             ) {
-                Text("Cadastrar", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                Text(stringResource(R.string.action_register), fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color.White)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Já tem conta? Entrar.",
+                text = stringResource(R.string.text_already_account),
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .clickable { onLoginClick() },
-                color = Color(0xFF2B2B2B)
+                color = colorResource(id = R.color.dark_text)
             )
         }
     }
