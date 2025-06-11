@@ -19,6 +19,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.silva021.tanalista.domain.model.CategoryType
 import kotlin.collections.forEach
@@ -33,7 +35,7 @@ fun CategorySelector(
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
-            "Categorias",
+            stringResource(R.string.label_categories),
             style = MaterialTheme.typography.h6
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -48,10 +50,10 @@ fun CategorySelector(
                     selected = (type == categorySelected),
                     onClick = { onCategorySelected(type) },
                     colors = ChipDefaults.filterChipColors(
-                        backgroundColor = Color(0xFFF0F0F0),
+                        backgroundColor = colorResource(id = R.color.chip_unselected),
                         contentColor = Color.Black,
                         leadingIconColor = Color.Black,
-                        selectedBackgroundColor =  Color(0xFF70A090),
+                        selectedBackgroundColor =  colorResource(id = R.color.chip_selected),
                         selectedContentColor = Color.White,
                         selectedLeadingIconColor = Color.White
                     ),

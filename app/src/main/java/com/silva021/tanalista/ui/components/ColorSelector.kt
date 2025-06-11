@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.silva021.tanalista.domain.model.ListColor
 import kotlin.collections.forEach
@@ -28,7 +29,7 @@ fun ColorSelector(
     onColorSelected: (ListColor) -> Unit,
 ) {
     Column {
-        Text("Cor da lista", style = MaterialTheme.typography.h6)
+        Text(stringResource(R.string.label_list_color), style = MaterialTheme.typography.h6)
         Spacer(modifier = Modifier.height(8.dp))
 
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {

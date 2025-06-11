@@ -16,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,7 +43,7 @@ fun ShoppingListsContent(
                 backgroundColor = Palette.buttonColor,
                 contentColor = Color.White
             ) {
-                Icon(Icons.Default.Add, contentDescription = "Adicionar", tint = Color.White)
+                Icon(Icons.Default.Add, contentDescription = stringResource(R.string.action_add), tint = Color.White)
             }
         }) { innerPadding ->
         Column(
@@ -50,10 +52,10 @@ fun ShoppingListsContent(
                 .padding(horizontal = 24.dp, vertical = 16.dp)
         ) {
             Text(
-                text = "Minhas Listas",
+                text = stringResource(R.string.title_my_lists),
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF2B2B2B)
+                color = colorResource(id = R.color.dark_text)
             )
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -64,7 +66,7 @@ fun ShoppingListsContent(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text("Você ainda não tem nenhuma lista", fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.text_no_lists), fontWeight = FontWeight.Bold)
                 }
             } else {
                 lists.forEach { list ->

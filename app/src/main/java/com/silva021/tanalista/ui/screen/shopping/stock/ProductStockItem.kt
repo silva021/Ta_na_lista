@@ -27,6 +27,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.tooling.preview.Preview
@@ -62,8 +64,8 @@ fun ProductStockItem(
                     onClick = { onEditShoppingItem(item.id) }) {
                     Icon(
                         imageVector = Icons.Default.Edit,
-                        contentDescription = "Editar",
-                        tint = Color(0xFF1C3D3A)
+                        contentDescription = stringResource(R.string.action_edit_list),
+                        tint = colorResource(id = R.color.green_text)
                     )
                 }
             }
@@ -105,13 +107,13 @@ fun ProductStockItem(
                 Spacer(modifier = Modifier.weight(1f))
 
                 Surface(
-                    color = Color(0xFFE57373),
+                    color = colorResource(id = R.color.consume_button),
                     shape = RoundedCornerShape(4.dp),
                     modifier = Modifier
                         .clickable { onAdjustStock(item.copy(quantity = item.quantity - 1)) }
                 ) {
                     Text(
-                        "Consumir",
+                        stringResource(R.string.action_consume),
                         modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
                         color = Color.White,
                         fontSize = 12.sp,
@@ -122,14 +124,14 @@ fun ProductStockItem(
                 Spacer(modifier = Modifier.width(6.dp))
 
                 Surface(
-                    color =  Color(0xFF81C784),
+                    color =  colorResource(id = R.color.replenish_button),
                     shape = RoundedCornerShape(4.dp),
                     modifier = Modifier
                         .clickable { onAdjustStock(item.copy(quantity = item.quantity + 1)) }
                 ) {
                     Spacer(Modifier.width(4.dp))
                     Text(
-                        "Repor",
+                        stringResource(R.string.action_replenish),
                         modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
                         color = Color.White,
                         fontSize = 12.sp,

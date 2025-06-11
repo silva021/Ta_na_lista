@@ -11,13 +11,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun StockProgressBar(
     percent: Float,
     color: Color,
-    backgroundColor: Color = Color(0xFFE5E5E5),
+    backgroundColor: Color = colorResource(id = R.color.progress_bg),
 ) {
     Box(
         modifier = Modifier

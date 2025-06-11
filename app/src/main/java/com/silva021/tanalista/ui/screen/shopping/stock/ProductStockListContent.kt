@@ -19,6 +19,8 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -45,17 +47,17 @@ fun ProductStockListContent(
                 backgroundColor = Palette.buttonColor,
                 contentColor = Color.White
             ) {
-                Icon(Icons.Default.Add, contentDescription = "Adicionar", tint = Color.White)
+                Icon(Icons.Default.Add, contentDescription = stringResource(R.string.action_add), tint = Color.White)
             }
         },
         topBar = {
             TopAppBar(
                 backgroundColor = Palette.backgroundColor,
                 elevation = 0.dp,
-                title = { Text("Estoque", color = Color.Black) },
+                title = { Text(stringResource(R.string.title_stock), color = Color.Black) },
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Voltar")
+                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.content_desc_back))
                     }
                 })
         }
@@ -69,7 +71,7 @@ fun ProductStockListContent(
             ) {
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text("Item", fontSize = 28.sp, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.label_item), fontSize = 28.sp, fontWeight = FontWeight.Bold)
 
                 Spacer(modifier = Modifier.height(16.dp))
 

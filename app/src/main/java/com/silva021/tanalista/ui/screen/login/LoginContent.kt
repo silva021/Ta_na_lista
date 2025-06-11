@@ -30,7 +30,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -64,7 +66,7 @@ fun LoginContent(
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
                 painter = painterResource(R.drawable.ic_logo),
-                contentDescription = "Logo",
+                contentDescription = stringResource(R.string.logo_desc),
                 tint = Color.Unspecified,
                 modifier = Modifier.size(32.dp)
             )
@@ -73,10 +75,10 @@ fun LoginContent(
             Spacer(modifier = Modifier.width(8.dp))
 
             Text(
-                text = "Tá na Lista",
+                text = stringResource(R.string.app_name),
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF2B2B2B)
+                color = colorResource(id = R.color.dark_text)
             )
         }
 
@@ -92,12 +94,12 @@ fun LoginContent(
             TextField(
                 value = email,
                 onValueChange = { email = it },
-                placeholder = { Text("Email") },
+                placeholder = { Text(stringResource(R.string.placeholder_email)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 16.dp),
                 colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color(0xFFF9F7F5),
+                    backgroundColor = colorResource(id = R.color.textfield_bg),
                     unfocusedIndicatorColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent
                 ),
@@ -108,13 +110,13 @@ fun LoginContent(
             TextField(
                 value = password,
                 onValueChange = { password = it },
-                placeholder = { Text("Senha") },
+                placeholder = { Text(stringResource(R.string.placeholder_password)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 24.dp),
                 visualTransformation = PasswordVisualTransformation(),
                 colors = TextFieldDefaults.textFieldColors(
-                    backgroundColor = Color(0xFFF9F7F5),
+                    backgroundColor = colorResource(id = R.color.textfield_bg),
                     unfocusedIndicatorColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent
                 ),
@@ -132,17 +134,17 @@ fun LoginContent(
                     backgroundColor = buttonColor
                 )
             ) {
-                Text("Login", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                Text(stringResource(R.string.action_login), fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color.White)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = "Esqueci minha senha",
+                text = stringResource(R.string.text_forgot_password),
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .clickable { onForgotPasswordClick() },
-                color = Color(0xFF2B2B2B)
+                color = colorResource(id = R.color.dark_text)
             )
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -153,7 +155,7 @@ fun LoginContent(
                     .fillMaxWidth()
                     .height(50.dp),
                 shape = RoundedCornerShape(16.dp),
-                border = BorderStroke(1.dp, Color(0xFFE0E0E0)),
+                border = BorderStroke(1.dp, colorResource(id = R.color.google_border)),
                 colors = ButtonDefaults.outlinedButtonColors(
                     backgroundColor = Color.White
                 )
@@ -165,17 +167,17 @@ fun LoginContent(
                     modifier = Modifier.size(20.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("Entrar com Google")
+                Text(stringResource(R.string.action_google_login))
             }
 
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = "Não tem conta? Cadastre-se",
+                text = stringResource(R.string.text_no_account),
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .clickable { onRegisterClick() },
-                color = Color(0xFF2B2B2B)
+                color = colorResource(id = R.color.dark_text)
             )
         }
     }
