@@ -65,7 +65,7 @@ fun Context.hideKeyboard() {
 
 @Composable
 fun ThemedScreen(content: @Composable () -> Unit) {
-//    BibleQuizTheme {
+//    TaNaListaTheme {
         Scaffold {
             content()
         }

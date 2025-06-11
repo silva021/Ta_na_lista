@@ -3,8 +3,8 @@ package com.silva021.tanalista.ui.screen.welcome
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.silva021.tanalista.domain.usecase.CreateUserUseCase
-import com.pgolcursos.biblequiz.ui.model.RegisterScreenModel
-import com.pgolcursos.biblequiz.ui.model.RegisterScreenState
+import com.silva021.tanalista.ui.model.RegisterScreenModel
+import com.silva021.tanalista.ui.model.RegisterScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update

@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.silva021.tanalista.ui.components.CustomButton
 import com.silva021.tanalista.ui.components.CustomOutlinedTextField
 import com.silva021.tanalista.ui.components.model.ButtonModel
-import com.pgolcursos.biblequiz.ui.model.TopBarModel
+import com.silva021.tanalista.ui.model.TopBarModel
 import com.silva021.tanalista.util.ThemedScreen
 import com.silva021.tanalista.ui.theme.Scaffold
 import com.silva021.tanalista.ui.theme.TopAppBar

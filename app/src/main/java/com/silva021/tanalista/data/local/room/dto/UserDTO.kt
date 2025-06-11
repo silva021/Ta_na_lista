@@ -1,6 +1,6 @@
-package com.pgolcursos.biblequiz.data.model
+package com.silva021.tanalista.data.model
 
-import com.pgolcursos.biblequiz.domain.model.User
+import com.silva021.tanalista.domain.model.User
 
 data class UserDTO(
     val userUid: String = "",

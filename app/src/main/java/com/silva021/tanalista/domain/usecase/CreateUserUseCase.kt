@@ -5,7 +5,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.auth
 import com.google.firebase.crashlytics.crashlytics
-import com.pgolcursos.biblequiz.data.model.UserDTO
+import com.silva021.tanalista.data.model.UserDTO
 import com.silva021.tanalista.util.helper.FirestoreHelper.usersCollection
 import kotlinx.coroutines.tasks.await
 

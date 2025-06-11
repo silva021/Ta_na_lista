@@ -1,9 +1,9 @@
-package com.pgolcursos.biblequiz.ui.screen.auth.forgotpassword
+package com.silva021.tanalista.ui.screen.forgotpassword
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.silva021.tanalista.domain.usecase.ResetPasswordUseCase
-import com.pgolcursos.biblequiz.ui.model.ResetPasswordState
+import com.silva021.tanalista.ui.model.ResetPasswordState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

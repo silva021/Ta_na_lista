@@ -1,4 +1,4 @@
-package com.pgolcursos.biblequiz.ui.model
+package com.silva021.tanalista.ui.model
 
 sealed class RegisterScreenState {
     data class Success(val model: RegisterScreenModel) : RegisterScreenState()

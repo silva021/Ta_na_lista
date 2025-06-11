@@ -1,8 +1,8 @@
 package com.silva021.tanalista.di
 
 import androidx.room.Room
-import com.pgolcursos.biblequiz.ui.screen.auth.forgotpassword.ForgotPasswordViewModel
-import com.pgolcursos.biblequiz.ui.screen.auth.register.RegisterViewModel
+import com.silva021.tanalista.ui.screen.forgotpassword.ForgotPasswordViewModel
+import com.silva021.tanalista.ui.screen.register.RegisterViewModel
 import com.silva021.tanalista.data.local.room.AppDatabase
 import com.silva021.tanalista.data.repository.ShoppingRepository
 import com.silva021.tanalista.data.repository.ShoppingRepositoryImpl

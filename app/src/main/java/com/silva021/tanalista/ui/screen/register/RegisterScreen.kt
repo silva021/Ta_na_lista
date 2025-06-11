@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.pgolcursos.biblequiz.ui.model.RegisterScreenState
-import com.pgolcursos.biblequiz.ui.screen.auth.register.RegisterViewModel
+import com.silva021.tanalista.ui.model.RegisterScreenState
+import com.silva021.tanalista.ui.screen.register.RegisterViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
