@@ -2,6 +2,7 @@ package com.silva021.tanalista.ui.screen.shopping.add.shopping
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Switch
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
@@ -48,11 +50,14 @@ fun AddShoppingItemContent(
     onAddShoppingItem: (ShoppingItem) -> Unit,
     onEditShoppingItem: (ShoppingItem) -> Unit = {},
     onBackPressed: () -> Unit,
+    onReminderChanged: (Boolean) -> Unit,
 ) {
     var name by remember { mutableStateOf(shoppingItem?.name ?: "") }
     var quantity by remember { mutableStateOf(shoppingItem?.quantity?.toString() ?: "") }
     var minimumQuantity by remember { mutableStateOf(shoppingItem?.minRequired?.toString() ?: "") }
     var unit by remember { mutableStateOf(shoppingItem?.unitType ?: UnitType.UNIT) }
+
+    var createReminder by remember { mutableStateOf(false) }
 
     val isEditing = shoppingItem != null
     val itemId = shoppingItem?.id ?: UUID.randomUUID().toString()
@@ -152,6 +157,22 @@ fun AddShoppingItemContent(
 
                     Spacer(modifier = Modifier.height(12.dp))
 
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            text = stringResource(R.string.label_create_reminder),
+                            modifier = Modifier.weight(1f)
+                        )
+                        Switch(checked = createReminder, onCheckedChange = {
+                            createReminder = it
+                            onReminderChanged(it)
+                        })
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
                     Button(
                         onClick = {
                             val item = ShoppingItem(
@@ -192,6 +213,7 @@ fun AddShoppingItemContentPreview() {
     AddShoppingItemContent(
         listId = "12345",
         onAddShoppingItem = { /* salvar */ },
-        onBackPressed = { /* voltar */ }
+        onBackPressed = { /* voltar */ },
+        onReminderChanged = {}
     )
 }

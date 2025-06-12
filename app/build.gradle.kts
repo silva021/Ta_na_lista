@@ -88,6 +88,7 @@ dependencies {
     kapt(libs.room.compiler)
     implementation(libs.youtube)
     implementation(libs.gson)
+    implementation(libs.androidx.work.runtime.ktx)
     testImplementation(libs.junit)
 
     implementation(libs.kotlinx.coroutines.core)

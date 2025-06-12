@@ -7,7 +7,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import com.silva021.tanalista.domain.model.ShoppingItem
+import com.silva021.tanalista.work.ReminderScheduler
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -18,6 +22,8 @@ fun AddShoppingItemScreen(
     onBack: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    var createReminder by remember { mutableStateOf(false) }
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         viewModel.getShoppingItemById(itemId)
@@ -40,11 +46,26 @@ fun AddShoppingItemScreen(
                 shoppingItem = state.shoppingItem,
                 onAddShoppingItem = { item ->
                     viewModel.add(listId, item)
+                    if (createReminder) {
+                        ReminderScheduler.schedule(
+                            context,
+                            item.name,
+                            java.time.LocalDateTime.now().plusDays(30)
+                        )
+                    }
                 },
                 onEditShoppingItem = { item ->
                     viewModel.update(item)
+                    if (createReminder) {
+                        ReminderScheduler.schedule(
+                            context,
+                            item.name,
+                            java.time.LocalDateTime.now().plusDays(30)
+                        )
+                    }
                 },
-                onBackPressed = onBack
+                onBackPressed = onBack,
+                onReminderChanged = { createReminder = it }
             )
         }
     }

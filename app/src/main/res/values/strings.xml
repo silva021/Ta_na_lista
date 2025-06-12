@@ -26,6 +26,7 @@
     <string name="placeholder_minimum_quantity">Quantidade mínima</string>
     <string name="action_save">Salvar</string>
     <string name="action_update">Atualizar</string>
+    <string name="label_create_reminder">Criar lembrete de compra</string>
     <string name="title_my_lists">Minhas Listas</string>
     <string name="text_no_lists">Você ainda não tem nenhuma lista</string>
     <string name="action_add">Adicionar</string>
