@@ -48,7 +48,6 @@ sealed class Routes(val route: String) {
 
     object AddShoppingItemScreen : Routes("add_shopping_item_screen?$LIST_ID={list_id}&$ITEM_ID={item_id}") {
         fun navigateToAddShoppingItemScreen(navController: NavController, listId: String, itemId: String = "") {
-//            navController.navigate("add_shopping_item_screen?list_id=$listId&item_id=$itemId")
             navController.navigate(AddShoppingItemScreen.route.replace("{$LIST_ID}", listId).replace("{$ITEM_ID}", itemId))
         }
     }

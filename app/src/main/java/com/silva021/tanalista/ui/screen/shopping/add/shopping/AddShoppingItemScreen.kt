@@ -8,6 +8,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.silva021.tanalista.domain.model.ShoppingItem
+import com.silva021.tanalista.ui.screen.loading.LoadingScreen
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -24,7 +25,11 @@ fun AddShoppingItemScreen(
     }
 
     when (val state = uiState) {
-        is AddItemUiState.Loading -> CircularProgressIndicator()
+        is AddItemUiState.Loading -> {
+            LoadingScreen(
+                "Criando seu item"
+            )
+        }
         is AddItemUiState.Success -> {
             LaunchedEffect(Unit) {
                 onBack()
