@@ -56,7 +56,7 @@ class CreateListViewModel(
             _uiState.value = CreateListUiState.Loading
             try {
                 addListUseCase.invoke(list)
-                _uiState.value = CreateListUiState.Success()
+                _uiState.value = CreateListUiState.Success("Lista editada com sucesso")
             } catch (e: Exception) {
                 _uiState.value = CreateListUiState.Error(e.message ?: "Erro desconhecido")
             }
