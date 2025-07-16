@@ -31,7 +31,6 @@ fun LoginScreen(
                         viewModel.login()
                     },
                     onRegisterClick = navigateToRegisterScreen,
-                    onGoogleLoginClick = {},
                     onForgotPasswordClick = {}
                 )
             }

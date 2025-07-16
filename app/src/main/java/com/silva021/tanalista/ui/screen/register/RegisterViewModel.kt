@@ -50,86 +50,43 @@ class RegisterViewModel(
         }
     }
 
-    fun onPixKeyChange(pixKey: String) {
-        _state.update { currentState ->
-            if (currentState is RegisterScreenState.Success) {
-                RegisterScreenState.Success(currentState.model.copy(numberContact = pixKey))
-            } else {
-                RegisterScreenState.Success(RegisterScreenModel(numberContact = pixKey))
-            }
-        }
-    }
-
     fun register() {
         val model = authScreenModel ?: RegisterScreenModel()
         val email = model.email.trim()
         val name = model.name.trim()
         val password = model.password.trim()
-        val numberContact = model.numberContact.trim()
 
-        if (
-            hasNotInputError(
-                name = name,
-                email = email,
-                password = password,
-                numberContact = numberContact
-            )
-        ) {
-            viewModelScope.launch {
-                _state.update {
-                    RegisterScreenState.Success(
-                        model.copy(
-                            isLoading = true,
-                            errorMessage = null
-                        )
+        viewModelScope.launch {
+            _state.update {
+                RegisterScreenState.Success(
+                    model.copy(
+                        isLoading = true,
+                        errorMessage = null
                     )
-                }
-
-                createUser.run(
-                    name,
-                    email,
-                    password,
-                    numberContact,
-                    onSuccess = {
-                        _state.update {
-                            RegisterScreenState.NavigateToStageSelectorScreen
-                        }
-
-                    },
-                    onFailure = { messageError ->
-                        _state.update {
-                            RegisterScreenState.Success(
-                                model.copy(
-                                    isLoading = false,
-                                    errorMessage = messageError.text
-                                )
-                            )
-                        }
-                    }
                 )
             }
+
+            createUser.run(
+                name,
+                email,
+                password,
+                onSuccess = {
+                    _state.update {
+                        RegisterScreenState.NavigateToMyListScreen
+                    }
+
+                },
+                onFailure = { messageError ->
+                    _state.update {
+                        RegisterScreenState.Success(
+                            model.copy(
+                                isLoading = false,
+                                errorMessage = messageError.text
+                            )
+                        )
+                    }
+                }
+            )
         }
-    }
-
-    private fun hasNotInputError(
-        name: String,
-        email: String,
-        password: String,
-        numberContact: String,
-    ): Boolean {
-        val model = (state.value as? RegisterScreenState.Success)?.model ?: RegisterScreenModel()
-        val errorMessage = when {
-            email.isEmpty() -> "Por favor, insira seu email."
-            name.isEmpty() -> "Por favor, insira seu email."
-            password.isEmpty() -> "Por favor, insira sua senha."
-            numberContact.isEmpty() -> "Por favor, Insira seu número para o contato"
-            email.length < 4 || password.length < 4 -> "Email e senha devem ter pelo menos 4 caracteres."
-            numberContact.length != 10 && numberContact.length != 11 -> "Número de telefone inválido. Deve ter 10 ou 11 dígitos."
-            else -> null
-        }
-
-        _state.update { RegisterScreenState.Success(model.copy(errorMessage = errorMessage)) }
-
-        return errorMessage.orEmpty().isEmpty()
     }
 }

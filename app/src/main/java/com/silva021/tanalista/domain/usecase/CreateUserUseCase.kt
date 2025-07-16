@@ -5,7 +5,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.auth
 import com.google.firebase.crashlytics.crashlytics
-import com.silva021.tanalista.data.model.UserDTO
+import com.silva021.tanalista.data.local.room.dto.UserDTO
 import com.silva021.tanalista.util.helper.FirestoreHelper.usersCollection
 import kotlinx.coroutines.tasks.await
 
@@ -14,7 +14,6 @@ class CreateUserUseCase {
         name: String,
         email: String,
         password: String,
-        numberContact: String,
         onSuccess: () -> Unit,
         onFailure: (CreateUserException) -> Unit,
     ) {
@@ -26,7 +25,6 @@ class CreateUserUseCase {
                 name = name,
                 userUid = uid,
                 email = email,
-                numberContact = numberContact
             )
 
             usersCollection.document(uid).set(userDTO).await()

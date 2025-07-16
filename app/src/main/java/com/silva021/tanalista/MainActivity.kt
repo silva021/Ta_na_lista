@@ -63,7 +63,9 @@ class MainActivity : ComponentActivity() {
                                 onBackPressed = {
                                     Routes.RegisterScreen.popBackStack(navController)
                                 },
-                                navigateToStageSelectorScreen = {},
+                                navigateToMyListScreen = {
+                                    Routes.MyListsScreen.navigateToList(navController)
+                                },
                             )
                         }
                         composable(Routes.ForgotPasswordScreen.route) {

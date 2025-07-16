@@ -6,12 +6,10 @@ import com.silva021.tanalista.domain.usecase.IsUserLoggedInUseCase
 import com.silva021.tanalista.domain.usecase.LoginUseCase
 import com.silva021.tanalista.ui.model.LoginScreenModel
 import com.silva021.tanalista.ui.model.LoginScreenState
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlin.invoke
 
 class LoginViewModel(
     private val isUserLoggedIn: IsUserLoggedInUseCase,
@@ -56,53 +54,28 @@ class LoginViewModel(
             val model = authScreenModel ?: LoginScreenModel()
             _state.update { LoginScreenState.Success(model.copy(isLoading = true)) }
 
-            delay(1000)
-
             val email = model.email.trim()
             val password = model.password.trim()
 
-            if (hasNotInputError(email, password)) {
-                login.invoke(
-                    email,
-                    password,
-                    onSuccess = {
-                        _state.update {
-                            LoginScreenState.IsLogged
-                        }
-                    },
-                    onFailure = { userException ->
-                        _state.update {
-                            LoginScreenState.Success(
-                                model.copy(
-                                    isLoading = false,
-                                    errorMessage = userException.text
-                                )
-                            )
-                        }
+            login.invoke(
+                email,
+                password,
+                onSuccess = {
+                    _state.update {
+                        LoginScreenState.IsLogged
                     }
-                )
-            }
-        }
-    }
-
-    private fun hasNotInputError(email: String, password: String): Boolean {
-        val model = (state.value as? LoginScreenState.Success)?.model ?: LoginScreenModel()
-        val errorMessage = when {
-            email.isEmpty() -> "Por favor, insira seu email."
-            password.isEmpty() -> "Por favor, insira sua senha."
-            email.length < 4 || password.length < 4 -> "Email e senha devem ter pelo menos 4 caracteres."
-            else -> null
-        }
-
-        _state.update {
-            LoginScreenState.Success(
-                model.copy(
-                    isLoading = false,
-                    errorMessage = errorMessage
-                )
+                },
+                onFailure = { userException ->
+                    _state.update {
+                        LoginScreenState.Success(
+                            model.copy(
+                                isLoading = false,
+                                errorMessage = userException.text
+                            )
+                        )
+                    }
+                }
             )
         }
-
-        return errorMessage.orEmpty().isEmpty()
     }
 }

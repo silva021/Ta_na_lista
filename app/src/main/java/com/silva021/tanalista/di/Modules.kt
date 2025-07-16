@@ -14,7 +14,6 @@ import com.silva021.tanalista.domain.usecase.GetShoppingItemByIdUseCase
 import com.silva021.tanalista.domain.usecase.GetShoppingItemsUseCase
 import com.silva021.tanalista.domain.usecase.GetShoppingListByIdUseCase
 import com.silva021.tanalista.domain.usecase.GetShoppingListsUseCase
-import com.silva021.tanalista.domain.usecase.GetUserUseCase
 import com.silva021.tanalista.domain.usecase.IsUserLoggedInUseCase
 import com.silva021.tanalista.domain.usecase.LoginUseCase
 import com.silva021.tanalista.domain.usecase.LogoutUserUseCase
@@ -50,7 +49,6 @@ val usecasesModule = module {
     factory { LogoutUserUseCase() }
     factory { DeleteUserAccountUseCase() }
     factory { ResetPasswordUseCase() }
-    factory { GetUserUseCase() }
     factory { LoginUseCase() }
 
 //    UPDATE OR INSERT
