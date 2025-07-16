@@ -1,49 +1,94 @@
 package com.silva021.tanalista.data.local.room.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Transaction
-import androidx.room.Update
 import com.silva021.tanalista.data.local.room.dto.ShoppingItemEntity
 import com.silva021.tanalista.data.local.room.dto.ShoppingListEntity
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
-@Dao
-interface ShoppingListDao {
-    @Transaction
-    @Query("SELECT * FROM shopping_list")
-    fun getLists(): Flow<List<ShoppingListEntity>>
+class ShoppingListDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertList(list: ShoppingListEntity)
+    val mockShoppingItems = listOf(
+        ShoppingItemEntity(
+            id = "item-001",
+            listId = "list-abc",
+            name = "Arroz",
+            quantity = 5f,
+            minRequired = 2f,
+            unitType = "kg"
+        ),
+        ShoppingItemEntity(
+            id = "item-002",
+            listId = "list-abc",
+            name = "Feijão",
+            quantity = 3f,
+            minRequired = 1f,
+            unitType = "kg"
+        ),
+        ShoppingItemEntity(
+            id = "item-003",
+            listId = "list-abc",
+            name = "Óleo",
+            quantity = 1f,
+            minRequired = 1f,
+            unitType = "L"
+        )
+    )
+    val mockShoppingLists = listOf(
+        ShoppingListEntity(
+            id = "list-abc",
+            name = "Lista da Semana",
+            type = "Mercado"
+        ),
+        ShoppingListEntity(
+            id = "list-abc",
+            name = "Farmácia",
+            type = "Saúde"
+        ),
+        ShoppingListEntity(
+            id = "list-abc",
+            name = "Material Escolar",
+            type = "Papelaria"
+        )
+    )
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertItem(item: ShoppingItemEntity)
 
-    @Delete
-    suspend fun deleteList(list: ShoppingListEntity)
+    fun getLists(): Flow<List<ShoppingListEntity>> {
+        return flowOf(emptyList())
+    }
 
-    @Query("DELETE FROM shopping_item WHERE listId = :listId")
-    suspend fun deleteItemsByListId(listId: String)
+    suspend fun insertList(list: ShoppingListEntity) {
+        // simula um insert mas não faz nada
+    }
 
-    @Transaction
-    @Query("SELECT * FROM shopping_item WHERE listId = :listId")
-    fun getShoppingItems(listId: String): Flow<List<ShoppingItemEntity>>
+    suspend fun insertItem(item: ShoppingItemEntity) {
+        // simula um insert mas não faz nada
+    }
 
-    @Update
-    suspend fun updateShoppingItem(item: ShoppingItemEntity)
+    suspend fun deleteList(list: ShoppingListEntity) {
+        // simula um delete mas não faz nada
+    }
 
-    @Update
-    suspend fun updateShoppingList(list: ShoppingListEntity)
+    suspend fun deleteItemsByListId(listId: String) {
+        // simula um delete mas não faz nada
+    }
 
-    @Transaction
-    @Query("SELECT * FROM shopping_item WHERE id = :itemId")
-    fun getShoppingItemById(itemId: String): Flow<ShoppingItemEntity>
+    fun getShoppingItems(listId: String): Flow<List<ShoppingItemEntity>> {
+        return flowOf(emptyList())
+    }
 
-    @Transaction
-    @Query("SELECT * FROM shopping_list WHERE id = :listId")
-    fun getShoppingListById(listId: String): Flow<ShoppingListEntity>
+    suspend fun updateShoppingItem(item: ShoppingItemEntity) {
+        // simula um update mas não faz nada
+    }
+
+    suspend fun updateShoppingList(list: ShoppingListEntity) {
+        // simula um update mas não faz nada
+    }
+
+    fun getShoppingItemById(itemId: String): Flow<ShoppingItemEntity> {
+        return flowOf(mockShoppingItems[1])
+    }
+
+    fun getShoppingListById(listId: String): Flow<ShoppingListEntity> {
+        return flowOf(mockShoppingLists[1])
+    }
 }

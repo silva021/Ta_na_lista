@@ -26,11 +26,6 @@ koin = [
     "koin-compose"
 ]
 
-room = [
-    "room-runtime",
-    "room-ktx"
-]
-
 [libraries]
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
 #androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -66,10 +61,6 @@ firebase-firestore-ktx = { module = "com.google.firebase:firebase-firestore-ktx"
 koin-koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-fragment = { module = "io.insert-koin:koin-androidx-fragment", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
-
-room-runtime = { module = "androidx.room:room-runtime", version = "2.7.1" }
-room-compiler = { module = "androidx.room:room-compiler", version = "2.7.1" }
-room-ktx = { module = "androidx.room:room-ktx", version = "2.7.1" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -84,8 +84,6 @@ dependencies {
     implementation(libs.startup)
 
     implementation(libs.bundles.koin)
-    implementation(libs.bundles.room)
-    kapt(libs.room.compiler)
     implementation(libs.youtube)
     implementation(libs.gson)
     testImplementation(libs.junit)

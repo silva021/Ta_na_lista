@@ -1,9 +1,8 @@
 package com.silva021.tanalista.di
 
-import androidx.room.Room
+import com.silva021.tanalista.data.local.room.dao.ShoppingListDao
 import com.silva021.tanalista.ui.screen.forgotpassword.ForgotPasswordViewModel
 import com.silva021.tanalista.ui.screen.register.RegisterViewModel
-import com.silva021.tanalista.data.local.room.AppDatabase
 import com.silva021.tanalista.data.repository.ShoppingRepository
 import com.silva021.tanalista.data.repository.ShoppingRepositoryImpl
 import com.silva021.tanalista.domain.usecase.AddShoppingItemUseCase
@@ -43,13 +42,6 @@ val viewModelModule = module {
 
 }
 
-val roomModule = module {
-    single {
-        Room.databaseBuilder(androidContext(), AppDatabase::class.java, "tanalista.db").build()
-    }
-    single { (get() as AppDatabase).shoppingListDao() }
-}
-
 val usecasesModule = module {
 //    GET
     factory { LogoutUserUseCase() }
@@ -62,6 +54,9 @@ val usecasesModule = module {
     factory { CreateUserUseCase() }
     factory { IsUserLoggedInUseCase() }
     factory { UpdateUserUseCase() }
+
+
+    factory { ShoppingListDao() }
 
     factory { GetShoppingListsUseCase(get()) }
     factory { AddShoppingListUseCase(get()) }
