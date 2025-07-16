@@ -12,6 +12,7 @@ kotlinxCoroutinesCore = "1.10.1"
 kotlinxSerializationCore = "1.8.0"
 lifecycleRuntimeKtx = "2.9.1"
 activityCompose = "1.10.1"
+androidxDatastore = "1.1.7"
 composeBom = "2025.06.00"
 materialIconsExtended = "1.7.8"
 navigation = "2.9.0"
@@ -34,6 +35,7 @@ firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-storage-ktx = { module = "com.google.firebase:firebase-storage-ktx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-datastore = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDatastore" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }

@@ -41,7 +41,7 @@ import com.silva021.tanalista.ui.components.CustomButton
 import com.silva021.tanalista.ui.components.model.ButtonModel
 import com.silva021.tanalista.util.ThemedScreen
 import com.silva021.tanalista.ui.theme.Palette.backgroundColor
-import com.silva021.tanalista.ui.theme.Palette.buttonColor
+import com.silva021.tanalista.util.isValidEmail
 
 @Composable
 fun RegisterContent(
@@ -146,7 +146,7 @@ fun RegisterContent(
                 ButtonModel(
                     label = stringResource(R.string.action_register),
                     onClick = onRegisterClick,
-                    enabled = email.isNotBlank() && password.isNotBlank() && name.isNotBlank()
+                    enabled = email.isValidEmail() && password.isNotBlank() && name.isNotBlank()
                 )
             )
 

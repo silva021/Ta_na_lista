@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedButton
@@ -22,10 +21,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,21 +36,22 @@ import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.R
 import com.silva021.tanalista.ui.components.CustomButton
 import com.silva021.tanalista.ui.components.model.ButtonModel
+import com.silva021.tanalista.ui.model.LoginScreenModel
 import com.silva021.tanalista.ui.theme.Palette.Black
-import com.silva021.tanalista.util.ThemedScreen
 import com.silva021.tanalista.ui.theme.Palette.backgroundColor
-import com.silva021.tanalista.ui.theme.Palette.buttonColor
+import com.silva021.tanalista.util.ThemedScreen
+import com.silva021.tanalista.util.isValidEmail
 
 @Composable
 fun LoginContent(
+    state: LoginScreenModel,
+    onEmailChange: (String) -> Unit,
+    onPasswordChange: (String) -> Unit,
     onLoginClick: () -> Unit,
     onGoogleLoginClick: () -> Unit,
     onForgotPasswordClick: () -> Unit,
     onRegisterClick: () -> Unit,
 ) {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -95,8 +91,8 @@ fun LoginContent(
                 .padding(24.dp)
         ) {
             TextField(
-                value = email,
-                onValueChange = { email = it },
+                value = state.email,
+                onValueChange = onEmailChange,
                 placeholder = { Text(stringResource(R.string.placeholder_email)) },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -111,8 +107,8 @@ fun LoginContent(
             )
 
             TextField(
-                value = password,
-                onValueChange = { password = it },
+                value = state.password,
+                onValueChange = onPasswordChange,
                 placeholder = { Text(stringResource(R.string.placeholder_password)) },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -131,6 +127,7 @@ fun LoginContent(
                 model = ButtonModel(
                     label = stringResource(R.string.action_login),
                     onClick = onLoginClick,
+                    enabled = state.email.isValidEmail() && state.password.isNotBlank(),
                 )
             )
 
@@ -184,8 +181,16 @@ fun LoginContent(
 @Composable
 fun PreviewLoginScreen() {
     ThemedScreen {
+        val state = LoginScreenModel(
+            "Lucas",
+            "",
+            false
+        )
         LoginContent(
+            state,
             onLoginClick = {},
+            onEmailChange = {},
+            onPasswordChange = {},
             onGoogleLoginClick = {},
             onForgotPasswordClick = {},
             onRegisterClick = {},

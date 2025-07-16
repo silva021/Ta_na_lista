@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import com.silva021.tanalista.ui.model.LoginScreenState
 import com.silva021.tanalista.ui.theme.Scaffold
 import org.koin.androidx.compose.koinViewModel
@@ -15,13 +16,20 @@ fun LoginScreen(
     navigateToRegisterScreen: () -> Unit,
     navigateToForgotPasswordScreen: () -> Unit,
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
     val state by viewModel.state.collectAsState()
 
     Scaffold { _ ->
         when (val newState = state) {
             is LoginScreenState.Success -> {
                 LoginContent(
-                    onLoginClick = isLoggedListener,
+                    state = newState.model,
+                    onEmailChange = viewModel::onEmailChange,
+                    onPasswordChange = viewModel::onPasswordChange,
+                    onLoginClick = {
+                        keyboardController?.hide()
+                        viewModel.login()
+                    },
                     onRegisterClick = navigateToRegisterScreen,
                     onGoogleLoginClick = {},
                     onForgotPasswordClick = {}

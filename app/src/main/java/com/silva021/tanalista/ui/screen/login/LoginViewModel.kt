@@ -6,10 +6,12 @@ import com.silva021.tanalista.domain.usecase.IsUserLoggedInUseCase
 import com.silva021.tanalista.domain.usecase.LoginUseCase
 import com.silva021.tanalista.ui.model.LoginScreenModel
 import com.silva021.tanalista.ui.model.LoginScreenState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.invoke
 
 class LoginViewModel(
     private val isUserLoggedIn: IsUserLoggedInUseCase,
@@ -20,14 +22,14 @@ class LoginViewModel(
 
     private val authScreenModel: LoginScreenModel?
         get() = (state.value as? LoginScreenState.Success)?.model
-//
-//    init {
-////        _state.value = if (isUserLoggedIn.isLogged()) {
-////            LoginScreenState.IsLogged
-////        } else {
-//            LoginScreenState.Success(LoginScreenModel())
-////        }
-//    }
+
+    init {
+        _state.value = if (isUserLoggedIn.isLogged()) {
+            LoginScreenState.IsLogged
+        } else {
+            LoginScreenState.Success(LoginScreenModel())
+        }
+    }
 
     fun onEmailChange(newEmail: String) {
         _state.update { currentState ->
@@ -53,6 +55,8 @@ class LoginViewModel(
         viewModelScope.launch {
             val model = authScreenModel ?: LoginScreenModel()
             _state.update { LoginScreenState.Success(model.copy(isLoading = true)) }
+
+            delay(1000)
 
             val email = model.email.trim()
             val password = model.password.trim()

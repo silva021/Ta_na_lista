@@ -23,6 +23,10 @@ fun String.fromHtml(): AnnotatedString {
     return Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY).toAnnotatedString()
 }
 
+fun String.isValidEmail(): Boolean {
+    return android.util.Patterns.EMAIL_ADDRESS.matcher(this).matches()
+}
+
 private fun Spanned.toAnnotatedString(): AnnotatedString = buildAnnotatedString {
     val spanned = this@toAnnotatedString
     append(spanned.toString())
