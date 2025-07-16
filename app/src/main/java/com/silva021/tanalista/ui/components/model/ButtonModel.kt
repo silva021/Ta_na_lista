@@ -4,4 +4,5 @@ data class ButtonModel(
     val label: String,
     val onClick: () -> Unit,
     val enabled: Boolean = true,
+    val isLoading: Boolean = false,
 )
