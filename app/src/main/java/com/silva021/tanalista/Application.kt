@@ -1,7 +1,7 @@
 package com.silva021.tanalista
 
 import android.app.Application
-import com.silva021.tanalista.di.dataStore
+import com.silva021.tanalista.di.sharedPreferences
 import com.silva021.tanalista.di.usecasesModule
 import com.silva021.tanalista.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -16,7 +16,7 @@ class Application : Application() {
             modules(
                 viewModelModule,
                 usecasesModule,
-                dataStore
+                sharedPreferences
             )
         }
     }

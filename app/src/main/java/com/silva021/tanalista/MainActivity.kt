@@ -177,7 +177,7 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun getStartDestination(): String {
-        val isShowWelcomeScreen = PreferencesManager(applicationContext).isWelcomeShown.collectAsState(initial = false).value
+        val isShowWelcomeScreen = PreferencesManager(applicationContext).isWelcomeShown()
         return if (isShowWelcomeScreen) {
             Routes.LoginScreen.route
         } else {

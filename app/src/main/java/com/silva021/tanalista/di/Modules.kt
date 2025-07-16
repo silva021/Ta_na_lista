@@ -74,6 +74,6 @@ val usecasesModule = module {
     single<ShoppingRepository> { ShoppingRepositoryImpl(get()) }
 }
 
-val dataStore = module {
+val sharedPreferences = module {
     single { PreferencesManager(androidContext()) }
 }
