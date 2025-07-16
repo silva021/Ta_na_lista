@@ -14,7 +14,6 @@ fun LoginScreen(
     isLoggedListener: () -> Unit,
     navigateToRegisterScreen: () -> Unit,
     navigateToForgotPasswordScreen: () -> Unit,
-    navigateToMyListsScreen: () -> Unit,
 ) {
     val state by viewModel.state.collectAsState()
 
@@ -22,7 +21,7 @@ fun LoginScreen(
         when (val newState = state) {
             is LoginScreenState.Success -> {
                 LoginContent(
-                    onLoginClick = navigateToMyListsScreen,
+                    onLoginClick = isLoggedListener,
                     onRegisterClick = navigateToRegisterScreen,
                     onGoogleLoginClick = {},
                     onForgotPasswordClick = {}

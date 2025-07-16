@@ -28,6 +28,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.util.ThemedScreen
 import com.silva021.tanalista.R
+import com.silva021.tanalista.ui.components.CustomButton
+import com.silva021.tanalista.ui.components.model.ButtonModel
 import com.silva021.tanalista.ui.theme.Palette.backgroundColor
 import com.silva021.tanalista.ui.theme.Palette.buttonColor
 
@@ -69,23 +71,12 @@ fun WelcomeContent(
             modifier = Modifier.padding(horizontal = 8.dp)
         )
 
-        Button(
-            onClick = onStartClick,
-            shape = RoundedCornerShape(50),
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = buttonColor
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp)
-        ) {
-            Text(
-                text = stringResource(R.string.action_start),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
+        CustomButton(
+            model = ButtonModel(
+                label = stringResource(R.string.action_start),
+                onClick = onStartClick,
             )
-        }
+        )
 
         Spacer(modifier = Modifier.height(32.dp))
     }

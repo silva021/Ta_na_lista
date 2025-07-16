@@ -6,7 +6,7 @@
     <string name="placeholder_password">Senha</string>
     <string name="action_register">Cadastrar</string>
     <string name="text_already_account">Já tem conta? Entrar.</string>
-    <string name="action_login">Login</string>
+    <string name="action_login">Entrar</string>
     <string name="text_forgot_password">Esqueci minha senha</string>
     <string name="action_google_login">Entrar com Google</string>
     <string name="text_no_account">Não tem conta? Cadastre-se</string>

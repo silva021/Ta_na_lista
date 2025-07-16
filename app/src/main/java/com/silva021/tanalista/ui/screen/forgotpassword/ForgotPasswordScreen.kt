@@ -3,8 +3,10 @@ package com.silva021.tanalista.ui.screen.forgotpassword
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import com.silva021.tanalista.ui.components.model.ButtonModel
 import com.silva021.tanalista.ui.model.ResetPasswordState
-import com.silva021.tanalista.ui.screen.forgotpassword.ForgotPasswordViewModel
+import com.silva021.tanalista.ui.screen.presentation.ErrorScreen
+import com.silva021.tanalista.ui.screen.presentation.SuccessScreen
 import com.silva021.tanalista.ui.theme.Scaffold
 import org.koin.androidx.compose.koinViewModel
 
@@ -19,13 +21,13 @@ fun ForgotPasswordScreen(
     Scaffold {
         when (state) {
             is ResetPasswordState.Error -> {
-//                ErrorScreen(
-//                    title = "Falha ao Enviar E-mail",
-//                    subtitle = "Não foi possível enviar o e-mail de recuperação de senha. Verifique se o e-mail está correto e tente novamente.",
-//                    onRetry = {
-//                        viewModel.tryAgain()
-//                    }
-//                )
+                ErrorScreen(
+                    title = "Falha ao Enviar E-mail",
+                    subtitle = "Não foi possível enviar o e-mail de recuperação de senha. Verifique se o e-mail está correto e tente novamente.",
+                    onRetry = {
+                        viewModel.tryAgain()
+                    }
+                )
             }
 
             is ResetPasswordState.ShowScreen -> {
@@ -38,14 +40,14 @@ fun ForgotPasswordScreen(
             }
 
             is ResetPasswordState.Success -> {
-//                PresentationScreen(
-//                    title = "E-mail Enviado!",
-//                    subtitle = "Um e-mail com instruções para redefinir sua senha foi enviado para sua caixa de entrada. Siga as instruções para recuperar o acesso à sua conta.",
-//                    firstButton = ButtonModel("Voltar para Login", onClick = {
-//                        onBackPressed()
-//                    }
-//                    ),
-//                )
+                SuccessScreen(
+                    title = "E-mail Enviado!",
+                    subtitle = "Um e-mail com instruções para redefinir sua senha foi enviado para sua caixa de entrada. Siga as instruções para recuperar o acesso à sua conta.",
+                    firstButton = ButtonModel("Voltar para Login", onClick = {
+                        onBackPressed()
+                    }
+                    ),
+                )
             }
         }
     }

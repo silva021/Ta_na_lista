@@ -39,6 +39,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.R
+import com.silva021.tanalista.ui.components.CustomButton
+import com.silva021.tanalista.ui.components.model.ButtonModel
+import com.silva021.tanalista.ui.theme.Palette.Black
 import com.silva021.tanalista.util.ThemedScreen
 import com.silva021.tanalista.ui.theme.Palette.backgroundColor
 import com.silva021.tanalista.ui.theme.Palette.buttonColor
@@ -124,18 +127,12 @@ fun LoginContent(
                 singleLine = true
             )
 
-            Button(
-                onClick = onLoginClick,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp),
-                shape = RoundedCornerShape(16.dp),
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = buttonColor
+            CustomButton(
+                model = ButtonModel(
+                    label = stringResource(R.string.action_login),
+                    onClick = onLoginClick,
                 )
-            ) {
-                Text(stringResource(R.string.action_login), fontSize = 18.sp, fontWeight = FontWeight.Bold, color = Color.White)
-            }
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -167,7 +164,7 @@ fun LoginContent(
                     modifier = Modifier.size(20.dp)
                 )
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(stringResource(R.string.action_google_login))
+                Text(stringResource(R.string.action_google_login), color = Black)
             }
 
             Spacer(modifier = Modifier.height(24.dp))

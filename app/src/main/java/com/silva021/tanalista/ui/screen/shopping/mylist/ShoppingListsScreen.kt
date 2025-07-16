@@ -1,12 +1,11 @@
 package com.silva021.tanalista.ui.screen.shopping.mylist
 
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.silva021.tanalista.domain.model.ShoppingList
-import com.silva021.tanalista.ui.screen.loading.LoadingScreen
+import com.silva021.tanalista.ui.screen.presentation.LoadingScreen
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

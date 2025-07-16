@@ -13,10 +13,6 @@ sealed class Routes(val route: String) {
         fun navigateToLoginScreen(navController: NavController) {
             navController.navigate(LoginScreen.route)
         }
-
-        fun navigateToList(navController: NavController) {
-            navController.navigate(MyListsScreen.route)
-        }
     }
     object RegisterScreen : Routes("register") {
         fun navigateToRegisterScreen(navController: NavController) {
@@ -38,6 +34,10 @@ sealed class Routes(val route: String) {
     object MyListsScreen : Routes("my_lists_screen") {
         const val LIST_ID = "list_id"
         const val ITEM_ID = "item_id"
+
+        fun navigateToList(navController: NavController) {
+            navController.navigate(MyListsScreen.route)
+        }
     }
 
     object CreateListScreen : Routes("create_list_screen?$LIST_ID={list_id}") {

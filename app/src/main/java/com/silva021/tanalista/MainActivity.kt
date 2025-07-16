@@ -34,8 +34,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val startDestination = Routes.MyListsScreen.route
-//            val startDestination = Routes.WelcomeScreen.route
+            val startDestination = Routes.WelcomeScreen.route
             navController = rememberNavController()
 
             TaNaListaTheme {
@@ -48,18 +47,13 @@ class MainActivity : ComponentActivity() {
                                 navigateToRegisterScreen = {
                                     Routes.RegisterScreen.navigateToRegisterScreen(navController)
                                 }, isLoggedListener = {
-//                                    if (BuildConfig.FLAVOR == "admin") {
-//                                        Routes.AdminScreen.navigateToAdminScreen(navController)
-//                                    } else {
-//                                        Routes.StageSelector.navigateToStageSelectorScreen(navController)
-//                                    }/
+                                    Routes.MyListsScreen.navigateToList(navController)
                                 }, navigateToForgotPasswordScreen = {
                                     Routes.ForgotPasswordScreen.navigateToForgotPasswordScreen(
                                         navController
                                     )
-                                }, navigateToMyListsScreen = {
-                                    Routes.LoginScreen.navigateToList(navController)
-                                })
+                                }
+                            )
                         }
                         composable(Routes.RegisterScreen.route) {
                             RegisterScreen(
