@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -26,6 +28,7 @@ import com.silva021.tanalista.ui.screen.shopping.stock.ProductStockListScreen
 import com.silva021.tanalista.ui.screen.welcome.WelcomeScreen
 import com.silva021.tanalista.ui.theme.Scaffold
 import com.silva021.tanalista.ui.theme.TaNaListaTheme
+import com.silva021.tanalista.util.helper.PreferencesManager
 
 class MainActivity : ComponentActivity() {
     private lateinit var navController: NavHostController
@@ -34,7 +37,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val startDestination = Routes.WelcomeScreen.route
+            val startDestination = getStartDestination()
             navController = rememberNavController()
 
             TaNaListaTheme {
@@ -101,7 +104,7 @@ class MainActivity : ComponentActivity() {
                             )
                         ) { backStackEntry ->
                             val listId =
-                                backStackEntry.arguments?.getString(Routes.MyListsScreen.LIST_ID)
+                                backStackEntry.arguments?.getString(LIST_ID)
                                     .orEmpty()
                             CreateListScreen(
                                 listId = listId,
@@ -143,7 +146,7 @@ class MainActivity : ComponentActivity() {
                             route = Routes.ProductStockListScreen.route
                         ) { backStackEntry ->
                             val listId =
-                                backStackEntry.arguments?.getString(Routes.MyListsScreen.LIST_ID)
+                                backStackEntry.arguments?.getString(LIST_ID)
                                     .orEmpty()
 
                             ProductStockListScreen(
@@ -169,6 +172,16 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
+        }
+    }
+
+    @Composable
+    private fun getStartDestination(): String {
+        val isShowWelcomeScreen = PreferencesManager(applicationContext).isWelcomeShown.collectAsState(initial = false).value
+        return if (isShowWelcomeScreen) {
+            Routes.LoginScreen.route
+        } else {
+            Routes.WelcomeScreen.route
         }
     }
 }

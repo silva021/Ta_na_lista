@@ -27,6 +27,8 @@ import com.silva021.tanalista.ui.screen.shopping.add.list.CreateListViewModel
 import com.silva021.tanalista.ui.screen.shopping.add.shopping.AddShoppingItemViewModel
 import com.silva021.tanalista.ui.screen.shopping.mylist.ShoppingListsViewModel
 import com.silva021.tanalista.ui.screen.shopping.stock.ProductStockListViewModel
+import com.silva021.tanalista.ui.screen.welcome.WelcomeViewModel
+import com.silva021.tanalista.util.helper.PreferencesManager
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
@@ -39,6 +41,7 @@ val viewModelModule = module {
     viewModel { CreateListViewModel(get(), get(), get()) }
     viewModel { ProductStockListViewModel(get(), get()) }
     viewModel { AddShoppingItemViewModel(get(), get(), get()) }
+    viewModel { WelcomeViewModel(get()) }
 
 }
 
@@ -69,4 +72,8 @@ val usecasesModule = module {
     factory { UpdateShoppingListUseCase(get()) }
 
     single<ShoppingRepository> { ShoppingRepositoryImpl(get()) }
+}
+
+val dataStore = module {
+    single { PreferencesManager(androidContext()) }
 }
