@@ -20,6 +20,7 @@
     <string name="action_start">Começar</string>
     <string name="action_add">Adicionar</string>
     <string name="action_consume">Consumir</string>
+    <string name="action_confirm">Confirmar</string>
     <string name="action_replenish">Repor</string>
     <string name="action_delete">Deletar</string>
     <string name="action_retry">Tente novamente</string>

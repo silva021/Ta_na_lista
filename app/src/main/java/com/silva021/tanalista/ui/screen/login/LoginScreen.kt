@@ -31,7 +31,7 @@ fun LoginScreen(
                         viewModel.login()
                     },
                     onRegisterClick = navigateToRegisterScreen,
-                    onForgotPasswordClick = {}
+                    onForgotPasswordClick = navigateToForgotPasswordScreen
                 )
             }
 
