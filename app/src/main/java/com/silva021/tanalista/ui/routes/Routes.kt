@@ -58,4 +58,16 @@ sealed class Routes(val route: String) {
         }
     }
 
+    object ShareListScreen : Routes("share_list_screen/{list_id}") {
+        fun navigateToShareListScreen(navController: NavController, listId: String) {
+            navController.navigate(ShareListScreen.route.replace("{$LIST_ID}", listId))
+        }
+    }
+
+    object ShowInviteShoppingListScreen : Routes("show_invite_shopping_list_screen/{list_id}") {
+        fun navigateToShowInviteShoppingListScreen(navController: NavController, listId: String) {
+            navController.navigate(ShowInviteShoppingListScreen.route.replace("{$LIST_ID}", listId))
+        }
+    }
+
 }

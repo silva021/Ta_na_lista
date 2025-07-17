@@ -16,6 +16,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.People
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -54,12 +55,21 @@ fun ListCard(
         ) {
 
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    modifier = Modifier.size(32.dp),
-                    imageVector = shoppingList.type.icon,
-                    tint = Color.White,
-                    contentDescription = null
-                )
+                if (shoppingList.isMine.not()) {
+                    Icon(
+                        modifier = Modifier.size(32.dp),
+                        imageVector = Icons.Default.People,
+                        tint = Color.White,
+                        contentDescription = null
+                    )
+                } else {
+                    Icon(
+                        modifier = Modifier.size(32.dp),
+                        imageVector = shoppingList.type.icon,
+                        tint = Color.White,
+                        contentDescription = null
+                    )
+                }
 
                 Spacer(modifier = Modifier.width(16.dp))
 

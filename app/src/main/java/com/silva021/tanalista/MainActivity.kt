@@ -1,6 +1,7 @@
 package com.silva021.tanalista
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -11,18 +12,22 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.silva021.tanalista.ui.routes.Routes
 import com.silva021.tanalista.ui.routes.Routes.AddShoppingItemScreen.navigateToAddShoppingItemScreen
 import com.silva021.tanalista.ui.routes.Routes.AddShoppingListScreen.navigateToCreateListScreen
+import com.silva021.tanalista.ui.routes.Routes.ProductStockListScreen.navigateToProductStockListScreen
 import com.silva021.tanalista.ui.routes.Routes.ShoppingListsScreen.ITEM_ID
 import com.silva021.tanalista.ui.routes.Routes.ShoppingListsScreen.LIST_ID
-import com.silva021.tanalista.ui.routes.Routes.ProductStockListScreen.navigateToProductStockListScreen
 import com.silva021.tanalista.ui.screen.forgotpassword.ForgotPasswordScreen
 import com.silva021.tanalista.ui.screen.login.LoginScreen
 import com.silva021.tanalista.ui.screen.register.RegisterScreen
-import com.silva021.tanalista.ui.screen.shopping.add.list.AddShoppingListScreen
 import com.silva021.tanalista.ui.screen.shopping.add.item.AddShoppingItemScreen
+import com.silva021.tanalista.ui.screen.shopping.add.list.AddShoppingListScreen
 import com.silva021.tanalista.ui.screen.shopping.mylist.ShoppingListsScreen
+import com.silva021.tanalista.ui.screen.shopping.sharelist.ShareListScreen
+import com.silva021.tanalista.ui.screen.shopping.showinvite.ShowInviteShoppingListScreen
 import com.silva021.tanalista.ui.screen.shopping.stock.ProductStockListScreen
 import com.silva021.tanalista.ui.screen.welcome.WelcomeScreen
 import com.silva021.tanalista.ui.theme.Scaffold
@@ -166,8 +171,55 @@ class MainActivity : ComponentActivity() {
                                         itemId = it.id
                                     )
                                 },
+                                onShareList = { listId ->
+                                    Routes.ShareListScreen.navigateToShareListScreen(
+                                        navController,
+                                        listId
+                                    )
+                                },
                                 onBackPressed = {
                                     Routes.ProductStockListScreen.popBackStack(navController)
+                                }
+                            )
+                        }
+
+                        composable(
+                            route = Routes.ShareListScreen.route,
+                            arguments = listOf(
+                                navArgument(LIST_ID) { type = NavType.StringType }
+                            )
+                        ) { backStackEntry ->
+                            val listId =
+                                backStackEntry.arguments?.getString(LIST_ID)
+                                    .orEmpty()
+
+                            ShareListScreen(
+                                listId,
+                                onBackPressed = {
+                                    Routes.ShareListScreen.popBackStack(navController)
+                                }
+                            )
+                        }
+
+                        composable(
+                            route = Routes.ShowInviteShoppingListScreen.route,
+                            arguments = listOf(
+                                navArgument(LIST_ID) { type = NavType.StringType }
+                            )
+                        ) { backStackEntry ->
+                            val listId =
+                                backStackEntry.arguments?.getString(LIST_ID)
+                                    .orEmpty()
+
+                            ShowInviteShoppingListScreen(
+                                listId = listId,
+                                navigateToHome = {
+                                    Routes.ShoppingListsScreen.navigateToList(navController)
+                                },
+                                onBackPressed = {
+                                    Routes.ShowInviteShoppingListScreen.popBackStack(
+                                        navController
+                                    )
                                 }
                             )
                         }
@@ -179,6 +231,20 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     private fun getStartDestination(): String {
+        intent.data?.let { uri ->
+            Firebase.auth.currentUser?.let {
+                if (uri.scheme == "tanalista" && uri.host == "shared_list") {
+                    val listId = uri.getQueryParameter("listId")
+                    if (!listId.isNullOrBlank()) {
+                        return Routes.ShowInviteShoppingListScreen.route.replace(
+                            "{list_id}",
+                            listId.replace(Regex("[{}]"), "")
+                        )
+                    }
+                }
+            }
+        }
+
         val isShowWelcomeScreen = PreferencesManager(applicationContext).isWelcomeShown()
         return if (isShowWelcomeScreen) {
             Routes.LoginScreen.route

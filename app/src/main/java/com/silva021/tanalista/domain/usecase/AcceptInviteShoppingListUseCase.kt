@@ -2,28 +2,28 @@ package com.silva021.tanalista.domain.usecase
 
 import android.util.Log
 import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.google.firebase.crashlytics.crashlytics
 import com.silva021.tanalista.data.datastore.FireStoreHelper.shoppingListCollection
-import com.silva021.tanalista.data.dto.ShoppingListDTO
-import com.silva021.tanalista.domain.mappers.toModel
 import com.silva021.tanalista.domain.model.ShoppingList
 import kotlinx.coroutines.tasks.await
 
-class GetShoppingListByIdUseCase() {
+class AcceptInviteShoppingListUseCase() {
     suspend operator fun invoke(
-        listId: String,
-        onSuccess: (ShoppingList) -> Unit,
+        shoppingList: ShoppingList,
+        onSuccess: () -> Unit,
         onFailure: () -> Unit,
     ) {
         try {
-            val query = shoppingListCollection
-                .document(listId)
-                .get()
-                .await()
+            val updates = mutableMapOf<String, Any>()
+            val newSharedList = shoppingList.sharedWith.distinct().toMutableList().apply {
+                add(Firebase.auth.uid.orEmpty())
+            }
 
-            val shoppingList = query.toObject(ShoppingListDTO::class.java)?.toModel() ?:
-                throw Exception("Shopping list not found for ID: $listId")
-            onSuccess.invoke(shoppingList)
+            updates["sharedWith"] = newSharedList
+
+            shoppingListCollection.document(shoppingList.id).update(updates).await()
+            onSuccess.invoke()
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)
             e.printStackTrace()

@@ -15,6 +15,7 @@ fun ProductStockListScreen(
     viewModel: ProductStockListViewModel = koinViewModel(),
     listId: String,
     onAdd: () -> Unit,
+    onShareList: (String) -> Unit,
     onEditShoppingItem: (ShoppingItem) -> Unit,
     onBackPressed: () -> Unit,
 ) {
@@ -40,6 +41,7 @@ fun ProductStockListScreen(
             ProductStockListContent(
                 items = state.lists,
                 onAdd = onAdd,
+                onShareList = { onShareList.invoke(listId) },
                 onAdjustStock = viewModel::updateShoppingItems,
                 onEditShoppingItem = onEditShoppingItem,
                 onDeleteShoppingItem = viewModel::deleteShoppingItem,

@@ -1,5 +1,6 @@
-package com.silva021.tanalista.ui.screen.shopping.add.list
+package com.silva021.tanalista.ui.screen.shopping.showinvite
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -11,49 +12,44 @@ import com.silva021.tanalista.ui.theme.Scaffold
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun AddShoppingListScreen(
-    listId: String = "",
-    viewModel: AddShoppingListViewModel = koinViewModel(),
+fun ShowInviteShoppingListScreen(
+    viewModel: ShowInviteShoppingListViewModel = koinViewModel(),
+    listId: String,
+    navigateToHome: () -> Unit,
     onBackPressed: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.getShoppingList(listId)
+        Log.d("ShowInviteShoppingListScreen", "Fetching shopping list with ID: $listId")
+        viewModel.getShoppingListById(listId)
     }
 
     Scaffold { padding ->
         when (val state = uiState) {
-            is AddShoppingListUiState.Idle -> {
-                AddShoppingListContent(
+            is ShowInviteShoppingListUiState.Idle -> {
+                ShowInviteShoppingListContent(
                     shoppingList = state.shoppingList,
-                    onCreateClick = {
-                        viewModel.addShoppingList(it)
-                    },
-                    onEditClick = {
-                        viewModel.editShoppingList(it)
-                    },
+                    onAccept = viewModel::acceptInvite,
+                    onDecline = {},
                     onBackPressed = onBackPressed
                 )
             }
 
-            is AddShoppingListUiState.Loading -> {
+            is ShowInviteShoppingListUiState.Loading -> {
                 LoadingScreen(
-                    "Carregando sua lista"
+                    "Procurando seu convite para a lista de compras",
                 )
             }
 
-            is AddShoppingListUiState.Success -> {
+            is ShowInviteShoppingListUiState.Success -> {
                 SuccessScreen(
-                    description = if (state.isUpdated)
-                        "Lista atualizada com sucesso"
-                    else
-                        "Lista criada com sucesso",
-                    onBackPressed = { onBackPressed() }
+                    description = "Convite aceito com sucesso",
+                    onBackPressed = { navigateToHome() }
                 )
             }
 
-            is AddShoppingListUiState.Error -> {
+            is ShowInviteShoppingListUiState.Error -> {
                 ErrorScreen(
                     description = "Não foi possível terminar essa operação, tente novamente.",
                     onRetry = { onBackPressed() }

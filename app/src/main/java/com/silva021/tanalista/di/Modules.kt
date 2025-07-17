@@ -1,5 +1,6 @@
 package com.silva021.tanalista.di
 
+import com.silva021.tanalista.domain.usecase.AcceptInviteShoppingListUseCase
 import com.silva021.tanalista.ui.screen.forgotpassword.ForgotPasswordViewModel
 import com.silva021.tanalista.ui.screen.register.RegisterViewModel
 import com.silva021.tanalista.domain.usecase.AddShoppingItemUseCase
@@ -23,6 +24,7 @@ import com.silva021.tanalista.ui.screen.login.LoginViewModel
 import com.silva021.tanalista.ui.screen.shopping.add.list.AddShoppingListViewModel
 import com.silva021.tanalista.ui.screen.shopping.add.item.AddShoppingItemViewModel
 import com.silva021.tanalista.ui.screen.shopping.mylist.ShoppingListsViewModel
+import com.silva021.tanalista.ui.screen.shopping.showinvite.ShowInviteShoppingListViewModel
 import com.silva021.tanalista.ui.screen.shopping.stock.ProductStockListViewModel
 import com.silva021.tanalista.ui.screen.welcome.WelcomeViewModel
 import com.silva021.tanalista.util.helper.PreferencesManager
@@ -39,6 +41,7 @@ val viewModelModule = module {
     viewModel { ProductStockListViewModel(get(), get(), get()) }
     viewModel { AddShoppingItemViewModel(get(), get(), get()) }
     viewModel { WelcomeViewModel(get()) }
+    viewModel { ShowInviteShoppingListViewModel(get(), get()) }
 }
 
 val usecasesModule = module {
@@ -64,6 +67,8 @@ val usecasesModule = module {
     factory { DeleteShoppingItemUseCase() }
     factory { UpdateShoppingItemUseCase() }
     factory { GetShoppingItemByIdUseCase() }
+
+    factory { AcceptInviteShoppingListUseCase() }
 }
 
 val sharedPreferences = module {

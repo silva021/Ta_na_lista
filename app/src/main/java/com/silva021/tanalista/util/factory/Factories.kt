@@ -15,7 +15,11 @@ object ShoppingFactory {
         return ShoppingList(
             id = id,
             name = name,
-            type = type
+            type = type,
+            ownerUID = "owner-${UUID.randomUUID()}",
+            sharedWith = emptyList(),
+            isMine = false,
+            ownerName = "Owner ${UUID.randomUUID()}"
         )
     }
 

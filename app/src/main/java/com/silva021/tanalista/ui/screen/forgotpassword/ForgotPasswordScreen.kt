@@ -40,7 +40,7 @@ fun ForgotPasswordScreen(
 
             is ResetPasswordState.Success -> {
                 SuccessScreen(
-                    subtitle = "Um e-mail com instruções para redefinir sua senha foi enviado para sua caixa de entrada. Siga as instruções para recuperar o acesso à sua conta.",
+                    description = "Um e-mail com instruções para redefinir sua senha foi enviado para sua caixa de entrada. Siga as instruções para recuperar o acesso à sua conta.",
                     firstButton = ButtonModel("Voltar para Login",
                         onClick = {
                             onBackPressed()

@@ -93,8 +93,22 @@ fun ShoppingListsContent(
 fun PreviewMyListsContent() {
     ThemedScreen {
         val shoppingLists = listOf(
-            ShoppingList(name = "Mercado", type = CategoryType.GROCERY),
-            ShoppingList(name = "Farmácia", type = CategoryType.PHARMACY)
+            ShoppingList(
+                name = "Mercado",
+                type = CategoryType.GROCERY,
+                ownerUID = "1234567890",
+                ownerName = "João Silva",
+                isMine = true,
+                sharedWith = listOf()
+            ),
+            ShoppingList(
+                name = "Farmácia",
+                type = CategoryType.PHARMACY,
+                ownerUID = "1234567890",
+                ownerName = "João Silva",
+                isMine = false,
+                sharedWith = listOf()
+            )
         )
 
         ShoppingListsContent(

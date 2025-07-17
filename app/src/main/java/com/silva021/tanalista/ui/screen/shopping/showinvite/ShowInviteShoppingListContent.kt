@@ -1,0 +1,186 @@
+package com.silva021.tanalista.ui.screen.shopping.showinvite
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.silva021.tanalista.R
+import com.silva021.tanalista.domain.model.CategoryType
+import com.silva021.tanalista.domain.model.ShoppingList
+import com.silva021.tanalista.ui.components.CustomButton
+import com.silva021.tanalista.ui.components.model.ButtonModel
+import com.silva021.tanalista.ui.theme.Palette
+import com.silva021.tanalista.ui.theme.Palette.TextDarkGray
+
+@Composable
+fun ShowInviteShoppingListContent(
+    shoppingList: ShoppingList,
+    onAccept: (ShoppingList) -> Unit,
+    onDecline: () -> Unit,
+    onBackPressed: () -> Unit,
+) {
+    Scaffold(
+        backgroundColor = Palette.backgroundColor, topBar = {
+            TopAppBar(
+                backgroundColor = Palette.backgroundColor,
+                elevation = 0.dp,
+                title = {},
+                navigationIcon = {
+                    IconButton(onClick = onBackPressed) {
+                        Icon(
+                            Icons.AutoMirrored.Default.ArrowBack,
+                            contentDescription = stringResource(R.string.content_desc_back)
+                        )
+                    }
+                },
+            )
+        }) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Alguém compartilhou uma lista com você!",
+                color = TextDarkGray,
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.h5,
+                textAlign = TextAlign.Center
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                text = "Toque em “Aceitar” para adicionar essa lista ao seu app e colaborar em tempo real.",
+                color = TextDarkGray,
+                fontWeight = FontWeight.SemiBold,
+                style = MaterialTheme.typography.body1,
+                textAlign = TextAlign.Center
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            SharedListInviteCard(shoppingList)
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                CustomButton(
+                    model = ButtonModel(
+                        label = "Não quero",
+                        onClick = onDecline,
+                        backgroundColor = Color(0xFFB00020)
+                    ),
+                    modifier = Modifier.weight(1f)
+                )
+
+                Spacer(modifier = Modifier.width(16.dp))
+
+                CustomButton(
+                    model = ButtonModel(
+                        label = stringResource(R.string.action_confirm),
+                        onClick = { onAccept.invoke(shoppingList) },
+                    ),
+                    modifier = Modifier.weight(1f)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun SharedListInviteCard(
+    shoppingList: ShoppingList,
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth(),
+        shape = RoundedCornerShape(8.dp),
+        elevation = 2.dp
+    ) {
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(40.dp)
+                        .background(Color(0xFFF2F5F9), RoundedCornerShape(12.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        imageVector = shoppingList.type.icon,
+                        contentDescription = null,
+                        tint = Color.Black
+                    )
+                }
+
+                Spacer(modifier = Modifier.width(12.dp))
+
+                Column {
+                    Text(
+                        text = shoppingList.name,
+                        style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold),
+                        color = Color.Black
+                    )
+                    Text(
+                        text = shoppingList.ownerName,
+                        style = MaterialTheme.typography.caption,
+                        color = Color.Gray
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun ShowInviteShoppingContentPreview() {
+    ShowInviteShoppingListContent(
+        shoppingList = ShoppingList(
+            id = "1",
+            name = "Lista de Compras",
+            type = CategoryType.GROCERY,
+            ownerUID = "owner123",
+            ownerName = "João Silva",
+            isMine = true
+        ),
+        onBackPressed = {},
+        onAccept = {},
+        onDecline = {}
+    )
+}

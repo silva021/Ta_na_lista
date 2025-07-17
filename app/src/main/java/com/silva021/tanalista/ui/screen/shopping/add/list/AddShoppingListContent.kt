@@ -17,7 +17,7 @@ import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,6 +33,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.CategoryType
 import com.silva021.tanalista.domain.model.ShoppingList
@@ -64,7 +66,7 @@ fun AddShoppingListContent(
                 title = { },
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.content_desc_back))
+                        Icon(Icons.AutoMirrored.Default.ArrowBack, contentDescription = stringResource(R.string.content_desc_back))
                     }
                 }
             )
@@ -144,7 +146,10 @@ fun AddShoppingListContent(
                                 onCreateClick.invoke(
                                     ShoppingList(
                                         name = name,
-                                        type = categoriesSelected
+                                        type = categoriesSelected,
+                                        ownerUID = Firebase.auth.uid.orEmpty(),
+                                        isMine = true,
+                                        ownerName = Firebase.auth.currentUser?.displayName.orEmpty()
                                     )
                                 )
                             }

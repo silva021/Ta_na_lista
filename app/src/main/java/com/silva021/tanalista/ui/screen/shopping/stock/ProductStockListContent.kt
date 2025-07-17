@@ -16,8 +16,10 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,6 +42,7 @@ import com.silva021.tanalista.util.factory.ShoppingFactory
 fun ProductStockListContent(
     items: List<ShoppingItem>,
     onAdd: () -> Unit,
+    onShareList: () -> Unit,
     onEditShoppingItem: (ShoppingItem) -> Unit,
     onDeleteShoppingItem: (ShoppingItem) -> Unit,
     onAdjustStock: (ShoppingItem) -> Unit,
@@ -68,11 +71,20 @@ fun ProductStockListContent(
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
                         Icon(
-                            Icons.Default.ArrowBack,
+                            Icons.AutoMirrored.Default.ArrowBack,
                             contentDescription = stringResource(R.string.content_desc_back)
                         )
                     }
-                })
+                },
+                actions = {
+                    IconButton(onClick = onShareList) {
+                        Icon(
+                            Icons.Default.Share,
+                            contentDescription = stringResource(R.string.action_add)
+                        )
+                    }
+                }
+            )
         }
     ) { padding ->
         Column {
@@ -155,6 +167,7 @@ fun PreviewShoppingListScreen() {
         ProductStockListContent(
             items = stockItems,
             onAdd = {},
+            onShareList = { /* Handle share */ },
             onAdjustStock = {},
             onBackPressed = {},
             onEditShoppingItem = { /* Handle edit */ },
@@ -170,6 +183,7 @@ fun PreviewEmptyShoppingListScreen() {
         ProductStockListContent(
             items = emptyList(),
             onAdd = {},
+            onShareList = { /* Handle share */ },
             onAdjustStock = {},
             onBackPressed = {},
             onEditShoppingItem = { /* Handle edit */ },

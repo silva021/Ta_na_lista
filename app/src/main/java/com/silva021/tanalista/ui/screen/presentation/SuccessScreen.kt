@@ -28,7 +28,6 @@ import com.silva021.tanalista.R
 import com.silva021.tanalista.ui.components.CustomButton
 import com.silva021.tanalista.ui.components.model.ButtonModel
 import com.silva021.tanalista.ui.theme.Palette
-import com.silva021.tanalista.ui.theme.Palette.Black
 import com.silva021.tanalista.ui.theme.Palette.buttonColor
 import com.silva021.tanalista.ui.theme.TypographyApp
 import com.silva021.tanalista.util.ThemedScreen
@@ -36,7 +35,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SuccessScreen(
-    subtitle: String? = null,
+    description: String? = null,
     firstButton: ButtonModel? = null,
     onBackPressed: (() -> Unit)? = null
 ) {
@@ -69,11 +68,11 @@ fun SuccessScreen(
                 modifier = Modifier.size(80.dp)
             )
 
-            subtitle?.let {
+            description?.let {
                 Spacer(modifier = Modifier.height(20.dp))
 
                 Text(
-                    text = subtitle,
+                    text = description,
                     color = buttonColor,
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Center,
@@ -99,7 +98,7 @@ fun SuccessScreen(
 fun SuccessScreenPreview() {
     ThemedScreen {
         SuccessScreen(
-            subtitle = stringResource(R.string.list_created_description),
+            description = stringResource(R.string.list_created_description),
             firstButton = ButtonModel("teste", {})
         )
     }

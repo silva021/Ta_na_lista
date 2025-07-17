@@ -31,7 +31,7 @@ fun AddShoppingItemScreen(
         }
         is AddShoppingItemUiState.Success -> {
             SuccessScreen(
-                subtitle = if(state.isUpdated)
+                description = if(state.isUpdated)
                     stringResource(R.string.shopping_item_updated_title)
                 else
                     stringResource(R.string.shopping_item_created_title),

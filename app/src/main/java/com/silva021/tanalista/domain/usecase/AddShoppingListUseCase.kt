@@ -13,7 +13,7 @@ class AddShoppingListUseCase() {
         onFailure: (Exception) -> Unit,
     ) {
         try {
-            val shoppingListCollection = FireStoreHelper.shoppingListCollection.document()
+            val shoppingListCollection = FireStoreHelper.shoppingListCollection.document(list.id)
             shoppingListCollection.set(list).await()
             onSuccess.invoke()
         } catch (e: Exception) {

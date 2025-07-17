@@ -1,5 +1,6 @@
 package com.silva021.tanalista.domain.usecase
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.crashlytics.ktx.crashlytics
 import com.google.firebase.ktx.Firebase
 import com.silva021.tanalista.data.datastore.FireStoreHelper
@@ -13,17 +14,29 @@ class GetShoppingListsUseCase() {
         onSuccess: (List<ShoppingList>) -> Unit,
         onFailure: (Exception) -> Unit,
     ) {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: throw Exception("Usuário não autenticado")
         try {
-            val shoppingListsQuery = FireStoreHelper.shoppingListCollection.get().await()
+            val ownerListsQuery = FireStoreHelper.shoppingListCollection
+                .whereEqualTo("ownerUID", uid)
+                .get()
+                .await()
 
-            onSuccess.invoke(
-                shoppingListsQuery
-                    .documents
-                    .mapNotNull {
-                        it.toObject(ShoppingListDTO::class.java)?.copy(id = it.id)?.toModel()
-                    }
-                    .asReversed()
-            )
+            val sharedListsQuery = FireStoreHelper.shoppingListCollection
+                .whereArrayContains("sharedWith", uid)
+                .get()
+                .await()
+
+            val ownerLists = ownerListsQuery.documents.mapNotNull {
+                it.toObject(ShoppingListDTO::class.java)
+            }
+
+            val sharedLists = sharedListsQuery.documents.mapNotNull {
+                it.toObject(ShoppingListDTO::class.java)
+            }
+
+            val combinedLists = (ownerLists + sharedLists).distinctBy { it.id }.map { it.toModel() }
+
+            onSuccess.invoke(combinedLists)
 
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)

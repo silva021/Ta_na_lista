@@ -3,6 +3,7 @@ package com.silva021.tanalista.domain.usecase
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.auth
 import com.google.firebase.crashlytics.crashlytics
 import com.silva021.tanalista.data.datastore.FireStoreHelper.usersCollection
@@ -19,6 +20,10 @@ class CreateUserUseCase {
     ) {
         try {
             val authResult = Firebase.auth.createUserWithEmailAndPassword(email, password).await()
+            authResult.user?.updateProfile(UserProfileChangeRequest.Builder()
+                .setDisplayName(name)
+                .build()
+            )?.await()
             val uid = authResult.user?.uid ?: throw Exception("UID do usuário não encontrado")
 
             val userDTO = UserDTO(

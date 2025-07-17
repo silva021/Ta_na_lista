@@ -1,5 +1,8 @@
 package com.silva021.tanalista.domain.mappers
 
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
+import com.google.firebase.crashlytics.crashlytics
 import com.silva021.tanalista.data.dto.ShoppingItemDTO
 import com.silva021.tanalista.data.dto.ShoppingListDTO
 import com.silva021.tanalista.domain.model.CategoryType
@@ -30,7 +33,11 @@ fun ShoppingListDTO.toModel(): ShoppingList {
     return ShoppingList(
         id = id,
         name = name,
-        type = CategoryType.valueOf(type)
+        type = CategoryType.valueOf(type),
+        ownerUID = ownerUID,
+        ownerName = ownerName,
+        isMine = ownerUID == Firebase.auth.uid,
+        sharedWith = sharedWith.toList()
     )
 }
 
