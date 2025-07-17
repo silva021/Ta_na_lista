@@ -15,8 +15,8 @@ enum class CategoryType(
     val color: Color
 ) {
     GROCERY("Mercado", Icons.Default.ShoppingCart, Color(0xFF4CAF50)),
-    PET("Pet", Icons.Default.Pets, Color(0xFFFFC107)),
+    PET("Pet", Icons.Default.Pets, Color(0xFFFFB300)),
     CLEANING("Limpeza", Icons.Default.DeleteSweep, Color(0xFF2196F3)),
-    PHARMACY("Farmácia", Icons.Default.MedicalServices, Color(0xFFF44336)),
-    OTHER("Outros", Icons.Default.CreditCard, Color(0xFF9E9E9E))
+    PHARMACY("Farmácia", Icons.Default.MedicalServices, Color(0xFFD32F2F)),
+    OTHER("Outros", Icons.Default.CreditCard, Color(0xFF757575))
 }
