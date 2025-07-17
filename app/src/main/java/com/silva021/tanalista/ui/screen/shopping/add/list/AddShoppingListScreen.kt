@@ -7,52 +7,33 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
 import com.silva021.tanalista.R
+import com.silva021.tanalista.ui.screen.presentation.ErrorScreen
 import com.silva021.tanalista.ui.screen.presentation.LoadingScreen
+import com.silva021.tanalista.ui.screen.presentation.SuccessScreen
 import com.silva021.tanalista.ui.theme.Scaffold
-import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun CreateListScreen(
+fun AddShoppingListScreen(
     listId: String = "",
-    viewModel: CreateListViewModel = koinViewModel(),
+    viewModel: AddShoppingListViewModel = koinViewModel(),
     onBackPressed: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
-    val scope = rememberCoroutineScope()
-    val messageListCreated = stringResource(R.string.msg_list_created)
 
     LaunchedEffect(Unit) {
         viewModel.getShoppingList(listId)
-    }
-
-    LaunchedEffect(uiState) {
-        when (val state = uiState) {
-            is CreateListUiState.Error -> {
-                scope.launch {
-                    snackbarHostState.showSnackbar(message = state.message)
-                }
-            }
-            is CreateListUiState.Success -> {
-                scope.launch {
-                    snackbarHostState.showSnackbar(message = messageListCreated)
-                    onBackPressed()
-                }
-            }
-            else -> {}
-        }
     }
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { padding ->
         when (val state = uiState) {
-            is CreateListUiState.Idle -> {
-                CreateListContent(
+            is AddShoppingListUiState.Idle -> {
+                AddShoppingListContent(
                     shoppingList = state.shoppingList,
                     onCreateClick = {
                         viewModel.addShoppingList(it)
@@ -63,12 +44,23 @@ fun CreateListScreen(
                     onBackPressed = onBackPressed
                 )
             }
-            is CreateListUiState.Loading -> {
+            is AddShoppingListUiState.Loading -> {
                 LoadingScreen(
                     "Carregando sua lista"
                 )
             }
-            else -> {}
+            is AddShoppingListUiState.Success -> {
+                SuccessScreen(
+                    subtitle = stringResource(R.string.list_created_title),
+                    onBackPressed = { onBackPressed() }
+                )
+            }
+            is AddShoppingListUiState.Error -> {
+                ErrorScreen(
+                    description = "Não foi possível terminar essa operação, tente novamente.",
+                    onRetry = { onBackPressed() }
+                )
+            }
         }
     }
 }

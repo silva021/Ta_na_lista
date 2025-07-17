@@ -22,7 +22,7 @@ import com.silva021.tanalista.domain.usecase.UpdateShoppingItemUseCase
 import com.silva021.tanalista.domain.usecase.UpdateShoppingListUseCase
 import com.silva021.tanalista.domain.usecase.UpdateUserUseCase
 import com.silva021.tanalista.ui.screen.login.LoginViewModel
-import com.silva021.tanalista.ui.screen.shopping.add.list.CreateListViewModel
+import com.silva021.tanalista.ui.screen.shopping.add.list.AddShoppingListViewModel
 import com.silva021.tanalista.ui.screen.shopping.add.shopping.AddShoppingItemViewModel
 import com.silva021.tanalista.ui.screen.shopping.mylist.ShoppingListsViewModel
 import com.silva021.tanalista.ui.screen.shopping.stock.ProductStockListViewModel
@@ -37,7 +37,7 @@ val viewModelModule = module {
     viewModel { RegisterViewModel(get()) }
     viewModel { ForgotPasswordViewModel(get()) }
     viewModel { ShoppingListsViewModel(get(), get()) }
-    viewModel { CreateListViewModel(get(), get(), get()) }
+    viewModel { AddShoppingListViewModel(get(), get(), get()) }
     viewModel { ProductStockListViewModel(get(), get()) }
     viewModel { AddShoppingItemViewModel(get(), get(), get()) }
     viewModel { WelcomeViewModel(get()) }
@@ -59,15 +59,16 @@ val usecasesModule = module {
 
     factory { ShoppingListDao() }
 
-    factory { GetShoppingListsUseCase(get()) }
-    factory { AddShoppingListUseCase(get()) }
+    factory { GetShoppingListsUseCase() }
+    factory { AddShoppingListUseCase() }
+    factory { UpdateShoppingListUseCase() }
+    factory { DeleteShoppingListsUseCase() }
+
     factory { AddShoppingItemUseCase(get()) }
-    factory { DeleteShoppingListsUseCase(get()) }
     factory { GetShoppingItemsUseCase(get()) }
     factory { UpdateShoppingItemUseCase(get()) }
     factory { GetShoppingItemByIdUseCase(get()) }
     factory { GetShoppingListByIdUseCase(get()) }
-    factory { UpdateShoppingListUseCase(get()) }
 
     single<ShoppingRepository> { ShoppingRepositoryImpl(get()) }
 }

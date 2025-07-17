@@ -1,7 +1,7 @@
 package com.silva021.tanalista.data.local.room.dao
 
 import com.silva021.tanalista.data.local.room.dto.ShoppingItemEntity
-import com.silva021.tanalista.data.local.room.dto.ShoppingListEntity
+import com.silva021.tanalista.data.dto.ShoppingListDTO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
@@ -34,38 +34,25 @@ class ShoppingListDao {
         )
     )
     val mockShoppingLists = listOf(
-        ShoppingListEntity(
+        ShoppingListDTO(
             id = "list-abc",
             name = "Lista da Semana",
             type = "Mercado"
         ),
-        ShoppingListEntity(
+        ShoppingListDTO(
             id = "list-abc",
             name = "Farmácia",
             type = "Saúde"
         ),
-        ShoppingListEntity(
+        ShoppingListDTO(
             id = "list-abc",
             name = "Material Escolar",
             type = "Papelaria"
         )
     )
 
-
-    fun getLists(): Flow<List<ShoppingListEntity>> {
-        return flowOf(emptyList())
-    }
-
-    suspend fun insertList(list: ShoppingListEntity) {
-        // simula um insert mas não faz nada
-    }
-
     suspend fun insertItem(item: ShoppingItemEntity) {
         // simula um insert mas não faz nada
-    }
-
-    suspend fun deleteList(list: ShoppingListEntity) {
-        // simula um delete mas não faz nada
     }
 
     suspend fun deleteItemsByListId(listId: String) {
@@ -80,15 +67,11 @@ class ShoppingListDao {
         // simula um update mas não faz nada
     }
 
-    suspend fun updateShoppingList(list: ShoppingListEntity) {
-        // simula um update mas não faz nada
-    }
-
     fun getShoppingItemById(itemId: String): Flow<ShoppingItemEntity> {
         return flowOf(mockShoppingItems[1])
     }
 
-    fun getShoppingListById(listId: String): Flow<ShoppingListEntity> {
+    fun getShoppingListById(listId: String): Flow<ShoppingListDTO> {
         return flowOf(mockShoppingLists[1])
     }
 }

@@ -1,8 +1,8 @@
 package com.silva021.tanalista.ui.routes
 
 import androidx.navigation.NavController
-import com.silva021.tanalista.ui.routes.Routes.MyListsScreen.ITEM_ID
-import com.silva021.tanalista.ui.routes.Routes.MyListsScreen.LIST_ID
+import com.silva021.tanalista.ui.routes.Routes.ShoppingListsScreen.ITEM_ID
+import com.silva021.tanalista.ui.routes.Routes.ShoppingListsScreen.LIST_ID
 
 sealed class Routes(val route: String) {
     fun popBackStack(navController: NavController) {
@@ -31,18 +31,18 @@ sealed class Routes(val route: String) {
         }
     }
 
-    object MyListsScreen : Routes("my_lists_screen") {
+    object ShoppingListsScreen : Routes("shopping_lists_screen") {
         const val LIST_ID = "list_id"
         const val ITEM_ID = "item_id"
 
         fun navigateToList(navController: NavController) {
-            navController.navigate(MyListsScreen.route)
+            navController.navigate(ShoppingListsScreen.route)
         }
     }
 
-    object CreateListScreen : Routes("create_list_screen?$LIST_ID={list_id}") {
+    object AddShoppingListScreen : Routes("add_shopping_list_screen?$LIST_ID={list_id}") {
         fun navigateToCreateListScreen(navController: NavController, listId: String = "") {
-            navController.navigate(CreateListScreen.route.replace("{$LIST_ID}", listId))
+            navController.navigate(AddShoppingListScreen.route.replace("{$LIST_ID}", listId))
         }
     }
 

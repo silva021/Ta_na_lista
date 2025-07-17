@@ -38,7 +38,7 @@ fun CustomButton(
         enabled = model.enabled,
         shape = RoundedCornerShape(16.dp),
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = buttonColor
+            backgroundColor = model.backgroundColor
         )
     ) {
         Row(
@@ -51,7 +51,7 @@ fun CustomButton(
             ) {
                 Text(
                     text = model.label,
-                    color = Color.White,
+                    color = model.textColor,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.button
@@ -60,7 +60,7 @@ fun CustomButton(
             if (model.isLoading) {
                 CircularProgressIndicator(
                     modifier = Modifier.size(20.dp),
-                    color = Color.White,
+                    color = model.textColor,
                     strokeWidth = 2.dp
                 )
             }

@@ -61,8 +61,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.material.icons.extended)
-    implementation(libs.accompanist.systemuicontroller)
-
+    implementation(libs.lottie)
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore.ktx)

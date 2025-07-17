@@ -41,10 +41,9 @@ import com.silva021.tanalista.domain.model.ShoppingList
 import com.silva021.tanalista.ui.components.CategorySelector
 import com.silva021.tanalista.ui.theme.Palette
 import com.silva021.tanalista.util.ThemedScreen
-import java.util.UUID
 
 @Composable
-fun CreateListContent(
+fun AddShoppingListContent(
     shoppingList: ShoppingList? = null,
     onCreateClick: (ShoppingList) -> Unit,
     onEditClick: (ShoppingList) -> Unit = {},
@@ -169,7 +168,7 @@ fun CreateListContent(
 @Composable
 fun PreviewCreateListContent() {
     ThemedScreen {
-        CreateListContent(
+        AddShoppingListContent(
             onCreateClick = { /* criar lista */ },
             onBackPressed = {}
         )

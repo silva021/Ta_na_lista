@@ -1,9 +1,24 @@
 package com.silva021.tanalista.domain.usecase
 
-import com.silva021.tanalista.data.repository.ShoppingRepository
+import com.google.firebase.Firebase
+import com.google.firebase.crashlytics.crashlytics
+import com.silva021.tanalista.data.datastore.FireStoreHelper.shoppingListCollection
 import com.silva021.tanalista.domain.model.ShoppingList
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.tasks.await
 
-class DeleteShoppingListsUseCase(private val repository: ShoppingRepository) {
-    suspend operator fun invoke(list: ShoppingList): Unit = repository.deleteList(list)
+class DeleteShoppingListsUseCase() {
+    suspend operator fun invoke(
+        list: ShoppingList,
+        onSuccess: () -> Unit = {},
+        onFailure: (Exception) -> Unit,
+    ) {
+        try {
+            shoppingListCollection.document(list.id).delete().await()
+            onSuccess.invoke()
+        } catch (e: Exception) {
+            Firebase.crashlytics.recordException(e)
+            e.printStackTrace()
+            onFailure.invoke(e)
+        }
+    }
 }

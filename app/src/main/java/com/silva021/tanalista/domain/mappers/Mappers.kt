@@ -1,7 +1,7 @@
 package com.silva021.tanalista.domain.mappers
 
 import com.silva021.tanalista.data.local.room.dto.ShoppingItemEntity
-import com.silva021.tanalista.data.local.room.dto.ShoppingListEntity
+import com.silva021.tanalista.data.dto.ShoppingListDTO
 import com.silva021.tanalista.domain.model.CategoryType
 import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.ShoppingList
@@ -18,15 +18,15 @@ fun ShoppingItemEntity.toModel(): ShoppingItem {
     )
 }
 
-fun ShoppingList.toEntity(): ShoppingListEntity {
-    return ShoppingListEntity(
+fun ShoppingList.toEntity(): ShoppingListDTO {
+    return ShoppingListDTO(
         id = id,
         name = name,
         type = type.name
     )
 }
 
-fun ShoppingListEntity.toModel(): ShoppingList {
+fun ShoppingListDTO.toModel(): ShoppingList {
     return ShoppingList(
         id = id,
         name = name,

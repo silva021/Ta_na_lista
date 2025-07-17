@@ -1,5 +1,4 @@
 [versions]
-accompanistSystemuicontroller = "0.33.2-alpha"
 agp = "8.6.0"
 firebaseBom = "33.15.0"
 kotlin = "2.1.10"
@@ -19,6 +18,7 @@ koin = "4.0.0"
 youtube = "2024.02.25"
 startup = "1.2.0"
 gson = "2.12.1"
+lottie = "6.3.0"
 
 [bundles]
 koin = [
@@ -27,7 +27,6 @@ koin = [
 ]
 
 [libraries]
-accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
 #androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx" }
@@ -56,7 +55,7 @@ firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 firebase-config-ktx = { module = "com.google.firebase:firebase-config-ktx" }
 firebase-firestore-ktx = { module = "com.google.firebase:firebase-firestore-ktx"}
-
+lottie = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie" }
 
 koin-koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-fragment = { module = "io.insert-koin:koin-androidx-fragment", version.ref = "koin" }

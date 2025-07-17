@@ -22,8 +22,7 @@ fun ForgotPasswordScreen(
         when (state) {
             is ResetPasswordState.Error -> {
                 ErrorScreen(
-                    title = "Falha ao Enviar E-mail",
-                    subtitle = "Não foi possível enviar o e-mail de recuperação de senha. Verifique se o e-mail está correto e tente novamente.",
+                    description = "Não foi possível enviar o e-mail de recuperação de senha. Verifique se o e-mail está correto e tente novamente.",
                     onRetry = {
                         viewModel.tryAgain()
                     }
@@ -41,11 +40,11 @@ fun ForgotPasswordScreen(
 
             is ResetPasswordState.Success -> {
                 SuccessScreen(
-                    title = "E-mail Enviado!",
                     subtitle = "Um e-mail com instruções para redefinir sua senha foi enviado para sua caixa de entrada. Siga as instruções para recuperar o acesso à sua conta.",
-                    firstButton = ButtonModel("Voltar para Login", onClick = {
-                        onBackPressed()
-                    }
+                    firstButton = ButtonModel("Voltar para Login",
+                        onClick = {
+                            onBackPressed()
+                        }
                     ),
                 )
             }

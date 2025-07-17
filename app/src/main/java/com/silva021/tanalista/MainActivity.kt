@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -14,14 +13,14 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.silva021.tanalista.ui.routes.Routes
 import com.silva021.tanalista.ui.routes.Routes.AddShoppingItemScreen.navigateToAddShoppingItemScreen
-import com.silva021.tanalista.ui.routes.Routes.CreateListScreen.navigateToCreateListScreen
-import com.silva021.tanalista.ui.routes.Routes.MyListsScreen.ITEM_ID
-import com.silva021.tanalista.ui.routes.Routes.MyListsScreen.LIST_ID
+import com.silva021.tanalista.ui.routes.Routes.AddShoppingListScreen.navigateToCreateListScreen
+import com.silva021.tanalista.ui.routes.Routes.ShoppingListsScreen.ITEM_ID
+import com.silva021.tanalista.ui.routes.Routes.ShoppingListsScreen.LIST_ID
 import com.silva021.tanalista.ui.routes.Routes.ProductStockListScreen.navigateToProductStockListScreen
 import com.silva021.tanalista.ui.screen.forgotpassword.ForgotPasswordScreen
 import com.silva021.tanalista.ui.screen.login.LoginScreen
 import com.silva021.tanalista.ui.screen.register.RegisterScreen
-import com.silva021.tanalista.ui.screen.shopping.add.list.CreateListScreen
+import com.silva021.tanalista.ui.screen.shopping.add.list.AddShoppingListScreen
 import com.silva021.tanalista.ui.screen.shopping.add.shopping.AddShoppingItemScreen
 import com.silva021.tanalista.ui.screen.shopping.mylist.ShoppingListsScreen
 import com.silva021.tanalista.ui.screen.shopping.stock.ProductStockListScreen
@@ -50,7 +49,7 @@ class MainActivity : ComponentActivity() {
                                 navigateToRegisterScreen = {
                                     Routes.RegisterScreen.navigateToRegisterScreen(navController)
                                 }, isLoggedListener = {
-                                    Routes.MyListsScreen.navigateToList(navController)
+                                    Routes.ShoppingListsScreen.navigateToList(navController)
                                 }, navigateToForgotPasswordScreen = {
                                     Routes.ForgotPasswordScreen.navigateToForgotPasswordScreen(
                                         navController
@@ -64,7 +63,7 @@ class MainActivity : ComponentActivity() {
                                     Routes.RegisterScreen.popBackStack(navController)
                                 },
                                 navigateToMyListScreen = {
-                                    Routes.MyListsScreen.navigateToList(navController)
+                                    Routes.ShoppingListsScreen.navigateToList(navController)
                                 },
                             )
                         }
@@ -80,7 +79,7 @@ class MainActivity : ComponentActivity() {
                                 onStartClick = { Routes.WelcomeScreen.navigateToLogin(navController) }
                             )
                         }
-                        composable(Routes.MyListsScreen.route) {
+                        composable(Routes.ShoppingListsScreen.route) {
                             ShoppingListsScreen(
                                 onCardClick = {
                                     navigateToProductStockListScreen(
@@ -96,22 +95,23 @@ class MainActivity : ComponentActivity() {
                                 },
                                 onAddClick = {
                                     navigateToCreateListScreen(navController)
+                                },
+                                onBackPressed = {
+                                    Routes.ShoppingListsScreen.popBackStack(navController)
                                 }
                             )
                         }
                         composable(
-                            route = Routes.CreateListScreen.route,
+                            route = Routes.AddShoppingListScreen.route,
                             arguments = listOf(
                                 navArgument(LIST_ID) { type = NavType.StringType; nullable = true },
                             )
                         ) { backStackEntry ->
-                            val listId =
-                                backStackEntry.arguments?.getString(LIST_ID)
-                                    .orEmpty()
-                            CreateListScreen(
+                            val listId = backStackEntry.arguments?.getString(LIST_ID).orEmpty()
+                            AddShoppingListScreen(
                                 listId = listId,
                                 onBackPressed = {
-                                    Routes.CreateListScreen.popBackStack(
+                                    Routes.AddShoppingListScreen.popBackStack(
                                         navController
                                     )
                                 }

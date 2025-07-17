@@ -2,9 +2,11 @@ package com.silva021.tanalista.ui.screen.shopping.mylist
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.silva021.tanalista.domain.model.ShoppingList
+import com.silva021.tanalista.ui.screen.presentation.ErrorScreen
 import com.silva021.tanalista.ui.screen.presentation.LoadingScreen
 import org.koin.androidx.compose.koinViewModel
 
@@ -14,12 +16,20 @@ fun ShoppingListsScreen(
     onCardClick: (ShoppingList) -> Unit,
     onEditClick: (ShoppingList) -> Unit,
     onAddClick: () -> Unit,
+    onBackPressed: () -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
+    LaunchedEffect(Unit) {
+        viewModel.getShoppingLists()
+    }
+
     when (val state = uiState) {
         is MyListsUiState.Error -> {
-            Text("Erro: ${state.message}")
+            ErrorScreen(
+                description = state.message,
+                onRetry = { onBackPressed.invoke() }
+            )
         }
 
         is MyListsUiState.Loading -> {
@@ -32,9 +42,7 @@ fun ShoppingListsScreen(
             ShoppingListsContent(
                 lists = state.lists,
                 onCardClick = onCardClick,
-                onDeleteClick = {
-                    viewModel.deleteList(it)
-                },
+                onDeleteClick = { viewModel.deleteList(it) },
                 onAddClick = onAddClick,
                 onEditClick = onEditClick
             )

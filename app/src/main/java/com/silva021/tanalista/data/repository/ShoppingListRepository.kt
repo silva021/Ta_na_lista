@@ -12,23 +12,10 @@ class ShoppingRepositoryImpl(
     private val dao: ShoppingListDao
 ) : ShoppingRepository {
 
-    override fun getAllLists(): Flow<List<ShoppingList>> =
-        dao.getLists().map { it.map { it.toModel() } }
-
     override fun getAllItems(listId: String): Flow<List<ShoppingItem>> =
         dao.getShoppingItems(listId).map { items ->
             items.map { it.toModel() }
         }
-
-    override suspend fun addList(list: ShoppingList) {
-        dao.insertList(list.toEntity())
-    }
-
-    override suspend fun deleteList(list: ShoppingList) {
-        dao.deleteItemsByListId(list.id)
-        dao.deleteList(list.toEntity())
-    }
-
     override suspend fun deleteShoppingItem(shoppingItemId: String) {
         dao.deleteItemsByListId(shoppingItemId)
     }
@@ -47,18 +34,13 @@ class ShoppingRepositoryImpl(
     override fun getShoppingListById(listId: String): Flow<ShoppingList> = dao.getShoppingListById(listId)
         .map { it.toModel() }
 
-    override suspend fun updateShoppingList(list: ShoppingList) = dao.updateShoppingList(list.toEntity())
 }
 
 interface ShoppingRepository {
-    fun getAllLists(): Flow<List<ShoppingList>>
     fun getAllItems(listId: String): Flow<List<ShoppingItem>>
     fun getShoppingItemById(itemId: String): Flow<ShoppingItem>
     fun getShoppingListById(listId: String): Flow<ShoppingList>
-    suspend fun addList(list: ShoppingList)
-    suspend fun deleteList(list: ShoppingList)
     suspend fun deleteShoppingItem(shoppingItemId: String)
     suspend fun addShoppingItem(listId: String, item: ShoppingItem)
     suspend fun updateShoppingItem(item: ShoppingItem)
-    suspend fun updateShoppingList(list: ShoppingList)
 }

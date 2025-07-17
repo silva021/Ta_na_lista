@@ -1,9 +1,27 @@
 package com.silva021.tanalista.domain.usecase
 
-import com.silva021.tanalista.data.repository.ShoppingRepository
-import com.silva021.tanalista.domain.model.ShoppingItem
+import com.google.firebase.Firebase
+import com.google.firebase.crashlytics.crashlytics
+import com.silva021.tanalista.data.datastore.FireStoreHelper.shoppingListCollection
 import com.silva021.tanalista.domain.model.ShoppingList
+import kotlinx.coroutines.tasks.await
 
-class UpdateShoppingListUseCase(private val repository: ShoppingRepository) {
-    suspend operator fun invoke(shoppingList: ShoppingList) = repository.updateShoppingList(shoppingList)
+class UpdateShoppingListUseCase() {
+    suspend operator fun invoke(
+        shoppingList: ShoppingList,
+        onSuccess: () -> Unit,
+        onFailure: () -> Unit,
+    ) {
+        try {
+            val updates = mutableMapOf<String, Any>()
+            updates["name"] = shoppingList.name
+            updates["type"] = shoppingList.type.name
+            shoppingListCollection.document(shoppingList.id).update(updates).await()
+            onSuccess.invoke()
+        } catch (e: Exception) {
+            Firebase.crashlytics.recordException(e)
+            e.printStackTrace()
+            onFailure.invoke()
+        }
+    }
 }

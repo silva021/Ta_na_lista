@@ -3,10 +3,10 @@ package com.silva021.tanalista.domain.usecase
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.crashlytics.crashlytics
-import com.silva021.tanalista.util.helper.FirestoreHelper
+import com.silva021.tanalista.data.datastore.FireStoreHelper
 
 class UpdateUserUseCase {
-    private val usersCollection = FirestoreHelper.usersCollection
+    private val usersCollection = FireStoreHelper.usersCollection
 
     fun invoke(
         newBalance: Float? = null,
