@@ -24,7 +24,7 @@ object ShoppingFactory {
         quantity: Float = 1f,
         minRequired: Float = 1f,
         unitType: UnitType = UnitType.UNIT,
-        listId: String? = null,
+        listId: String,
         id: String = UUID.randomUUID().toString()
     ): ShoppingItem {
         return ShoppingItem(

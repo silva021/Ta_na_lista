@@ -6,6 +6,7 @@ import com.silva021.tanalista.domain.model.ShoppingList
 import com.silva021.tanalista.domain.usecase.AddShoppingListUseCase
 import com.silva021.tanalista.domain.usecase.GetShoppingListByIdUseCase
 import com.silva021.tanalista.domain.usecase.UpdateShoppingListUseCase
+import com.silva021.tanalista.ui.screen.shopping.add.item.AddShoppingItemUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,12 +30,15 @@ class AddShoppingListViewModel(
 
         viewModelScope.launch {
             _uiState.value = AddShoppingListUiState.Loading
-            getShoppingListById.invoke(listId).catch { e ->
-                _uiState.value = AddShoppingListUiState.Error(e.message ?: "Erro desconhecido")
-            }.collect {
-                _uiState.value = AddShoppingListUiState.Idle(it)
-
-            }
+            getShoppingListById.invoke(
+                listId,
+                onSuccess = {
+                    _uiState.value = AddShoppingListUiState.Idle(it)
+                },
+                onFailure = {
+                    _uiState.value = AddShoppingListUiState.Error("Não foi possível carregar a lista")
+                }
+            )
         }
     }
 
@@ -44,7 +48,7 @@ class AddShoppingListViewModel(
                 updateShoppingList.invoke(
                     list,
                     onSuccess = {
-                        _uiState.value = AddShoppingListUiState.Success("Lista atualizada com sucesso")
+                        _uiState.value = AddShoppingListUiState.Success(isUpdated = true)
                     },
                     onFailure = {
                         _uiState.value = AddShoppingListUiState.Error("Não foi possível atualizar a lista")
@@ -59,7 +63,7 @@ class AddShoppingListViewModel(
             addListUseCase.invoke(
                 list = list,
                 onSuccess = {
-                    _uiState.value = AddShoppingListUiState.Success("Lista editada com sucesso")
+                    _uiState.value = AddShoppingListUiState.Success(isUpdated = false)
                 },
                 onFailure = {
                     _uiState.value = AddShoppingListUiState.Error("Não foi possível criar a lista")
@@ -72,6 +76,6 @@ class AddShoppingListViewModel(
 sealed class AddShoppingListUiState {
     data class Idle(val shoppingList: ShoppingList? = null) : AddShoppingListUiState()
     object Loading : AddShoppingListUiState()
-    data class Success(val message: String = "Lista criada com sucesso") : AddShoppingListUiState()
+    data class Success(val isUpdated: Boolean) : AddShoppingListUiState()
     data class Error(val message: String) : AddShoppingListUiState()
 }

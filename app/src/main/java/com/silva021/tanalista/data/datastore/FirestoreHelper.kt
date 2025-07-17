@@ -6,7 +6,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 object FireStoreHelper {
     private val db by lazy { FirebaseFirestore.getInstance() }
-    private val uid = FirebaseAuth.getInstance().currentUser?.uid ?: throw Exception("Usuário não autenticado")
+    private val uid =
+        FirebaseAuth.getInstance().currentUser?.uid ?: throw Exception("Usuário não autenticado")
 
     private fun getCollection(collectionName: String): CollectionReference {
         return db.collection(collectionName)
@@ -19,4 +20,11 @@ object FireStoreHelper {
         get() = getCollection("users")
             .document(uid)
             .collection("shopping_lists")
+
+    fun getShoppingItemsCollection(shoppingListId: String) =
+        getCollection("users")
+            .document(uid)
+            .collection("shopping_lists")
+            .document(shoppingListId)
+            .collection("shopping_items")
 }

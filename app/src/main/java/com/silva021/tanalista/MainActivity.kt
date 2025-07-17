@@ -21,7 +21,7 @@ import com.silva021.tanalista.ui.screen.forgotpassword.ForgotPasswordScreen
 import com.silva021.tanalista.ui.screen.login.LoginScreen
 import com.silva021.tanalista.ui.screen.register.RegisterScreen
 import com.silva021.tanalista.ui.screen.shopping.add.list.AddShoppingListScreen
-import com.silva021.tanalista.ui.screen.shopping.add.shopping.AddShoppingItemScreen
+import com.silva021.tanalista.ui.screen.shopping.add.item.AddShoppingItemScreen
 import com.silva021.tanalista.ui.screen.shopping.mylist.ShoppingListsScreen
 import com.silva021.tanalista.ui.screen.shopping.stock.ProductStockListScreen
 import com.silva021.tanalista.ui.screen.welcome.WelcomeScreen
@@ -138,7 +138,7 @@ class MainActivity : ComponentActivity() {
                             AddShoppingItemScreen(
                                 listId = listId,
                                 itemId = itemId,
-                                onBack = {
+                                onBackPressed = {
                                     Routes.AddShoppingItemScreen.popBackStack(navController)
                                 }
                             )
@@ -163,7 +163,7 @@ class MainActivity : ComponentActivity() {
                                     navigateToAddShoppingItemScreen(
                                         navController = navController,
                                         listId = listId,
-                                        itemId = it
+                                        itemId = it.id
                                     )
                                 },
                                 onBackPressed = {

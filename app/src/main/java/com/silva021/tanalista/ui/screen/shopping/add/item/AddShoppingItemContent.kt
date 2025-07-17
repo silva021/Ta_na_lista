@@ -1,4 +1,4 @@
-package com.silva021.tanalista.ui.screen.shopping.add.shopping
+package com.silva021.tanalista.ui.screen.shopping.add.item
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
@@ -38,6 +36,8 @@ import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.UnitType
+import com.silva021.tanalista.ui.components.CustomButton
+import com.silva021.tanalista.ui.components.model.ButtonModel
 import com.silva021.tanalista.ui.theme.Palette
 import java.util.UUID
 
@@ -58,19 +58,20 @@ fun AddShoppingItemContent(
     val itemId = shoppingItem?.id ?: UUID.randomUUID().toString()
 
     Scaffold(
-        backgroundColor = Palette.backgroundColor,
-        topBar = {
+        backgroundColor = Palette.backgroundColor, topBar = {
             TopAppBar(
                 backgroundColor = Palette.backgroundColor,
                 elevation = 0.dp,
                 title = { },
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.content_desc_back))
+                        Icon(
+                            Icons.Default.ArrowBack,
+                            contentDescription = stringResource(R.string.content_desc_back)
+                        )
                     }
                 })
-        }
-    ) { padding ->
+        }) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -152,34 +153,30 @@ fun AddShoppingItemContent(
 
                     Spacer(modifier = Modifier.height(12.dp))
 
-                    Button(
-                        onClick = {
-                            val item = ShoppingItem(
-                                name = name,
-                                quantity = quantity.toFloat(),
-                                listId = listId,
-                                unitType = unit,
-                                minRequired = minimumQuantity.toFloat()
-                            )
+                    CustomButton(
+                        model = ButtonModel(
+                            label = if (isEditing) stringResource(R.string.action_update)
+                            else stringResource(
+                                R.string.action_save
+                            ),
+                            onClick = {
+                                val item = ShoppingItem(
+                                    name = name,
+                                    quantity = quantity.toFloat(),
+                                    listId = listId,
+                                    unitType = unit,
+                                    minRequired = minimumQuantity.toFloat()
+                                )
 
-                            if (isEditing) {
-                                onEditShoppingItem(item.copy(id = itemId))
-                            } else {
-                                onAddShoppingItem(item)
-                            }
-                        },
-                        shape = RoundedCornerShape(16.dp),
-                        colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.chip_selected)),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(50.dp),
-                    ) {
-                        Text(
-                            if (isEditing) stringResource(R.string.action_update) else stringResource(R.string.action_save),
-                            fontSize = 18.sp,
-                            color = Color.White
+                                if (isEditing) {
+                                    onEditShoppingItem(item.copy(id = itemId))
+                                } else {
+                                    onAddShoppingItem(item)
+                                }
+                            },
+                            enabled = name.isNotBlank() && quantity.isNotBlank() && minimumQuantity.isNotBlank()
                         )
-                    }
+                    )
                 }
             }
         }
@@ -192,6 +189,5 @@ fun AddShoppingItemContentPreview() {
     AddShoppingItemContent(
         listId = "12345",
         onAddShoppingItem = { /* salvar */ },
-        onBackPressed = { /* voltar */ }
-    )
+        onBackPressed = { /* voltar */ })
 }

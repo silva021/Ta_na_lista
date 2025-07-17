@@ -4,7 +4,7 @@ import java.util.UUID
 
 data class ShoppingItem(
     val id: String = UUID.randomUUID().toString(),
-    val listId: String? = null,
+    val listId: String,
     val name: String,
     val quantity: Float,
     val minRequired: Float,

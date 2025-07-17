@@ -6,7 +6,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.auth
 import com.google.firebase.crashlytics.crashlytics
 import com.silva021.tanalista.data.datastore.FireStoreHelper.usersCollection
-import com.silva021.tanalista.data.local.room.dto.UserDTO
+import com.silva021.tanalista.data.dto.UserDTO
 import kotlinx.coroutines.tasks.await
 
 class CreateUserUseCase {

@@ -67,7 +67,9 @@ fun ShoppingListsContent(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(stringResource(R.string.text_no_lists), fontWeight = FontWeight.Bold)
+                    Text(
+                        stringResource(R.string.text_no_lists),
+                        fontWeight = FontWeight.Bold)
                 }
             } else {
                 lists.forEach { list ->

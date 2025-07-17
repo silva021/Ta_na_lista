@@ -1,13 +1,13 @@
 package com.silva021.tanalista.domain.mappers
 
-import com.silva021.tanalista.data.local.room.dto.ShoppingItemEntity
+import com.silva021.tanalista.data.dto.ShoppingItemDTO
 import com.silva021.tanalista.data.dto.ShoppingListDTO
 import com.silva021.tanalista.domain.model.CategoryType
 import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.ShoppingList
 import com.silva021.tanalista.domain.model.UnitType
 
-fun ShoppingItemEntity.toModel(): ShoppingItem {
+fun ShoppingItemDTO.toModel(): ShoppingItem {
     return ShoppingItem(
         id = id,
         name = name,
@@ -34,8 +34,8 @@ fun ShoppingListDTO.toModel(): ShoppingList {
     )
 }
 
-fun ShoppingItem.toEntity(listId: String? = null): ShoppingItemEntity {
-    return ShoppingItemEntity(
+fun ShoppingItem.toEntity(listId: String? = null): ShoppingItemDTO {
+    return ShoppingItemDTO(
         id = id,
         listId = listId ?: this.listId.orEmpty(),
         name = name,

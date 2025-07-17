@@ -37,6 +37,8 @@
     <string name="action_delete">Deletar</string>
     <string name="label_list_color">Cor da lista</string>
     <string name="list_created_title">Lista criada com sucesso!</string>
+    <string name="shopping_item_created_title">Item criado com sucesso!</string>
+    <string name="shopping_item_updated_title">Item atualizado com sucesso!</string>
     <string name="list_created_description">Agora você pode incluir seus itens após clicar em \"Voltar\".</string>
     <string name="default_list_name">Nova Lista</string>
     <string name="default_item_name">Novo Item</string>

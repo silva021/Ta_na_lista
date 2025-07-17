@@ -40,7 +40,8 @@ import com.silva021.tanalista.util.factory.ShoppingFactory
 fun ProductStockListContent(
     items: List<ShoppingItem>,
     onAdd: () -> Unit,
-    onEditShoppingItem: (String) -> Unit,
+    onEditShoppingItem: (ShoppingItem) -> Unit,
+    onDeleteShoppingItem: (ShoppingItem) -> Unit,
     onAdjustStock: (ShoppingItem) -> Unit,
     onBackPressed: () -> Unit,
 ) {
@@ -73,7 +74,7 @@ fun ProductStockListContent(
                     }
                 })
         }
-    ) { _ ->
+    ) { padding ->
         Column {
             Column(
                 modifier = Modifier
@@ -97,7 +98,8 @@ fun ProductStockListContent(
                             ProductStockItem(
                                 item = item,
                                 onAdjustStock = onAdjustStock,
-                                onEditShoppingItem = onEditShoppingItem
+                                onEditShoppingItem = onEditShoppingItem,
+                                onDeleteShoppingItem = onDeleteShoppingItem
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                         }
@@ -131,18 +133,21 @@ fun PreviewShoppingListScreen() {
                 id = "arroz",
                 name = "Arroz",
                 quantity = 2f,
+                listId = "a",
                 unitType = UnitType.KILOGRAM,
             ),
             ShoppingFactory.createShoppingItem(
                 id = "feijao",
                 name = "Feijão",
                 quantity = 1f,
+                listId = "a",
                 unitType = UnitType.KILOGRAM,
             ),
             ShoppingFactory.createShoppingItem(
                 id = "leite",
                 name = "Leite",
                 quantity = 25f,
+                listId = "a",
                 unitType = UnitType.LITER,
             ),
         )
@@ -152,7 +157,8 @@ fun PreviewShoppingListScreen() {
             onAdd = {},
             onAdjustStock = {},
             onBackPressed = {},
-            onEditShoppingItem = { /* Handle edit */ }
+            onEditShoppingItem = { /* Handle edit */ },
+            onDeleteShoppingItem = { /* Handle delete */ }
         )
     }
 }
@@ -166,7 +172,8 @@ fun PreviewEmptyShoppingListScreen() {
             onAdd = {},
             onAdjustStock = {},
             onBackPressed = {},
-            onEditShoppingItem = { /* Handle edit */ }
+            onEditShoppingItem = { /* Handle edit */ },
+            onDeleteShoppingItem = {}
         )
     }
 }

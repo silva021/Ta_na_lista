@@ -1,4 +1,4 @@
-package com.silva021.tanalista.data.local.room.dto
+package com.silva021.tanalista.data.dto
 
 import com.silva021.tanalista.domain.model.User
 

@@ -1,13 +1,11 @@
 package com.silva021.tanalista.di
 
-import com.silva021.tanalista.data.local.room.dao.ShoppingListDao
 import com.silva021.tanalista.ui.screen.forgotpassword.ForgotPasswordViewModel
 import com.silva021.tanalista.ui.screen.register.RegisterViewModel
-import com.silva021.tanalista.data.repository.ShoppingRepository
-import com.silva021.tanalista.data.repository.ShoppingRepositoryImpl
 import com.silva021.tanalista.domain.usecase.AddShoppingItemUseCase
 import com.silva021.tanalista.domain.usecase.AddShoppingListUseCase
 import com.silva021.tanalista.domain.usecase.CreateUserUseCase
+import com.silva021.tanalista.domain.usecase.DeleteShoppingItemUseCase
 import com.silva021.tanalista.domain.usecase.DeleteShoppingListsUseCase
 import com.silva021.tanalista.domain.usecase.DeleteUserAccountUseCase
 import com.silva021.tanalista.domain.usecase.GetShoppingItemByIdUseCase
@@ -23,7 +21,7 @@ import com.silva021.tanalista.domain.usecase.UpdateShoppingListUseCase
 import com.silva021.tanalista.domain.usecase.UpdateUserUseCase
 import com.silva021.tanalista.ui.screen.login.LoginViewModel
 import com.silva021.tanalista.ui.screen.shopping.add.list.AddShoppingListViewModel
-import com.silva021.tanalista.ui.screen.shopping.add.shopping.AddShoppingItemViewModel
+import com.silva021.tanalista.ui.screen.shopping.add.item.AddShoppingItemViewModel
 import com.silva021.tanalista.ui.screen.shopping.mylist.ShoppingListsViewModel
 import com.silva021.tanalista.ui.screen.shopping.stock.ProductStockListViewModel
 import com.silva021.tanalista.ui.screen.welcome.WelcomeViewModel
@@ -38,10 +36,9 @@ val viewModelModule = module {
     viewModel { ForgotPasswordViewModel(get()) }
     viewModel { ShoppingListsViewModel(get(), get()) }
     viewModel { AddShoppingListViewModel(get(), get(), get()) }
-    viewModel { ProductStockListViewModel(get(), get()) }
+    viewModel { ProductStockListViewModel(get(), get(), get()) }
     viewModel { AddShoppingItemViewModel(get(), get(), get()) }
     viewModel { WelcomeViewModel(get()) }
-
 }
 
 val usecasesModule = module {
@@ -56,21 +53,17 @@ val usecasesModule = module {
     factory { IsUserLoggedInUseCase() }
     factory { UpdateUserUseCase() }
 
-
-    factory { ShoppingListDao() }
-
     factory { GetShoppingListsUseCase() }
     factory { AddShoppingListUseCase() }
     factory { UpdateShoppingListUseCase() }
     factory { DeleteShoppingListsUseCase() }
+    factory { GetShoppingListByIdUseCase() }
 
-    factory { AddShoppingItemUseCase(get()) }
-    factory { GetShoppingItemsUseCase(get()) }
-    factory { UpdateShoppingItemUseCase(get()) }
-    factory { GetShoppingItemByIdUseCase(get()) }
-    factory { GetShoppingListByIdUseCase(get()) }
-
-    single<ShoppingRepository> { ShoppingRepositoryImpl(get()) }
+    factory { GetShoppingItemsUseCase() }
+    factory { AddShoppingItemUseCase() }
+    factory { DeleteShoppingItemUseCase() }
+    factory { UpdateShoppingItemUseCase() }
+    factory { GetShoppingItemByIdUseCase() }
 }
 
 val sharedPreferences = module {
