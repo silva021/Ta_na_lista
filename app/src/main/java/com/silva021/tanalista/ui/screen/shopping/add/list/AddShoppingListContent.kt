@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
@@ -39,6 +37,8 @@ import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.CategoryType
 import com.silva021.tanalista.domain.model.ShoppingList
 import com.silva021.tanalista.ui.components.CategorySelector
+import com.silva021.tanalista.ui.components.CustomButton
+import com.silva021.tanalista.ui.components.model.ButtonModel
 import com.silva021.tanalista.ui.theme.Palette
 import com.silva021.tanalista.util.ThemedScreen
 
@@ -127,38 +127,31 @@ fun AddShoppingListContent(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Button(
-                    onClick = {
-                        if (isEditing) {
-                            onEditClick(
-                                shoppingList.copy(
-                                    name = name,
-                                    type = categoriesSelected
+                CustomButton(
+                    model = ButtonModel(
+                        label = if (isEditing) stringResource(R.string.action_edit_list) else stringResource(
+                            R.string.action_create_list
+                        ),
+                        onClick = {
+                            if (isEditing) {
+                                onEditClick(
+                                    shoppingList.copy(
+                                        name = name,
+                                        type = categoriesSelected
+                                    )
                                 )
-                            )
-                        } else {
-                            onCreateClick.invoke(
-                                ShoppingList(
-                                    name = name,
-                                    type = categoriesSelected
+                            } else {
+                                onCreateClick.invoke(
+                                    ShoppingList(
+                                        name = name,
+                                        type = categoriesSelected
+                                    )
                                 )
-                            )
-                        }
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(56.dp),
-                    shape = RoundedCornerShape(20.dp),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.chip_selected))
-                ) {
-                    Text(
-                        if (isEditing) stringResource(R.string.action_edit_list) else stringResource(R.string.action_create_list),
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp,
-                        color = Color.White
-                    )
-                }
-
+                            }
+                        },
+                        enabled = name.isNotBlank()
+                    ),
+                )
             }
         }
     }
