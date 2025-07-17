@@ -41,6 +41,7 @@ import com.silva021.tanalista.ui.model.LoginScreenModel
 import com.silva021.tanalista.ui.theme.Palette.backgroundColor
 import com.silva021.tanalista.ui.theme.Scaffold
 import com.silva021.tanalista.util.ThemedScreen
+import com.silva021.tanalista.util.fromHtml
 import com.silva021.tanalista.util.isValidEmail
 import kotlinx.coroutines.launch
 
@@ -152,10 +153,8 @@ fun LoginContent(
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                Spacer(modifier = Modifier.height(24.dp))
-
                 Text(
-                    text = stringResource(R.string.text_no_account),
+                    text = stringResource(R.string.text_no_account).fromHtml(),
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .clickable { onRegisterClick() },

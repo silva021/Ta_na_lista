@@ -1,5 +1,6 @@
 package com.silva021.tanalista.ui.screen.presentation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.silva021.tanalista.ui.theme.Palette
 import com.silva021.tanalista.ui.theme.Palette.buttonColor
 import com.silva021.tanalista.ui.theme.TypographyApp
 
@@ -26,6 +28,7 @@ fun LoadingScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(Palette.backgroundColor)
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center

@@ -1,5 +1,6 @@
 package com.silva021.tanalista.ui.screen.presentation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -26,6 +27,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.silva021.tanalista.R
 import com.silva021.tanalista.ui.components.CustomButton
 import com.silva021.tanalista.ui.components.model.ButtonModel
+import com.silva021.tanalista.ui.theme.Palette
 import com.silva021.tanalista.ui.theme.TypographyApp
 import com.silva021.tanalista.util.ThemedScreen
 
@@ -47,6 +49,7 @@ fun ErrorScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .background(Palette.backgroundColor)
                 .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center

@@ -41,6 +41,7 @@ import com.silva021.tanalista.ui.model.RegisterScreenModel
 import com.silva021.tanalista.ui.theme.Palette.backgroundColor
 import com.silva021.tanalista.ui.theme.Scaffold
 import com.silva021.tanalista.util.ThemedScreen
+import com.silva021.tanalista.util.fromHtml
 import com.silva021.tanalista.util.isValidEmail
 import kotlinx.coroutines.launch
 
@@ -162,7 +163,7 @@ fun RegisterContent(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = stringResource(R.string.text_already_account),
+                    text = stringResource(R.string.text_already_account).fromHtml(),
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .clickable { onLoginClick() },
