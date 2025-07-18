@@ -1,4 +1,4 @@
-package com.silva021.tanalista.ui.components
+package com.silva021.designsystem.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -18,13 +18,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.silva021.tanalista.ui.components.model.ButtonModel
-import com.silva021.tanalista.ui.theme.Palette.buttonColor
+import com.silva021.designsystem.components.model.ButtonModel
 
 @Composable
 fun CustomButton(

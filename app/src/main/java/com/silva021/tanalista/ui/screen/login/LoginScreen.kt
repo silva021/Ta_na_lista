@@ -5,8 +5,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import com.silva021.designsystem.theme.Scaffold
 import com.silva021.tanalista.ui.model.LoginScreenState
-import com.silva021.tanalista.ui.theme.Scaffold
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

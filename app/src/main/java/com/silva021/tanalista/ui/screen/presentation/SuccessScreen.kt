@@ -15,29 +15,26 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.model.ButtonModel
+import com.silva021.designsystem.extension.ThemedScreen
+import com.silva021.designsystem.theme.Palette
+import com.silva021.designsystem.theme.TypographyApp
 import com.silva021.tanalista.R
-import com.silva021.tanalista.ui.components.CustomButton
-import com.silva021.tanalista.ui.components.model.ButtonModel
-import com.silva021.tanalista.ui.theme.Palette
-import com.silva021.tanalista.ui.theme.Palette.buttonColor
-import com.silva021.tanalista.ui.theme.TypographyApp
-import com.silva021.tanalista.util.ThemedScreen
 import kotlinx.coroutines.delay
 
 @Composable
 fun SuccessScreen(
     description: String? = null,
     firstButton: ButtonModel? = null,
-    onBackPressed: (() -> Unit)? = null
+    onBackPressed: (() -> Unit)? = null,
 ) {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.check_success))
     val progress by animateLottieCompositionAsState(
@@ -73,7 +70,7 @@ fun SuccessScreen(
 
                 Text(
                     text = description,
-                    color = buttonColor,
+                    color = Palette.buttonColor,
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Center,
                     style = TypographyApp.body1
@@ -93,13 +90,13 @@ fun SuccessScreen(
     }
 }
 
-@Preview
-@Composable
-fun SuccessScreenPreview() {
-    ThemedScreen {
-        SuccessScreen(
-            description = stringResource(R.string.list_created_description),
-            firstButton = ButtonModel("teste", {})
-        )
-    }
-}
+//@Preview
+//@Composable
+//fun SuccessScreenPreview() {
+//    ThemedScreen {
+//        SuccessScreen(
+//            description = stringResource(R.string.list_created_description),
+//            firstButton = ButtonModel("teste", {})
+//        )
+//    }
+//}

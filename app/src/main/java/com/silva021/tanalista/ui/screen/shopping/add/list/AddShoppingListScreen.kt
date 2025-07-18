@@ -4,10 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import com.silva021.designsystem.theme.Scaffold
 import com.silva021.tanalista.ui.screen.presentation.ErrorScreen
 import com.silva021.tanalista.ui.screen.presentation.LoadingScreen
 import com.silva021.tanalista.ui.screen.presentation.SuccessScreen
-import com.silva021.tanalista.ui.theme.Scaffold
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

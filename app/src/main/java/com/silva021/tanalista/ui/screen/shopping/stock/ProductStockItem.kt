@@ -28,12 +28,12 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.silva021.designsystem.extension.ThemedScreen
+import com.silva021.designsystem.theme.Palette
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.StockStatus
 import com.silva021.tanalista.domain.model.UnitType
-import com.silva021.tanalista.ui.theme.Palette.Black
-import com.silva021.tanalista.util.ThemedScreen
 
 @Composable
 fun ProductStockItem(
@@ -66,7 +66,7 @@ fun ProductStockItem(
                     Icon(
                         imageVector = Icons.Default.Delete,
                         contentDescription = null,
-                        tint = Black
+                        tint = Palette.Black
                     )
                 }
             }

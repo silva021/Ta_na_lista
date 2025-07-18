@@ -1,11 +1,10 @@
-package com.silva021.tanalista.ui.theme
+package com.silva021.designsystem.theme
 
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-
 
 private val LightColorScheme = lightColors(
     primary = Palette.PrimarySepia,

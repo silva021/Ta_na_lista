@@ -20,6 +20,9 @@ youtube = "2024.02.25"
 startup = "1.2.0"
 gson = "2.12.1"
 lottie = "6.3.0"
+coreKtx = "1.16.0"
+appcompat = "1.7.1"
+material = "1.12.0"
 
 [bundles]
 koin = [
@@ -62,6 +65,9 @@ lottie = { group = "com.airbnb.android", name = "lottie-compose", version.ref = 
 koin-koin = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-fragment = { module = "io.insert-koin:koin-androidx-fragment", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -69,6 +75,7 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleService" }
 kotlin-parcelize = { id = "kotlin-parcelize" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 
 
 

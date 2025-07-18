@@ -1,4 +1,4 @@
-package com.silva021.tanalista.ui.model
+package com.silva021.designsystem.components.model
 
 data class TopBarModel(
     val title: String? = null,

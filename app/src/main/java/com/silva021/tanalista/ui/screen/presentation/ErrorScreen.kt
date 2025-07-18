@@ -24,12 +24,12 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.model.ButtonModel
+import com.silva021.designsystem.extension.ThemedScreen
+import com.silva021.designsystem.theme.Palette
+import com.silva021.designsystem.theme.TypographyApp
 import com.silva021.tanalista.R
-import com.silva021.tanalista.ui.components.CustomButton
-import com.silva021.tanalista.ui.components.model.ButtonModel
-import com.silva021.tanalista.ui.theme.Palette
-import com.silva021.tanalista.ui.theme.TypographyApp
-import com.silva021.tanalista.util.ThemedScreen
 
 val RedDark = Color(0xFFEF4444)
 

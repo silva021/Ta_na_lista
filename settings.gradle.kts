@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Ta na lista"
 include(":app")
- 
+include(":designsystem")

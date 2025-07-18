@@ -3,11 +3,11 @@ package com.silva021.tanalista.ui.screen.forgotpassword
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import com.silva021.tanalista.ui.components.model.ButtonModel
+import com.silva021.designsystem.components.model.ButtonModel
+import com.silva021.designsystem.theme.Scaffold
 import com.silva021.tanalista.ui.model.ResetPasswordState
 import com.silva021.tanalista.ui.screen.presentation.ErrorScreen
 import com.silva021.tanalista.ui.screen.presentation.SuccessScreen
-import com.silva021.tanalista.ui.theme.Scaffold
 import org.koin.androidx.compose.koinViewModel
 
 

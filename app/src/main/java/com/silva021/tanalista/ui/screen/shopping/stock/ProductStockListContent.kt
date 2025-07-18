@@ -31,11 +31,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.silva021.designsystem.extension.ThemedScreen
+import com.silva021.designsystem.theme.Palette
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.UnitType
-import com.silva021.tanalista.ui.theme.Palette
-import com.silva021.tanalista.util.ThemedScreen
 import com.silva021.tanalista.util.factory.ShoppingFactory
 
 @Composable

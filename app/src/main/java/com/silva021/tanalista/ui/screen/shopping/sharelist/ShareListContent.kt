@@ -37,13 +37,10 @@ import androidx.core.graphics.createBitmap
 import androidx.core.graphics.set
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
+import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.model.ButtonModel
+import com.silva021.designsystem.theme.Palette
 import com.silva021.tanalista.R
-import com.silva021.tanalista.ui.components.CustomButton
-import com.silva021.tanalista.ui.components.model.ButtonModel
-import com.silva021.tanalista.ui.theme.Palette
-import com.silva021.tanalista.ui.theme.Palette.TextDarkGray
-import com.silva021.tanalista.ui.theme.Palette.White
-import com.silva021.tanalista.ui.theme.Palette.buttonColor
 
 @Composable
 fun ShareListContent(
@@ -76,7 +73,7 @@ fun ShareListContent(
         ) {
             Text(
                 text = "Compartilhar Lista",
-                color = TextDarkGray,
+                color = Palette.TextDarkGray,
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.h5,
                 textAlign = TextAlign.Center
@@ -86,7 +83,7 @@ fun ShareListContent(
 
             Text(
                 text = "Convide outras pessoas para acessar e editar esta lista com você.",
-                color = TextDarkGray,
+                color = Palette.TextDarkGray,
                 fontWeight = FontWeight.SemiBold,
                 style = MaterialTheme.typography.body1,
                 textAlign = TextAlign.Center
@@ -146,8 +143,8 @@ fun ShareLinkButtons(link: String) {
                     clipboard.setPrimaryClip(clip)
                     Toast.makeText(context, "Link copiado!", Toast.LENGTH_SHORT).show()
                 },
-                backgroundColor = White,
-                textColor = buttonColor
+                backgroundColor = Palette.White,
+                textColor = Palette.buttonColor
             ),
             modifier = Modifier
                 .fillMaxWidth()

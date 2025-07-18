@@ -1,4 +1,4 @@
-package com.silva021.tanalista.ui.components
+package com.silva021.designsystem.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
@@ -14,9 +14,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import com.silva021.tanalista.ui.theme.Palette
-import com.silva021.tanalista.ui.theme.Palette.PrimaryBeige
-import com.silva021.tanalista.ui.theme.Palette.TextDarkGray
+import com.silva021.designsystem.theme.Palette
+import com.silva021.designsystem.theme.Palette.PrimaryBeige
+import com.silva021.designsystem.theme.Palette.TextDarkGray
 
 @Composable
 fun CustomOutlinedTextField(

@@ -1,4 +1,4 @@
-package com.silva021.tanalista.ui.theme
+package com.silva021.designsystem.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

@@ -17,9 +17,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.silva021.tanalista.ui.theme.Palette
-import com.silva021.tanalista.ui.theme.Palette.buttonColor
-import com.silva021.tanalista.ui.theme.TypographyApp
+import com.silva021.designsystem.theme.Palette
+import com.silva021.designsystem.theme.TypographyApp
 
 @Composable
 fun LoadingScreen(
@@ -36,7 +35,7 @@ fun LoadingScreen(
     ) {
         CircularProgressIndicator(
             modifier = Modifier.size(80.dp),
-            color = buttonColor,
+            color = Palette.buttonColor,
             strokeWidth = 4.dp
         )
 
@@ -44,7 +43,7 @@ fun LoadingScreen(
 
         Text(
             text = message,
-            color = buttonColor,
+            color = Palette.buttonColor,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.SemiBold,
             style = TypographyApp.body1

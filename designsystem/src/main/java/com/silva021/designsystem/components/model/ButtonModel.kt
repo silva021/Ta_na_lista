@@ -1,7 +1,7 @@
-package com.silva021.tanalista.ui.components.model
+package com.silva021.designsystem.components.model
 
 import androidx.compose.ui.graphics.Color
-import com.silva021.tanalista.ui.theme.Palette.buttonColor
+import com.silva021.designsystem.theme.Palette.buttonColor
 
 data class ButtonModel(
     val label: String,

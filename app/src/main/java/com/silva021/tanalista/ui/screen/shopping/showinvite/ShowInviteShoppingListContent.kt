@@ -30,13 +30,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.model.ButtonModel
+import com.silva021.designsystem.theme.Palette
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.CategoryType
 import com.silva021.tanalista.domain.model.ShoppingList
-import com.silva021.tanalista.ui.components.CustomButton
-import com.silva021.tanalista.ui.components.model.ButtonModel
-import com.silva021.tanalista.ui.theme.Palette
-import com.silva021.tanalista.ui.theme.Palette.TextDarkGray
 
 @Composable
 fun ShowInviteShoppingListContent(
@@ -69,7 +68,7 @@ fun ShowInviteShoppingListContent(
         ) {
             Text(
                 text = "Alguém compartilhou uma lista com você!",
-                color = TextDarkGray,
+                color = Palette.TextDarkGray,
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.h5,
                 textAlign = TextAlign.Center
@@ -79,7 +78,7 @@ fun ShowInviteShoppingListContent(
 
             Text(
                 text = "Toque em “Aceitar” para adicionar essa lista ao seu app e colaborar em tempo real.",
-                color = TextDarkGray,
+                color = Palette.TextDarkGray,
                 fontWeight = FontWeight.SemiBold,
                 style = MaterialTheme.typography.body1,
                 textAlign = TextAlign.Center

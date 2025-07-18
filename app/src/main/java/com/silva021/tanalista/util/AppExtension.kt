@@ -4,20 +4,11 @@ import android.graphics.Typeface
 import android.text.Html
 import android.text.Spanned
 import android.text.style.StyleSpan
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import com.silva021.tanalista.ui.theme.Scaffold
-
-@Composable
-fun ThemedScreen(content: @Composable () -> Unit) {
-    Scaffold {
-        content()
-    }
-}
 
 fun String.fromHtml(): AnnotatedString {
     return Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY).toAnnotatedString()

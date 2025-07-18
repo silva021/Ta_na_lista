@@ -14,6 +14,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.silva021.designsystem.theme.Scaffold
+import com.silva021.designsystem.theme.TaNaListaTheme
 import com.silva021.tanalista.ui.routes.Routes
 import com.silva021.tanalista.ui.routes.Routes.AddShoppingItemScreen.navigateToAddShoppingItemScreen
 import com.silva021.tanalista.ui.routes.Routes.AddShoppingListScreen.navigateToCreateListScreen
@@ -30,8 +32,6 @@ import com.silva021.tanalista.ui.screen.shopping.sharelist.ShareListScreen
 import com.silva021.tanalista.ui.screen.shopping.showinvite.ShowInviteShoppingListScreen
 import com.silva021.tanalista.ui.screen.shopping.stock.ProductStockListScreen
 import com.silva021.tanalista.ui.screen.welcome.WelcomeScreen
-import com.silva021.tanalista.ui.theme.Scaffold
-import com.silva021.tanalista.ui.theme.TaNaListaTheme
 import com.silva021.tanalista.util.helper.PreferencesManager
 
 class MainActivity : ComponentActivity() {

@@ -35,12 +35,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.R
-import com.silva021.tanalista.ui.components.CustomButton
-import com.silva021.tanalista.ui.components.model.ButtonModel
+import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.model.ButtonModel
+import com.silva021.designsystem.extension.ThemedScreen
 import com.silva021.tanalista.ui.model.RegisterScreenModel
-import com.silva021.tanalista.ui.theme.Palette.backgroundColor
-import com.silva021.tanalista.ui.theme.Scaffold
-import com.silva021.tanalista.util.ThemedScreen
+import com.silva021.designsystem.theme.Palette.backgroundColor
+import com.silva021.designsystem.theme.Scaffold
 import com.silva021.tanalista.util.fromHtml
 import com.silva021.tanalista.util.isValidEmail
 import kotlinx.coroutines.launch

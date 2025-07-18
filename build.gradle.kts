@@ -5,4 +5,5 @@ plugins {
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.compose.compiler) apply false
     id("com.google.firebase.crashlytics") version "3.0.3" apply false
+    alias(libs.plugins.android.library) apply false
 }

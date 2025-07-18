@@ -1,4 +1,4 @@
-package com.silva021.tanalista.ui.theme
+package com.silva021.designsystem.theme
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.silva021.tanalista.ui.model.TopBarModel
+import com.silva021.designsystem.components.model.TopBarModel
 
 @Composable
 fun TopAppBar(
