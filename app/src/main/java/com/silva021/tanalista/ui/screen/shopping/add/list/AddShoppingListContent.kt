@@ -17,11 +17,8 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.FilterChip
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -34,22 +31,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.Description
+import com.silva021.designsystem.components.Title
 import com.silva021.designsystem.components.model.ButtonModel
 import com.silva021.designsystem.extension.ThemedScreen
+import com.silva021.designsystem.theme.AppShapes
 import com.silva021.designsystem.theme.Palette
+import com.silva021.designsystem.theme.Scaffold
+import com.silva021.designsystem.theme.getTextFieldColors
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.CategoryType
 import com.silva021.tanalista.domain.model.ShoppingList
-import com.silva021.tanalista.ui.components.CategorySelector
 
 @Composable
 fun AddShoppingListContent(
@@ -65,7 +63,6 @@ fun AddShoppingListContent(
     val categories = CategoryType.values().toList()
 
     Scaffold(
-        backgroundColor = Palette.backgroundColor,
         topBar = {
             TopAppBar(
                 backgroundColor = Palette.backgroundColor,
@@ -89,12 +86,7 @@ fun AddShoppingListContent(
         ) {
             Spacer(modifier = Modifier.height(4.dp))
 
-            Text(
-                text = stringResource(R.string.app_name),
-                fontSize = 32.sp,
-                fontWeight = FontWeight.Bold,
-                color = colorResource(id = R.color.green_text)
-            )
+            Title(text = stringResource(R.string.app_name),)
 
             Spacer(modifier = Modifier.height(32.dp))
 
@@ -116,12 +108,8 @@ fun AddShoppingListContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp),
-                    colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = colorResource(id = R.color.textfield_bg),
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent
-                    ),
-                    shape = RoundedCornerShape(12.dp)
+                    colors = getTextFieldColors(),
+                    shape = AppShapes.Rounded
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -178,10 +166,7 @@ fun CategorySelector(
     onCategorySelected: (CategoryType) -> Unit,
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        Text(
-            stringResource(R.string.label_categories),
-            style = MaterialTheme.typography.h6
-        )
+        Description(stringResource(R.string.label_categories))
         Spacer(modifier = Modifier.height(8.dp))
 
         FlowRow(
@@ -194,10 +179,10 @@ fun CategorySelector(
                     selected = (type == categorySelected),
                     onClick = { onCategorySelected(type) },
                     colors = ChipDefaults.filterChipColors(
-                        backgroundColor = colorResource(id = R.color.chip_unselected),
+                        backgroundColor = Palette.chipUnselected,
                         contentColor = Color.Black,
                         leadingIconColor = Color.Black,
-                        selectedBackgroundColor =  colorResource(id = R.color.chip_selected),
+                        selectedBackgroundColor = Palette.chipSelected,
                         selectedContentColor = Color.White,
                         selectedLeadingIconColor = Color.White
                     ),

@@ -12,14 +12,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,18 +25,20 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.Label
+import com.silva021.designsystem.components.Title
+import com.silva021.designsystem.components.model.ButtonModel
+import com.silva021.designsystem.theme.AppShapes
 import com.silva021.designsystem.theme.Palette
+import com.silva021.designsystem.theme.Scaffold
+import com.silva021.designsystem.theme.getTextFieldColors
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.UnitType
-import com.silva021.designsystem.components.CustomButton
-import com.silva021.designsystem.components.model.ButtonModel
 import java.util.UUID
 
 @Composable
@@ -59,7 +58,7 @@ fun AddShoppingItemContent(
     val itemId = shoppingItem?.id ?: UUID.randomUUID().toString()
 
     Scaffold(
-        backgroundColor = Palette.backgroundColor, topBar = {
+        topBar = {
             TopAppBar(
                 backgroundColor = Palette.backgroundColor,
                 elevation = 0.dp,
@@ -83,12 +82,7 @@ fun AddShoppingItemContent(
         ) {
             Spacer(modifier = Modifier.height(4.dp))
 
-            Text(
-                text = if (isEditing) stringResource(R.string.title_edit_item) else stringResource(R.string.title_add_item),
-                fontSize = 32.sp,
-                fontWeight = FontWeight.Bold,
-                color = colorResource(id = R.color.green_text)
-            )
+            Title(text = if (isEditing) stringResource(R.string.title_edit_item) else stringResource(R.string.title_add_item))
 
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -104,17 +98,13 @@ fun AddShoppingItemContent(
                         onValueChange = { name = it },
                         placeholder = { Text(stringResource(R.string.placeholder_item_name)) },
                         modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp),
-                        colors = TextFieldDefaults.textFieldColors(
-                            backgroundColor = colorResource(id = R.color.textfield_bg),
-                            unfocusedIndicatorColor = Color.Transparent,
-                            focusedIndicatorColor = Color.Transparent
-                        ),
+                        shape = AppShapes.Rounded,
+                        colors = getTextFieldColors(),
                         singleLine = true
                     )
                     Spacer(modifier = Modifier.height(12.dp))
 
-                    Text(stringResource(R.string.label_unit_type), fontSize = 16.sp)
+                    Label(stringResource(R.string.label_unit_type))
 
                     Spacer(modifier = Modifier.height(6.dp))
 
@@ -127,12 +117,8 @@ fun AddShoppingItemContent(
                         onValueChange = { quantity = it },
                         placeholder = { Text(stringResource(R.string.placeholder_quantity)) },
                         modifier = Modifier.fillMaxWidth(),
-                        colors = TextFieldDefaults.textFieldColors(
-                            backgroundColor = colorResource(id = R.color.textfield_bg),
-                            unfocusedIndicatorColor = Color.Transparent,
-                            focusedIndicatorColor = Color.Transparent
-                        ),
-                        shape = RoundedCornerShape(12.dp),
+                        colors = getTextFieldColors(),
+                        shape = AppShapes.Rounded,
                         singleLine = true
                     )
 
@@ -143,12 +129,8 @@ fun AddShoppingItemContent(
                         onValueChange = { minimumQuantity = it },
                         placeholder = { Text(stringResource(R.string.placeholder_minimum_quantity)) },
                         modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(12.dp),
-                        colors = TextFieldDefaults.textFieldColors(
-                            backgroundColor = colorResource(id = R.color.textfield_bg),
-                            unfocusedIndicatorColor = Color.Transparent,
-                            focusedIndicatorColor = Color.Transparent
-                        ),
+                        shape = AppShapes.Rounded,
+                        colors = getTextFieldColors(),
                         singleLine = true
                     )
 

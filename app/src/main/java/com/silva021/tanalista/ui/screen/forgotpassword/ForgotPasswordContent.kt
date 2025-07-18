@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
@@ -39,9 +38,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.Title
 import com.silva021.designsystem.components.model.ButtonModel
 import com.silva021.designsystem.extension.ThemedScreen
+import com.silva021.designsystem.theme.AppShapes
 import com.silva021.designsystem.theme.Palette
+import com.silva021.designsystem.theme.Scaffold
+import com.silva021.designsystem.theme.getTextFieldColors
 import com.silva021.tanalista.R
 import com.silva021.tanalista.util.isValidEmail
 
@@ -53,7 +56,6 @@ fun ForgotPasswordContent(
     var email by remember { mutableStateOf("") }
 
     Scaffold(
-        backgroundColor = Palette.backgroundColor,
         topBar = {
             TopAppBar(
                 backgroundColor = Palette.backgroundColor,
@@ -66,7 +68,8 @@ fun ForgotPasswordContent(
                             contentDescription = stringResource(R.string.content_desc_back)
                         )
                     }
-                })
+                }
+            )
         },
     ) { _ ->
         Box(
@@ -90,15 +93,9 @@ fun ForgotPasswordContent(
                         modifier = Modifier.size(32.dp)
                     )
 
-
                     Spacer(modifier = Modifier.width(8.dp))
 
-                    Text(
-                        text = stringResource(R.string.app_name),
-                        fontSize = 32.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = colorResource(id = R.color.dark_text)
-                    )
+                    Title(text = stringResource(R.string.app_name))
                 }
 
                 Spacer(modifier = Modifier.height(32.dp))
@@ -116,12 +113,8 @@ fun ForgotPasswordContent(
                         onValueChange = { email = it },
                         placeholder = { Text(stringResource(R.string.placeholder_email)) },
                         modifier = Modifier.fillMaxWidth(),
-                        colors = TextFieldDefaults.textFieldColors(
-                            backgroundColor = colorResource(id = R.color.textfield_bg),
-                            unfocusedIndicatorColor = Color.Transparent,
-                            focusedIndicatorColor = Color.Transparent
-                        ),
-                        shape = RoundedCornerShape(12.dp),
+                        colors = getTextFieldColors(),
+                        shape = AppShapes.Rounded,
                         singleLine = true
                     )
 

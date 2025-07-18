@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
@@ -38,8 +37,11 @@ import androidx.core.graphics.set
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.SubTitle
+import com.silva021.designsystem.components.Title
 import com.silva021.designsystem.components.model.ButtonModel
 import com.silva021.designsystem.theme.Palette
+import com.silva021.designsystem.theme.Scaffold
 import com.silva021.tanalista.R
 
 @Composable
@@ -48,7 +50,6 @@ fun ShareListContent(
     onBackPressed: () -> Unit,
 ) {
     Scaffold(
-        backgroundColor = Palette.backgroundColor,
         topBar = {
             TopAppBar(
                 backgroundColor = Palette.backgroundColor,
@@ -71,21 +72,18 @@ fun ShareListContent(
                 .padding(16.dp),
             horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
         ) {
-            Text(
+            Title(
                 text = "Compartilhar Lista",
                 color = Palette.TextDarkGray,
                 fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.h5,
                 textAlign = TextAlign.Center
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text(
+            SubTitle(
                 text = "Convide outras pessoas para acessar e editar esta lista com você.",
                 color = Palette.TextDarkGray,
-                fontWeight = FontWeight.SemiBold,
-                style = MaterialTheme.typography.body1,
                 textAlign = TextAlign.Center
             )
 

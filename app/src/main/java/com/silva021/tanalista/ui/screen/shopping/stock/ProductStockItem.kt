@@ -14,7 +14,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
@@ -23,11 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.silva021.designsystem.components.Description
+import com.silva021.designsystem.components.Label
 import com.silva021.designsystem.extension.ThemedScreen
 import com.silva021.designsystem.theme.Palette
 import com.silva021.tanalista.R
@@ -57,7 +55,7 @@ fun ProductStockItem(
                 modifier = Modifier.height(24.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(item.name, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                Description(item.name)
 
                 Spacer(Modifier.weight(1f))
 
@@ -71,7 +69,7 @@ fun ProductStockItem(
                 }
             }
 
-            Text("${item.quantity} ${item.unitType.label}", fontSize = 16.sp)
+            Description("${item.quantity} ${item.unitType.label}")
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -84,7 +82,6 @@ fun ProductStockItem(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Start,
@@ -96,11 +93,10 @@ fun ProductStockItem(
                         color = this.textColor,
                         shape = RoundedCornerShape(18.dp)
                     ) {
-                        Text(
+                        Label(
                             this.label,
                             modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
                             color = Color.White,
-                            fontSize = 12.sp
                         )
                     }
                 }
@@ -109,35 +105,31 @@ fun ProductStockItem(
 
                 if (item.quantity != 0f)
                     Surface(
-                        color = colorResource(id = R.color.consume_button),
+                        color = Palette.redButton,
                         shape = RoundedCornerShape(4.dp),
                         modifier = Modifier
                             .clickable { onAdjustStock(item.copy(quantity = item.quantity - 1)) }
                     ) {
-                        Text(
+                        Label(
                             stringResource(R.string.action_consume),
                             modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
                             color = Color.White,
-                            fontSize = 12.sp,
-                            fontWeight = Bold
                         )
                     }
 
                 Spacer(modifier = Modifier.width(6.dp))
 
                 Surface(
-                    color = colorResource(id = R.color.replenish_button),
+                    color = Palette.greenButton,
                     shape = RoundedCornerShape(4.dp),
                     modifier = Modifier
                         .clickable { onAdjustStock(item.copy(quantity = item.quantity + 1)) }
                 ) {
                     Spacer(Modifier.width(4.dp))
-                    Text(
+                    Label(
                         stringResource(R.string.action_replenish),
                         modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp),
-                        color = Color.White,
-                        fontSize = 12.sp,
-                        fontWeight = Bold
+                        color = Color.White
                     )
                 }
 

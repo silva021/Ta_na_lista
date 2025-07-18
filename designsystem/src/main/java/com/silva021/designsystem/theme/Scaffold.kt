@@ -13,16 +13,18 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun Scaffold(
     topBar: @Composable () -> Unit = {},
+    floatingActionButton: @Composable () -> Unit = {},
     snackbarHost: @Composable (SnackbarHostState) -> Unit = {},
     content: @Composable (PaddingValues) -> Unit,
 ) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) {
         Scaffold(
+            backgroundColor = Palette.backgroundColor,
             modifier = Modifier.systemBarsPadding(),
             contentColor = Color.Transparent,
+            floatingActionButton = floatingActionButton,
             topBar = topBar,
             snackbarHost = snackbarHost
         ) { paddingValues ->

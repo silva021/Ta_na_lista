@@ -12,7 +12,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
@@ -31,8 +30,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.silva021.designsystem.components.SubTitle
+import com.silva021.designsystem.components.Title
 import com.silva021.designsystem.extension.ThemedScreen
 import com.silva021.designsystem.theme.Palette
+import com.silva021.designsystem.theme.Scaffold
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.UnitType
@@ -49,7 +51,6 @@ fun ProductStockListContent(
     onBackPressed: () -> Unit,
 ) {
     Scaffold(
-        backgroundColor = Palette.backgroundColor,
         floatingActionButton = {
             FloatingActionButton(
                 onClick = onAdd,
@@ -96,11 +97,7 @@ fun ProductStockListContent(
             ) {
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text(
-                    stringResource(R.string.label_item),
-                    fontSize = 28.sp,
-                    fontWeight = FontWeight.Bold
-                )
+                Title(stringResource(R.string.label_item))
 
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -122,11 +119,8 @@ fun ProductStockListContent(
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(
-                            fontWeight = FontWeight.Bold,
+                        SubTitle(
                             text = stringResource(R.string.label_no_items),
-                            fontSize = 18.sp,
-                            color = colorResource(id = R.color.dark_text),
                             textAlign = TextAlign.Center
                         )
                     }

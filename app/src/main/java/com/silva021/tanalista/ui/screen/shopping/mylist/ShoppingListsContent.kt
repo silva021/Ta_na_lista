@@ -16,7 +16,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -33,8 +32,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.silva021.designsystem.components.Description
+import com.silva021.designsystem.components.SubTitle
+import com.silva021.designsystem.components.Title
 import com.silva021.designsystem.extension.ThemedScreen
 import com.silva021.designsystem.theme.Palette
+import com.silva021.designsystem.theme.Scaffold
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.CategoryType
 import com.silva021.tanalista.domain.model.ShoppingList
@@ -48,7 +51,7 @@ fun ShoppingListsContent(
     onAddClick: () -> Unit,
 ) {
     Scaffold(
-        backgroundColor = Palette.backgroundColor, floatingActionButton = {
+        floatingActionButton = {
             FloatingActionButton(
                 onClick = onAddClick,
                 backgroundColor = Palette.buttonColor,
@@ -62,12 +65,7 @@ fun ShoppingListsContent(
                 .padding(innerPadding)
                 .padding(horizontal = 24.dp, vertical = 16.dp)
         ) {
-            Text(
-                text = stringResource(R.string.title_my_lists),
-                fontSize = 32.sp,
-                fontWeight = FontWeight.Bold,
-                color = colorResource(id = R.color.dark_text)
-            )
+            Title(text = stringResource(R.string.title_my_lists),)
 
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -77,9 +75,10 @@ fun ShoppingListsContent(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
+                    SubTitle(
                         stringResource(R.string.text_no_lists),
-                        fontWeight = FontWeight.Bold)
+                        fontWeight = FontWeight.Bold
+                    )
                 }
             } else {
                 lists.forEach { list ->
@@ -142,12 +141,7 @@ fun ListCard(
 
                 Spacer(modifier = Modifier.width(16.dp))
 
-                Text(
-                    text = shoppingList.name,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White
-                )
+                Description(text = shoppingList.name, color = Color.White, fontWeight = FontWeight.Bold)
             }
 
             Row {

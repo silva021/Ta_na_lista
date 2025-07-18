@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -25,10 +24,10 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.SubTitle
 import com.silva021.designsystem.components.model.ButtonModel
 import com.silva021.designsystem.extension.ThemedScreen
 import com.silva021.designsystem.theme.Palette
-import com.silva021.designsystem.theme.TypographyApp
 import com.silva021.tanalista.R
 
 val RedDark = Color(0xFFEF4444)
@@ -62,12 +61,11 @@ fun ErrorScreen(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            Text(
+            SubTitle(
                 text = description,
                 color = RedDark,
                 fontWeight = FontWeight.SemiBold,
                 textAlign = TextAlign.Center,
-                style = TypographyApp.body1
             )
         }
         Column(

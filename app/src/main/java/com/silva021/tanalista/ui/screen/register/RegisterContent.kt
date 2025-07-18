@@ -36,12 +36,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.silva021.tanalista.R
 import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.Label
+import com.silva021.designsystem.components.Title
 import com.silva021.designsystem.components.model.ButtonModel
 import com.silva021.designsystem.extension.ThemedScreen
+import com.silva021.designsystem.theme.AppShapes
 import com.silva021.tanalista.ui.model.RegisterScreenModel
 import com.silva021.designsystem.theme.Palette.backgroundColor
 import com.silva021.designsystem.theme.Scaffold
-import com.silva021.tanalista.util.fromHtml
+import com.silva021.designsystem.theme.getTextFieldColors
 import com.silva021.tanalista.util.isValidEmail
 import kotlinx.coroutines.launch
 
@@ -83,12 +86,7 @@ fun RegisterContent(
 
                 Spacer(modifier = Modifier.width(8.dp))
 
-                Text(
-                    text = stringResource(R.string.app_name),
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = colorResource(id = R.color.dark_text)
-                )
+                Title(text = stringResource(R.string.app_name))
             }
 
             Spacer(modifier = Modifier.height(32.dp))
@@ -109,12 +107,8 @@ fun RegisterContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 16.dp),
-                    colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = colorResource(id = R.color.textfield_bg),
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent
-                    ),
-                    shape = RoundedCornerShape(12.dp),
+                    colors = getTextFieldColors(),
+                    shape = AppShapes.Rounded,
                     singleLine = true
                 )
 
@@ -125,12 +119,8 @@ fun RegisterContent(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 16.dp),
-                    colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = colorResource(id = R.color.textfield_bg),
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent
-                    ),
-                    shape = RoundedCornerShape(12.dp),
+                    colors = getTextFieldColors(),
+                    shape = AppShapes.Rounded,
                     singleLine = true
                 )
 
@@ -142,12 +132,8 @@ fun RegisterContent(
                         .fillMaxWidth()
                         .padding(bottom = 24.dp),
                     visualTransformation = PasswordVisualTransformation(),
-                    colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = colorResource(id = R.color.textfield_bg),
-                        unfocusedIndicatorColor = Color.Transparent,
-                        focusedIndicatorColor = Color.Transparent
-                    ),
-                    shape = RoundedCornerShape(12.dp),
+                    colors = getTextFieldColors(),
+                    shape = AppShapes.Rounded,
                     singleLine = true
                 )
 
@@ -162,12 +148,11 @@ fun RegisterContent(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Text(
-                    text = stringResource(R.string.text_already_account).fromHtml(),
-                    modifier = Modifier
+                Label(
+                    stringResource(R.string.text_already_account),
+                    Modifier
                         .align(Alignment.CenterHorizontally)
                         .clickable { onLoginClick() },
-                    color = colorResource(id = R.color.dark_text)
                 )
             }
         }

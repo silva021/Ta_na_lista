@@ -11,15 +11,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.silva021.tanalista.R
+import com.silva021.designsystem.theme.Palette
 
 @Composable
 fun StockProgressBar(
     percent: Float,
     color: Color,
-    backgroundColor: Color = colorResource(id = R.color.progress_bg),
+    backgroundColor: Color = Palette.progressColor,
 ) {
     Box(
         modifier = Modifier
@@ -37,4 +37,14 @@ fun StockProgressBar(
                 .animateContentSize()
         )
     }
+}
+
+@Preview
+@Composable
+fun StockProgressBarPreview() {
+    StockProgressBar(
+        percent = 0.7f,
+        color = Color.Green,
+        backgroundColor = Color.LightGray
+    )
 }

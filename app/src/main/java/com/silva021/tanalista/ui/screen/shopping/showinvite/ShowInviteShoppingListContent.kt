@@ -16,7 +16,6 @@ import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
@@ -31,8 +30,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.Description
+import com.silva021.designsystem.components.Label
+import com.silva021.designsystem.components.SubTitle
+import com.silva021.designsystem.components.Title
 import com.silva021.designsystem.components.model.ButtonModel
+import com.silva021.designsystem.theme.AppShapes
 import com.silva021.designsystem.theme.Palette
+import com.silva021.designsystem.theme.Scaffold
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.CategoryType
 import com.silva021.tanalista.domain.model.ShoppingList
@@ -45,7 +50,7 @@ fun ShowInviteShoppingListContent(
     onBackPressed: () -> Unit,
 ) {
     Scaffold(
-        backgroundColor = Palette.backgroundColor, topBar = {
+        topBar = {
             TopAppBar(
                 backgroundColor = Palette.backgroundColor,
                 elevation = 0.dp,
@@ -66,21 +71,18 @@ fun ShowInviteShoppingListContent(
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
+            Title(
                 text = "Alguém compartilhou uma lista com você!",
                 color = Palette.TextDarkGray,
                 fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.h5,
                 textAlign = TextAlign.Center
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text(
+            SubTitle(
                 text = "Toque em “Aceitar” para adicionar essa lista ao seu app e colaborar em tempo real.",
                 color = Palette.TextDarkGray,
-                fontWeight = FontWeight.SemiBold,
-                style = MaterialTheme.typography.body1,
                 textAlign = TextAlign.Center
             )
 
@@ -137,7 +139,7 @@ fun SharedListInviteCard(
                 Box(
                     modifier = Modifier
                         .size(40.dp)
-                        .background(Color(0xFFF2F5F9), RoundedCornerShape(12.dp)),
+                        .background(Color(0xFFF2F5F9), AppShapes.Rounded),
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
@@ -150,14 +152,14 @@ fun SharedListInviteCard(
                 Spacer(modifier = Modifier.width(12.dp))
 
                 Column {
-                    Text(
+                    Description(
                         text = shoppingList.name,
-                        style = MaterialTheme.typography.subtitle1.copy(fontWeight = FontWeight.Bold),
+                        fontWeight = FontWeight.SemiBold,
                         color = Color.Black
                     )
-                    Text(
+                    Label(
                         text = shoppingList.ownerName,
-                        style = MaterialTheme.typography.caption,
+                        fontWeight = FontWeight.SemiBold,
                         color = Color.Gray
                     )
                 }

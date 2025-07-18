@@ -22,6 +22,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.Description
+import com.silva021.designsystem.components.SubTitle
+import com.silva021.designsystem.components.Title
 import com.silva021.designsystem.components.model.ButtonModel
 import com.silva021.designsystem.extension.ThemedScreen
 import com.silva021.designsystem.theme.Palette
@@ -41,12 +44,7 @@ fun WelcomeContent(
     ) {
         Spacer(modifier = Modifier.height(24.dp))
 
-        Text(
-            text = stringResource(R.string.app_name),
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Bold,
-            color = colorResource(id = R.color.dark_text)
-        )
+        Title(text = stringResource(R.string.app_name))
 
         Image(
             painter = painterResource(id = R.drawable.shopping_illustration),
@@ -57,11 +55,9 @@ fun WelcomeContent(
             contentScale = ContentScale.Fit
         )
 
-        Text(
+        SubTitle(
             text = stringResource(R.string.welcome_description),
             textAlign = TextAlign.Center,
-            color = colorResource(id = R.color.dark_text),
-            fontSize = 18.sp,
             modifier = Modifier.padding(horizontal = 8.dp)
         )
 

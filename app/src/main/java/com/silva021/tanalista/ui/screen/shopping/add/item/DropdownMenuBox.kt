@@ -25,6 +25,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.silva021.designsystem.theme.AppShapes
+import com.silva021.designsystem.theme.getTextFieldColors
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.UnitType
 
@@ -45,13 +47,9 @@ fun DropdownMenuBox(selected: String, onSelect: (UnitType) -> Unit) {
                 .width(160.dp)
                 .clickable { expanded = true },
             readOnly = true,
-            shape = RoundedCornerShape(12.dp),
+            shape = AppShapes.Rounded,
             singleLine = true,
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = colorResource(id = R.color.textfield_bg),
-                unfocusedIndicatorColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent
-            ),
+            colors = getTextFieldColors(),
             trailingIcon = {
                 Icon(Icons.Default.ArrowDropDown, contentDescription = null)
             }

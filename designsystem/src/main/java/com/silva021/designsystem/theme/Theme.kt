@@ -2,6 +2,7 @@ package com.silva021.designsystem.theme
 
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -17,13 +18,11 @@ private val LightColorScheme = lightColors(
     onSurface = Color(0xFF1C1B1F),
 )
 
-
 @Composable
-fun getButtonsColors() = ButtonDefaults.buttonColors(
-    backgroundColor = Palette.ButtonNormal,
-    contentColor = Palette.PrimaryBeige,
-    disabledBackgroundColor = Palette.ButtonDisabled,
-    disabledContentColor = Color.LightGray
+fun getTextFieldColors() = TextFieldDefaults.textFieldColors(
+backgroundColor = Palette.textFieldBackground,
+unfocusedIndicatorColor = Color.Transparent,
+focusedIndicatorColor = Color.Transparent
 )
 
 @Composable

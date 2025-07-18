@@ -23,6 +23,8 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.silva021.designsystem.components.CustomButton
+import com.silva021.designsystem.components.Description
+import com.silva021.designsystem.components.SubTitle
 import com.silva021.designsystem.components.model.ButtonModel
 import com.silva021.designsystem.extension.ThemedScreen
 import com.silva021.designsystem.theme.Palette
@@ -68,12 +70,11 @@ fun SuccessScreen(
             description?.let {
                 Spacer(modifier = Modifier.height(20.dp))
 
-                Text(
+                SubTitle(
                     text = description,
                     color = Palette.buttonColor,
                     fontWeight = FontWeight.SemiBold,
                     textAlign = TextAlign.Center,
-                    style = TypographyApp.body1
                 )
 
             }

@@ -17,6 +17,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.silva021.designsystem.components.Description
+import com.silva021.designsystem.components.SubTitle
 import com.silva021.designsystem.theme.Palette
 import com.silva021.designsystem.theme.TypographyApp
 
@@ -41,12 +43,11 @@ fun LoadingScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Text(
+        SubTitle(
             text = message,
             color = Palette.buttonColor,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.SemiBold,
-            style = TypographyApp.body1
         )
     }
 }
