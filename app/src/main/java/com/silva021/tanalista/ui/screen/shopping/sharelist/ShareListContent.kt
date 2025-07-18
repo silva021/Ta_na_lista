@@ -107,7 +107,7 @@ fun QrCodeImage(content: String) {
     Image(
         bitmap = bitmap.asImageBitmap(),
         contentDescription = "QR Code",
-        modifier = Modifier.size(400.dp)
+        modifier = Modifier.size(300.dp)
     )
 }
 

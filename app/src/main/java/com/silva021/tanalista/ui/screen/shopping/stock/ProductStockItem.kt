@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -32,6 +31,7 @@ import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.ShoppingItem
 import com.silva021.tanalista.domain.model.StockStatus
 import com.silva021.tanalista.domain.model.UnitType
+import com.silva021.tanalista.domain.model.formatQuantity
 
 @Composable
 fun ProductStockItem(
@@ -69,7 +69,7 @@ fun ProductStockItem(
                 }
             }
 
-            Description("${item.quantity} ${item.unitType.label}")
+            Description(item.unitType.formatQuantity(item.quantity))
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -149,20 +149,74 @@ val ShoppingItem.percentRemaining: Float
 @Composable
 fun PreviewProductStockItem() {
     ThemedScreen {
-        val item = ShoppingItem(
-            id = "arroz",
-            name = "Arroz",
-            quantity = 10f,
-            unitType = UnitType.KILOGRAM,
-            listId = "stock_list_1",
-            minRequired = 20f
+        val items = listOf(
+            ShoppingItem(
+                id = "dozen",
+                name = "Ovos",
+                quantity = 10f,
+                unitType = UnitType.DOZEN,
+                listId = "stock_list_1",
+                minRequired = 8f
+            ),
+            ShoppingItem(
+                id = "gram",
+                name = "Queijo",
+                quantity = 10f,
+                unitType = UnitType.GRAM,
+                listId = "stock_list_1",
+                minRequired = 20f
+            ),
+            ShoppingItem(
+                id = "kilogram",
+                name = "Arroz",
+                quantity = 10f,
+                unitType = UnitType.KILOGRAM,
+                listId = "stock_list_1",
+                minRequired = 20f
+            ),
+            ShoppingItem(
+                id = "milliliter",
+                name = "Essência",
+                quantity = 10f,
+                unitType = UnitType.MILLILITER,
+                listId = "stock_list_1",
+                minRequired = 15f
+            ),
+            ShoppingItem(
+                id = "liter",
+                name = "Leite",
+                quantity = 10f,
+                unitType = UnitType.LITER,
+                listId = "stock_list_1",
+                minRequired = 12f
+            ),
+            ShoppingItem(
+                id = "box",
+                name = "Caixa de Bombom",
+                quantity = 10f,
+                unitType = UnitType.BOX,
+                listId = "stock_list_1",
+                minRequired = 4f
+            ),
+            ShoppingItem(
+                id = "other",
+                name = "Outro Item",
+                quantity = 10f,
+                unitType = UnitType.OTHER,
+                listId = "stock_list_1",
+                minRequired = 3f
+            )
         )
 
-        ProductStockItem(
-            onEditShoppingItem = {},
-            onAdjustStock = {},
-            onDeleteShoppingItem = {},
-            item = item,
-        )
+        Column {
+            items.forEach {
+                ProductStockItem(
+                    onEditShoppingItem = {},
+                    onAdjustStock = {},
+                    onDeleteShoppingItem = {},
+                    item = it,
+                )
+            }
+        }
     }
 }
