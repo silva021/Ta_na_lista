@@ -38,6 +38,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.silva021.designsystem.components.CustomButton
 import com.silva021.designsystem.components.Description
+import com.silva021.designsystem.components.Label
 import com.silva021.designsystem.components.Title
 import com.silva021.designsystem.components.model.ButtonModel
 import com.silva021.designsystem.extension.ThemedScreen
@@ -97,13 +98,14 @@ fun AddShoppingListContent(
                     .background(Color.White)
                     .padding(24.dp)
             ) {
-
+                Label(stringResource(R.string.placeholder_list_name))
+                Spacer(modifier = Modifier.height(8.dp))
                 TextField(
                     value = name,
                     onValueChange = {
                         name = it
                     },
-                    placeholder = { Text(stringResource(R.string.placeholder_list_name)) },
+                    placeholder = { Text("Mercadinho") },
                     singleLine = true,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -166,7 +168,7 @@ fun CategorySelector(
     onCategorySelected: (CategoryType) -> Unit,
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        Description(stringResource(R.string.label_categories))
+        Label(stringResource(R.string.label_categories))
         Spacer(modifier = Modifier.height(8.dp))
 
         FlowRow(

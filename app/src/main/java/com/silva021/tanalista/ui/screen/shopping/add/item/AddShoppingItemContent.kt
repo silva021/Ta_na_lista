@@ -93,10 +93,13 @@ fun AddShoppingItemContent(
                 elevation = 2.dp
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
+                    Label(stringResource(R.string.placeholder_item_name))
+                    Spacer(modifier = Modifier.height(6.dp))
+
                     OutlinedTextField(
                         value = name,
                         onValueChange = { name = it },
-                        placeholder = { Text(stringResource(R.string.placeholder_item_name)) },
+                        placeholder = { Text("Arroz") },
                         modifier = Modifier.fillMaxWidth(),
                         shape = AppShapes.Rounded,
                         colors = getTextFieldColors(),
@@ -105,17 +108,19 @@ fun AddShoppingItemContent(
                     Spacer(modifier = Modifier.height(12.dp))
 
                     Label(stringResource(R.string.label_unit_type))
-
                     Spacer(modifier = Modifier.height(6.dp))
 
                     DropdownMenuBox(unit.label, { unit = it })
 
                     Spacer(modifier = Modifier.height(12.dp))
 
+                    Label("Quantidade atual")
+                    Spacer(modifier = Modifier.height(6.dp))
+
                     OutlinedTextField(
                         value = quantity,
                         onValueChange = { quantity = it },
-                        placeholder = { Text(stringResource(R.string.placeholder_quantity)) },
+                        placeholder = { Text("6") },
                         modifier = Modifier.fillMaxWidth(),
                         colors = getTextFieldColors(),
                         shape = AppShapes.Rounded,
@@ -124,10 +129,13 @@ fun AddShoppingItemContent(
 
                     Spacer(modifier = Modifier.height(12.dp))
 
+                    Label(stringResource(R.string.placeholder_minimum_quantity))
+                    Spacer(modifier = Modifier.height(6.dp))
+
                     OutlinedTextField(
                         value = minimumQuantity,
                         onValueChange = { minimumQuantity = it },
-                        placeholder = { Text(stringResource(R.string.placeholder_minimum_quantity)) },
+                        placeholder = { Text("2") },
                         modifier = Modifier.fillMaxWidth(),
                         shape = AppShapes.Rounded,
                         colors = getTextFieldColors(),
