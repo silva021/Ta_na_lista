@@ -20,7 +20,7 @@ class ProductStockListViewModel(
 ) : ViewModel() {
 
     private val _uiState =
-        MutableStateFlow<ProductStockListUiState>(ProductStockListUiState.Loading)
+        MutableStateFlow<ProductStockListUiState>(ProductStockListUiState.Loading())
     val uiState: StateFlow<ProductStockListUiState> = _uiState
 
     fun getShoppingItems(listId: String) {
@@ -39,6 +39,9 @@ class ProductStockListViewModel(
 
     fun updateShoppingItems(shoppingItem: ShoppingItem) {
         viewModelScope.launch {
+            _uiState.value = ProductStockListUiState.Loading(
+                message = "Atualizando o item ${shoppingItem.name}"
+            )
             updateShoppingItem.invoke(
                 shoppingItem = shoppingItem,
                 onSuccess = { getShoppingItems(shoppingItem.listId) },
@@ -53,7 +56,9 @@ class ProductStockListViewModel(
 
     fun deleteShoppingItem(shoppingItem: ShoppingItem) {
         viewModelScope.launch {
-            _uiState.value = ProductStockListUiState.Loading
+            _uiState.value = ProductStockListUiState.Loading(
+                message = "Excluindo o item ${shoppingItem.name}"
+            )
             deleteShoppingItem.invoke(
                 shoppingItem = shoppingItem,
                 onSuccess = { getShoppingItems(shoppingItem.listId) },

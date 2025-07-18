@@ -34,7 +34,7 @@ fun ProductStockListScreen(
         }
 
         is ProductStockListUiState.Loading -> {
-            LoadingScreen("Carregando sua lista de itens")
+            LoadingScreen(state.message)
         }
 
         is ProductStockListUiState.Success -> {
@@ -52,7 +52,7 @@ fun ProductStockListScreen(
 }
 
 sealed class ProductStockListUiState {
-    object Loading : ProductStockListUiState()
+    data class Loading(val message: String = "Carregando sua lista de itens") : ProductStockListUiState()
     data class Success(val lists: List<ShoppingItem>) : ProductStockListUiState()
     data class Error(val message: String) : ProductStockListUiState()
 }

@@ -121,7 +121,8 @@ fun ProductStockListContent(
                     ) {
                         SubTitle(
                             text = stringResource(R.string.label_no_items),
-                            textAlign = TextAlign.Center
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.SemiBold,
                         )
                     }
                 }
