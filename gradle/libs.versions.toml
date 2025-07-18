@@ -16,6 +16,7 @@ composeBom = "2025.06.00"
 materialIconsExtended = "1.7.8"
 navigation = "2.9.0"
 koin = "4.0.0"
+accompanistSystemuicontroller = "0.33.2-alpha"
 youtube = "2024.02.25"
 startup = "1.2.0"
 gson = "2.12.1"
@@ -31,6 +32,7 @@ koin = [
 ]
 
 [libraries]
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
 #androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 zxing = { module = "com.google.zxing:core", version.ref = "zxingVersion" }

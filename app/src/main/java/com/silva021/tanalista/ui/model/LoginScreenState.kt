@@ -6,8 +6,8 @@ sealed class LoginScreenState {
 }
 
 data class LoginScreenModel(
-    val email: String,
-    val password: String,
+    val email: String = "",
+    val password: String = "",
     val isLoading: Boolean = false,
     val errorMessage: String? = null,
 )
