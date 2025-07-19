@@ -18,11 +18,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.People
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -51,6 +54,7 @@ fun ShoppingListsContent(
     onCardClick: (ShoppingList) -> Unit,
     onEditClick: (ShoppingList) -> Unit,
     onDeleteClick: (ShoppingList) -> Unit,
+    onAccountClick: () -> Unit,
     onAddClick: () -> Unit,
 ) {
     Scaffold(
@@ -66,13 +70,30 @@ fun ShoppingListsContent(
                     tint = Color.White
                 )
             }
-        }) { innerPadding ->
+        },
+        topBar = {
+            TopAppBar(
+                title = {},
+                backgroundColor = Palette.backgroundColor,
+                contentColor = Color.Black,
+                elevation = 0.dp,
+                actions = {
+                    IconButton(onClick = onAccountClick) {
+                        Icon(
+                            Icons.Default.Settings,
+                            contentDescription = stringResource(R.string.action_add)
+                        )
+                    }
+                }
+            )
+        },
+    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .padding(horizontal = 24.dp, vertical = 16.dp)
+                .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
         ) {
-            Title(text = stringResource(R.string.title_my_lists))
+            SubTitle(text = stringResource(R.string.title_my_lists), fontWeight = FontWeight.Bold)
 
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -160,7 +181,7 @@ fun ListCard(
                             .clickable(
                                 role = Role.Button,
                                 interactionSource = null,
-                                indication = ripple(bounded = false, radius =  24.dp)
+                                indication = ripple(bounded = false, radius = 24.dp)
                             ) {
                                 onEditClick(shoppingList)
                             }
@@ -177,7 +198,7 @@ fun ListCard(
                             .clickable(
                                 role = Role.Button,
                                 interactionSource = null,
-                                indication = ripple(bounded = false, radius =  24.dp)
+                                indication = ripple(bounded = false, radius = 24.dp)
                             ) {
                                 onDeleteClick(shoppingList)
                             }
@@ -224,7 +245,8 @@ fun PreviewMyListsContent() {
             onCardClick = {},
             onDeleteClick = { /* TODO */ },
             onAddClick = { /* TODO */ },
-            onEditClick = {}
+            onEditClick = {},
+            onAccountClick = { /* TODO */ }
         )
 
     }

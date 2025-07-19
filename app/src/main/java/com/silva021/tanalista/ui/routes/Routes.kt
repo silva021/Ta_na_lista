@@ -70,6 +70,20 @@ sealed class Routes(val route: String) {
         }
     }
 
+    object AccountScreen : Routes("account_screen") {
+        fun navigateToAccountScreen(navController: NavController) {
+            navController.navigate(AccountScreen.route)
+        }
+    }
+
+    object WebScreen : Routes("web_screen/{url}") {
+        const val URL_ID = "url"
+
+        fun navigateToWebScreen(navController: NavController, url: String) {
+            navController.navigate(WebScreen.route.replace("{$URL_ID}", url))
+        }
+    }
+
     object AboutAppScreen : Routes("about_app_screen") {
         fun navigateToAboutAppScreen(navController: NavController) {
             navController.navigate(AboutAppScreen.route)

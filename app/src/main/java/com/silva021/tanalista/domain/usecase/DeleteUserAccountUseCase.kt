@@ -13,8 +13,8 @@ class DeleteUserAccountUseCase {
     ) {
         try {
             val user = Firebase.auth.currentUser
+            usersCollection.document(user?.uid.orEmpty()).delete().await()
             user?.delete()?.await()
-            usersCollection.document(user?.uid.orEmpty()).delete()
             onSuccess.invoke()
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)

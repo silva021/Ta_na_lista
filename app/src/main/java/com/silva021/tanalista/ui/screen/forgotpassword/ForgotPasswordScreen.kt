@@ -14,6 +14,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun ForgotPasswordScreen(
     viewModel: ForgotPasswordViewModel = koinViewModel(),
+    onNavigateToLogin: () -> Unit,
     onBackPressed: () -> Unit,
 ) {
     val state by viewModel.state.collectAsState()
@@ -40,11 +41,10 @@ fun ForgotPasswordScreen(
 
             is ResetPasswordState.Success -> {
                 SuccessScreen(
-                    description = "Um e-mail com instruções para redefinir sua senha foi enviado para sua caixa de entrada. Siga as instruções para recuperar o acesso à sua conta.",
-                    firstButton = ButtonModel("Voltar para Login",
-                        onClick = {
-                            onBackPressed()
-                        }
+                    description = "Um e-mail com instruções para redefinir sua senha foi enviado para sua caixa de entrada.\n\nSiga as instruções para recuperar o acesso à sua conta.",
+                    firstButton = ButtonModel(
+                        "Voltar para Login",
+                        onClick = onNavigateToLogin
                     ),
                 )
             }

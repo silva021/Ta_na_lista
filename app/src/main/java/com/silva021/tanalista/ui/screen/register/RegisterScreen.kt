@@ -12,6 +12,7 @@ import org.koin.androidx.compose.koinViewModel
 fun RegisterScreen(
     viewModel: RegisterViewModel = koinViewModel(),
     navigateToMyListScreen: () -> Unit,
+    navigateToTermsAndConditions: () -> Unit,
     onBackPressed: () -> Unit,
 ) {
 
@@ -30,6 +31,7 @@ fun RegisterScreen(
                     keyboardController?.hide()
                     viewModel.register()
                 },
+                onTermsAndConditions = navigateToTermsAndConditions,
                 onLoginClick = onBackPressed,
             )
         }

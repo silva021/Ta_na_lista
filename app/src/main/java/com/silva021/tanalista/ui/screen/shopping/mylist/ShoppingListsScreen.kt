@@ -17,6 +17,7 @@ fun ShoppingListsScreen(
     onEditClick: (ShoppingList) -> Unit,
     onAddClick: () -> Unit,
     onBackPressed: () -> Unit,
+    onAccountClick: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -44,7 +45,8 @@ fun ShoppingListsScreen(
                 onCardClick = onCardClick,
                 onDeleteClick = { viewModel.deleteList(it) },
                 onAddClick = onAddClick,
-                onEditClick = onEditClick
+                onEditClick = onEditClick,
+                onAccountClick = onAccountClick
             )
         }
     }

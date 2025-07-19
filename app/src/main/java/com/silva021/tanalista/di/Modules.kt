@@ -20,6 +20,7 @@ import com.silva021.tanalista.domain.usecase.ResetPasswordUseCase
 import com.silva021.tanalista.domain.usecase.UpdateShoppingItemUseCase
 import com.silva021.tanalista.domain.usecase.UpdateShoppingListUseCase
 import com.silva021.tanalista.domain.usecase.UpdateUserUseCase
+import com.silva021.tanalista.ui.screen.account.AccountViewModel
 import com.silva021.tanalista.ui.screen.login.LoginViewModel
 import com.silva021.tanalista.ui.screen.shopping.add.list.AddShoppingListViewModel
 import com.silva021.tanalista.ui.screen.shopping.add.item.AddShoppingItemViewModel
@@ -42,6 +43,7 @@ val viewModelModule = module {
     viewModel { AddShoppingItemViewModel(get(), get(), get()) }
     viewModel { WelcomeViewModel(get()) }
     viewModel { ShowInviteShoppingListViewModel(get(), get()) }
+    viewModel { AccountViewModel(get(), get()) }
 }
 
 val usecasesModule = module {

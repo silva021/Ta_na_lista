@@ -13,6 +13,7 @@ class ResetPasswordUseCase {
     ) {
         try {
             Firebase.auth.sendPasswordResetEmail(email.trim()).await()
+            Firebase.auth.signOut()
             onSuccess.invoke()
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)

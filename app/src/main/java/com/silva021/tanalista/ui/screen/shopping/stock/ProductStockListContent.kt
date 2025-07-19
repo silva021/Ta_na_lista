@@ -97,7 +97,7 @@ fun ProductStockListContent(
             ) {
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Title(stringResource(R.string.label_item))
+                SubTitle(stringResource(R.string.label_item), fontWeight = FontWeight.Bold)
 
                 Spacer(modifier = Modifier.height(16.dp))
 

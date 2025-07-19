@@ -1,7 +1,8 @@
 package com.silva021.tanalista
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -22,6 +23,8 @@ import com.silva021.tanalista.ui.routes.Routes.AddShoppingListScreen.navigateToC
 import com.silva021.tanalista.ui.routes.Routes.ProductStockListScreen.navigateToProductStockListScreen
 import com.silva021.tanalista.ui.routes.Routes.ShoppingListsScreen.ITEM_ID
 import com.silva021.tanalista.ui.routes.Routes.ShoppingListsScreen.LIST_ID
+import com.silva021.tanalista.ui.routes.Routes.WebScreen.URL_ID
+import com.silva021.tanalista.ui.screen.account.AccountScreen
 import com.silva021.tanalista.ui.screen.forgotpassword.ForgotPasswordScreen
 import com.silva021.tanalista.ui.screen.login.LoginScreen
 import com.silva021.tanalista.ui.screen.register.RegisterScreen
@@ -31,6 +34,10 @@ import com.silva021.tanalista.ui.screen.shopping.mylist.ShoppingListsScreen
 import com.silva021.tanalista.ui.screen.shopping.sharelist.ShareListScreen
 import com.silva021.tanalista.ui.screen.shopping.showinvite.ShowInviteShoppingListScreen
 import com.silva021.tanalista.ui.screen.shopping.stock.ProductStockListScreen
+import com.silva021.tanalista.ui.screen.web.WebScreen
+import com.silva021.tanalista.BuildConfig
+import com.silva021.tanalista.ui.routes.Routes.AboutAppScreen
+import com.silva021.tanalista.ui.screen.account.aboutapp.AboutAppScreen
 import com.silva021.tanalista.ui.screen.welcome.WelcomeScreen
 import com.silva021.tanalista.util.helper.PreferencesManager
 
@@ -70,10 +77,16 @@ class MainActivity : ComponentActivity() {
                                 navigateToMyListScreen = {
                                     Routes.ShoppingListsScreen.navigateToList(navController)
                                 },
+                                navigateToTermsAndConditions = {
+                                    Routes.WebScreen.navigateToWebScreen(navController, "politica-de-privacidade.html")
+                                }
                             )
                         }
                         composable(Routes.ForgotPasswordScreen.route) {
                             ForgotPasswordScreen(
+                                onNavigateToLogin = {
+                                    Routes.LoginScreen.navigateToLoginScreen(navController)
+                                },
                                 onBackPressed = {
                                     Routes.ForgotPasswordScreen.popBackStack(navController)
                                 })
@@ -100,6 +113,9 @@ class MainActivity : ComponentActivity() {
                                 },
                                 onAddClick = {
                                     navigateToCreateListScreen(navController)
+                                },
+                                onAccountClick = {
+                                    Routes.AccountScreen.navigateToAccountScreen(navController)
                                 },
                                 onBackPressed = {
                                     Routes.ShoppingListsScreen.popBackStack(navController)
@@ -220,6 +236,73 @@ class MainActivity : ComponentActivity() {
                                     Routes.ShowInviteShoppingListScreen.popBackStack(
                                         navController
                                     )
+                                }
+                            )
+                        }
+                        composable(Routes.AccountScreen.route) {
+                            AccountScreen(
+                                onRateApp = {
+                                    val appId = applicationContext.packageName
+                                    val intent = Intent(
+                                        Intent.ACTION_VIEW,
+                                        Uri.parse("market://details?id=$appId")
+                                    ).apply {
+                                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                    }
+                                    applicationContext.startActivity(intent)
+                                },
+                                onTermsAndConditions = {
+                                    Routes.WebScreen.navigateToWebScreen(
+                                        navController,
+                                        "termos-de-uso.html"
+                                    )
+                                },
+                                onPolicyPrivacy = {
+                                    Routes.WebScreen.navigateToWebScreen(
+                                        navController,
+                                        "politica-de-privacidade.html"
+                                    )
+                                },
+                                onResetPassword = {
+                                    Routes.ForgotPasswordScreen.navigateToForgotPasswordScreen(
+                                        navController
+                                    )
+                                },
+                                onAboutApp = {
+                                    Routes.AboutAppScreen.navigateToAboutAppScreen(navController)
+                                },
+                                navigateToLogin = {
+                                    Routes.LoginScreen.navigateToLoginScreen(navController)
+                                },
+                                onBackPressed = {
+                                    Routes.ForgotPasswordScreen.popBackStack(navController)
+                                }
+                            )
+                        }
+
+                        composable(
+                            route = Routes.WebScreen.route,
+                            arguments = listOf(
+                                navArgument(URL_ID) { type = NavType.StringType }
+                            )
+                        ) { backStackEntry ->
+                            val url =
+                                backStackEntry.arguments?.getString(URL_ID)
+                                    .orEmpty()
+                            WebScreen(
+                                url = url,
+                                onBackPressed = {
+                                    Routes.WebScreen.popBackStack(navController)
+                                }
+                            )
+                        }
+
+                        composable(
+                            route = Routes.AboutAppScreen.route
+                        ) {
+                            AboutAppScreen(
+                                onBackPressed = {
+                                    Routes.AboutAppScreen.popBackStack(navController)
                                 }
                             )
                         }
