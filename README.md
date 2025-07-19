@@ -8,12 +8,12 @@ Aplicativo de lista de compras feito em Kotlin com Jetpack Compose. Gerencie seu
 
 ## ✅ Funcionalidades
 
-- 📋 Criação e edição de listas de compras
-- 🧾 Cadastro de itens com quantidade mínima e atual
-- 👥 Suporte a múltiplos usuários
-- 🔄 Sincronização com Firebase Firestore
-- 🌙 Tema escuro
-- ⚙️ Tela de configurações com:
+-  Criação de usuário
+-  Criação e edição de listas de compras
+-  Cadastro de itens com quantidade mínima e atual
+-  Compartilha sua lista de compras
+-  Sincronização com Firebase Firestore
+-  Tela de configurações com:
   - Alterar senha
   - Apagar conta
   - Política de Privacidade
@@ -22,11 +22,16 @@ Aplicativo de lista de compras feito em Kotlin com Jetpack Compose. Gerencie seu
 
 ---
 
+## Próximos passos
+
+- [ ] -  Teste unitários e instrumentados
+- [ ] - Criação do repository
+
 ## 🚀 Como rodar o projeto
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/Ta_na_lista.git
+   git clone https://github.com/silva021/Ta_na_lista.git
    ```
 
 2. Abra o projeto no Android Studio
