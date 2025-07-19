@@ -16,9 +16,9 @@ Aplicativo de lista de compras feito em Kotlin com Jetpack Compose. Gerencie seu
 |---------------------|----------------|----------------------------|
 | <img src="imagens/tela_de_criar_lista.png" width="200"/> | <img src="imagens/tela_de_listas.png" width="200"/> | <img src="imagens/tela_de_compartilhamento_de_lista.png" width="200"/> |
 
-| Tela de Estoque | Tela de Adicionar Item |
+| Tela de Adicionar Item | Tela de Estoque |
 |-----------------|------------------------|
-| <img src="imagens/tela_de_estoque.png" width="200"/> | <img src="imagens/tela_de_adicionar_item.png" width="200"/> |
+| <img src="imagens/tela_de_adicionar_item.png" width="200"/> | <img src="imagens/tela_de_estoque.png" width="200"/> |
 
 
 ## ✅ Funcionalidades
