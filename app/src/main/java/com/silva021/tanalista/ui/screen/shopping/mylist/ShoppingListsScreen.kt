@@ -1,5 +1,7 @@
 package com.silva021.tanalista.ui.screen.shopping.mylist
 
+import androidx.activity.compose.BackHandler
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -16,9 +18,15 @@ fun ShoppingListsScreen(
     onEditClick: (ShoppingList) -> Unit,
     onAddClick: () -> Unit,
     onBackPressed: () -> Unit,
-    onAccountClick: () -> Unit
+    onAccountClick: () -> Unit,
+    finishApp: () -> Unit
 ) {
+    val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
     val uiState by viewModel.uiState.collectAsState()
+
+    BackHandler(true) {
+        finishApp()
+    }
 
     LaunchedEffect(Unit) {
         viewModel.getShoppingLists()

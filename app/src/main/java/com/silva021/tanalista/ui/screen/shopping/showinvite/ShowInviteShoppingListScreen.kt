@@ -31,7 +31,7 @@ fun ShowInviteShoppingListScreen(
                 ShowInviteShoppingListContent(
                     shoppingList = state.shoppingList,
                     onAccept = viewModel::acceptInvite,
-                    onDecline = {},
+                    onDecline = navigateToHome,
                     onBackPressed = onBackPressed
                 )
             }

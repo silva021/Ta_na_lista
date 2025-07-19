@@ -119,6 +119,9 @@ class MainActivity : ComponentActivity() {
                                 },
                                 onBackPressed = {
                                     Routes.ShoppingListsScreen.popBackStack(navController)
+                                },
+                                finishApp = {
+                                    finish()
                                 }
                             )
                         }
