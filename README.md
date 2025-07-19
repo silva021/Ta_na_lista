@@ -8,23 +8,22 @@ Aplicativo de lista de compras feito em Kotlin com Jetpack Compose. Gerencie seu
 
 ## ✅ Funcionalidades
 
--  Criação de usuário
--  Criação e edição de listas de compras
--  Cadastro de itens com quantidade mínima e atual
--  Compartilha sua lista de compras
--  Sincronização com Firebase Firestore
--  Tela de configurações com:
-  - Alterar senha
-  - Apagar conta
-  - Política de Privacidade
-  - Termos de Uso
-  - Sobre o app
+- [x] - Criação de usuário
+- [x] - Criação e edição de listas de compras
+- [x] - Cadastro de itens com quantidade mínima e atual
+- [x] - Compartilha sua lista de compras
+- [x] - Sincronização com Firebase Firestore
+- [x] - Alterar senha
+- [x] - Apagar conta
+- [x] - Política de Privacidade
+- [x] - Termos de Uso
+- [x] - Sobre o app
 
 ---
 
 ## Próximos passos
 
-- [ ] -  Teste unitários e instrumentados
+- [ ] - Teste unitários e instrumentados
 - [ ] - Criação do repository
 
 ## 🚀 Como rodar o projeto
