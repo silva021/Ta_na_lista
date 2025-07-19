@@ -8,11 +8,9 @@ import kotlinx.coroutines.tasks.await
 
 class UpdateShoppingItemUseCase() {
     suspend operator fun invoke(
-        shoppingItem: ShoppingItem,
-        onSuccess: () -> Unit,
-        onFailure: () -> Unit,
-    ) {
-        try {
+        shoppingItem: ShoppingItem
+    ) : Result<Unit> {
+        return try {
             val updates = mutableMapOf<String, Any>().apply {
                 this["name"] = shoppingItem.name
                 this["quantity"] = shoppingItem.quantity
@@ -24,11 +22,12 @@ class UpdateShoppingItemUseCase() {
                 .document(shoppingItem.id)
                 .update(updates)
                 .await()
-            onSuccess.invoke()
+
+            Result.success(Unit)
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)
             e.printStackTrace()
-            onFailure.invoke()
+            Result.failure(e)
         }
     }
 }

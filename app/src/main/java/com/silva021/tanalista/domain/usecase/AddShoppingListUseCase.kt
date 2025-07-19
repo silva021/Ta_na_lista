@@ -9,17 +9,13 @@ import kotlinx.coroutines.tasks.await
 class AddShoppingListUseCase() {
     suspend operator fun invoke(
         list: ShoppingList,
-        onSuccess: () -> Unit,
-        onFailure: (Exception) -> Unit,
-    ) {
-        try {
-            val shoppingListCollection = FireStoreHelper.shoppingListCollection.document(list.id)
-            shoppingListCollection.set(list).await()
-            onSuccess.invoke()
-        } catch (e: Exception) {
-            Firebase.crashlytics.recordException(e)
-            e.printStackTrace()
-            onFailure.invoke(e)
-        }
+    ) = try {
+        val shoppingListCollection = FireStoreHelper.shoppingListCollection.document(list.id)
+        shoppingListCollection.set(list).await()
+        Result.success(Unit)
+    } catch (e: Exception) {
+        Firebase.crashlytics.recordException(e)
+        e.printStackTrace()
+        Result.failure(e)
     }
 }

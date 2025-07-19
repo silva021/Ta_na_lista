@@ -24,6 +24,7 @@ lottie = "6.3.0"
 coreKtx = "1.16.0"
 appcompat = "1.7.1"
 material = "1.12.0"
+mockkVersion = "1.13.17"
 
 [bundles]
 koin = [
@@ -41,6 +42,8 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-storage-ktx = { module = "com.google.firebase:firebase-storage-ktx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockkVersion" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockkVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }

@@ -4,18 +4,17 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.crashlytics.crashlytics
 import com.silva021.tanalista.data.datastore.FireStoreHelper
+import kotlinx.coroutines.tasks.await
 
 class UpdateUserUseCase {
     private val usersCollection = FireStoreHelper.usersCollection
 
-    fun invoke(
+    suspend fun invoke(
         newBalance: Float? = null,
         newCurrentStage: Int? = null,
         pixKey: String? = null,
-        onSuccess: () -> Unit,
-        onFailure: () -> Unit,
-    ) {
-        try {
+    ): Result<Unit> {
+        return try {
             val updates = mutableMapOf<String, Any>()
 
             newBalance?.let {
@@ -32,18 +31,15 @@ class UpdateUserUseCase {
 
             if (updates.isNotEmpty()) {
                 val uid = Firebase.auth.uid.orEmpty()
-                usersCollection.document(uid).update(updates).addOnSuccessListener {
-                    onSuccess.invoke()
-                }.addOnFailureListener {
-                    onFailure.invoke()
-                }
+                usersCollection.document(uid).update(updates).await()
+                Result.success(Unit)
             } else {
-                onSuccess.invoke()
+                Result.success(Unit)
             }
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)
-            onFailure.invoke()
             e.printStackTrace()
+            Result.failure(e)
         }
     }
 }

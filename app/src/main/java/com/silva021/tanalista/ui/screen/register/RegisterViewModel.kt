@@ -66,27 +66,24 @@ class RegisterViewModel(
                 )
             }
 
-            createUser.run(
+            createUser.invoke(
                 name,
                 email,
-                password,
-                onSuccess = {
-                    _state.update {
-                        RegisterScreenState.NavigateToMyListScreen
-                    }
-
-                },
-                onFailure = { messageError ->
-                    _state.update {
-                        RegisterScreenState.Success(
-                            model.copy(
-                                isLoading = false,
-                                errorMessage = messageError.text
-                            )
-                        )
-                    }
+                password
+            ).onSuccess {
+                _state.update {
+                    RegisterScreenState.NavigateToMyListScreen
                 }
-            )
+            }.onFailure { messageError ->
+                _state.update {
+                    RegisterScreenState.Success(
+                        model.copy(
+                            isLoading = false,
+                            errorMessage = messageError.message
+                        )
+                    )
+                }
+            }
         }
     }
 }

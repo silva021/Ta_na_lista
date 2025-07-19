@@ -29,14 +29,12 @@ class AddShoppingItemViewModel(
             _uiState.value = AddShoppingItemUiState.Loading
             getShoppingItem.invoke(
                 listId = listId,
-                itemId = itemId,
-                onSuccess = { shoppingItem ->
-                    _uiState.value = AddShoppingItemUiState.Idle(shoppingItem)
-                },
-                onFailure = {
-                    _uiState.value = AddShoppingItemUiState.Error("Não foi possível obter o item")
-                }
-            )
+                itemId = itemId
+            ).onSuccess { shoppingItem ->
+                _uiState.value = AddShoppingItemUiState.Idle(shoppingItem)
+            }.onFailure {
+                _uiState.value = AddShoppingItemUiState.Error("Não foi possível obter o item")
+            }
         }
     }
 
@@ -44,31 +42,27 @@ class AddShoppingItemViewModel(
         viewModelScope.launch {
             _uiState.value = AddShoppingItemUiState.Loading
             addShoppingItem.invoke(
-                listId = listId,
-                item = item, onSuccess = {
-                    _uiState.value = AddShoppingItemUiState.Success(isUpdated = false)
+                listId = listId, item = item
+            ).onSuccess {
+                _uiState.value = AddShoppingItemUiState.Success(isUpdated = false)
 
-                },
-                onFailure = {
-                    _uiState.value =
-                        AddShoppingItemUiState.Error("Não foi possível adicionar o item à lista")
-                }
-            )
+            }.onFailure {
+                _uiState.value =
+                    AddShoppingItemUiState.Error("Não foi possível adicionar o item à lista")
+            }
         }
     }
 
     fun update(item: ShoppingItem) {
         viewModelScope.launch {
             updateShoppingItem.invoke(
-                shoppingItem = item,
-                onSuccess = {
-                    _uiState.value = AddShoppingItemUiState.Success(isUpdated = true)
-                },
-                onFailure = {
-                    _uiState.value =
-                        AddShoppingItemUiState.Error("Não foi possível atualizar o item")
-                }
-            )
+                shoppingItem = item
+            ).onSuccess {
+                _uiState.value = AddShoppingItemUiState.Success(isUpdated = true)
+            }.onFailure {
+                _uiState.value =
+                    AddShoppingItemUiState.Error("Não foi possível atualizar o item")
+            }
         }
     }
 }

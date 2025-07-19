@@ -1,6 +1,5 @@
 package com.silva021.tanalista.ui.screen.shopping.showinvite
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.silva021.tanalista.domain.model.ShoppingList
@@ -13,35 +12,34 @@ import kotlinx.coroutines.launch
 
 class ShowInviteShoppingListViewModel(
     val getShoppingListById: GetShoppingListByIdUseCase,
-    val acceptInviteShoppingList: AcceptInviteShoppingListUseCase
+    val acceptInviteShoppingList: AcceptInviteShoppingListUseCase,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<ShowInviteShoppingListUiState>(ShowInviteShoppingListUiState.Loading)
+    private val _uiState =
+        MutableStateFlow<ShowInviteShoppingListUiState>(ShowInviteShoppingListUiState.Loading)
     val uiState: StateFlow<ShowInviteShoppingListUiState> = _uiState.asStateFlow()
 
     suspend fun getShoppingListById(listId: String) {
         getShoppingListById.invoke(
             listId,
-            onSuccess = {
-                _uiState.value = ShowInviteShoppingListUiState.Idle(it)
-            },
-            onFailure = {
-                _uiState.value = ShowInviteShoppingListUiState.Error("Não foi possível carregar a lista")
-            }
-        )
+        ).onSuccess {
+            _uiState.value = ShowInviteShoppingListUiState.Idle(it)
+        }.onFailure {
+            _uiState.value =
+                ShowInviteShoppingListUiState.Error("Não foi possível carregar a lista")
+        }
     }
 
     fun acceptInvite(shoppingList: ShoppingList) {
         viewModelScope.launch {
             acceptInviteShoppingList.invoke(
-                shoppingList,
-                onSuccess = {
-                    _uiState.value = ShowInviteShoppingListUiState.Success
-                },
-                onFailure = {
-                    _uiState.value = ShowInviteShoppingListUiState.Error("Não foi possível aceitar o convite")
-                }
-            )
+                shoppingList
+            ).onSuccess {
+                _uiState.value = ShowInviteShoppingListUiState.Success
+            }.onFailure {
+                _uiState.value =
+                    ShowInviteShoppingListUiState.Error("Não foi possível aceitar o convite")
+            }
         }
     }
 }

@@ -19,27 +19,25 @@ class ShoppingListsViewModel(
 
     fun getShoppingLists() {
         viewModelScope.launch {
-            getLists.invoke(
-                onSuccess = { list ->
+            getLists
+                .invoke()
+                .onSuccess { list ->
                     _uiState.value = MyListsUiState.Success(list)
-                },
-                onFailure = { e ->
+                }.onFailure { e ->
                     _uiState.value = MyListsUiState.Error("Não foi possível carregar as listas")
                 }
-            )
         }
     }
 
     fun deleteList(list: ShoppingList) {
         viewModelScope.launch {
             _uiState.value = MyListsUiState.Loading
-            deleteShoppingLists.invoke(
-                list = list,
-                onSuccess = { getShoppingLists() },
-                onFailure = {
+            deleteShoppingLists
+                .invoke(list = list)
+                .onSuccess { getShoppingLists() }
+                .onFailure {
                     _uiState.value = MyListsUiState.Error("Não foi possível excluir a lista")
                 }
-            )
         }
     }
 }

@@ -56,7 +56,7 @@ android {
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/{AL2.0,LGPL2.1,LICENSE.md,LICENSE-notice.md}"
         }
     }
 }
@@ -88,6 +88,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.mockk.android)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.startup)
@@ -95,6 +96,8 @@ dependencies {
     implementation(libs.bundles.koin)
     implementation(libs.youtube)
     implementation(libs.gson)
+
+    testImplementation(libs.mockk)
     testImplementation(libs.junit)
 
     implementation(libs.kotlinx.coroutines.core)

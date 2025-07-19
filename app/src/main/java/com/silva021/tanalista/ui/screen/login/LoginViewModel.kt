@@ -15,7 +15,8 @@ class LoginViewModel(
     private val isUserLoggedIn: IsUserLoggedInUseCase,
     private val login: LoginUseCase,
 ) : ViewModel() {
-    private val _state = MutableStateFlow<LoginScreenState>(LoginScreenState.Success(LoginScreenModel()))
+    private val _state =
+        MutableStateFlow<LoginScreenState>(LoginScreenState.Success(LoginScreenModel()))
     val state: StateFlow<LoginScreenState> = _state
 
     private val authScreenModel: LoginScreenModel?
@@ -59,23 +60,21 @@ class LoginViewModel(
 
             login.invoke(
                 email,
-                password,
-                onSuccess = {
-                    _state.update {
-                        LoginScreenState.IsLogged
-                    }
-                },
-                onFailure = { userException ->
-                    _state.update {
-                        LoginScreenState.Success(
-                            model.copy(
-                                isLoading = false,
-                                errorMessage = userException.text
-                            )
-                        )
-                    }
+                password
+            ).onSuccess {
+                _state.update {
+                    LoginScreenState.IsLogged
                 }
-            )
+            }.onFailure { userException ->
+                _state.update {
+                    LoginScreenState.Success(
+                        model.copy(
+                            isLoading = false,
+                            errorMessage = userException.message
+                        )
+                    )
+                }
+            }
         }
     }
 }

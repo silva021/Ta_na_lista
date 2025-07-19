@@ -8,17 +8,15 @@ import kotlinx.coroutines.tasks.await
 
 class DeleteShoppingItemUseCase() {
     suspend operator fun invoke(
-        shoppingItem: ShoppingItem,
-        onSuccess: () -> Unit,
-        onFailure: () -> Unit,
-    ) {
-        try {
+        shoppingItem: ShoppingItem
+    ) : Result<Unit> {
+        return try {
             getShoppingItemsCollection(shoppingItem.listId).document(shoppingItem.id).delete().await()
-            onSuccess.invoke()
+            Result.success(Unit)
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)
             e.printStackTrace()
-            onFailure.invoke()
+            Result.failure(e)
         }
     }
 }

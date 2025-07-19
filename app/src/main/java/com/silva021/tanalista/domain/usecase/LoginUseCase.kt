@@ -10,22 +10,22 @@ class LoginUseCase {
     suspend fun invoke(
         email: String,
         password: String,
-        onSuccess: (String) -> Unit,
-        onFailure: (UserException) -> Unit,
-    ) {
-        try {
+    ): Result<String> {
+        return try {
             val authResult = Firebase.auth.signInWithEmailAndPassword(email, password).await()
             val uid = authResult.user?.uid ?: throw Exception("UID do usuário não encontrado")
 
-            onSuccess(uid)
+            Result.success(uid)
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)
             e.printStackTrace()
-            onFailure(
-                when (e) {
-                    is FirebaseAuthInvalidCredentialsException -> UserException.PASSWORD_INCORRECT
-                    else -> UserException.ERROR
-                }
+            Result.failure(
+                Exception(
+                    when (e) {
+                        is FirebaseAuthInvalidCredentialsException -> UserException.PASSWORD_INCORRECT.text
+                        else -> UserException.ERROR.text
+                    }
+                )
             )
         }
     }

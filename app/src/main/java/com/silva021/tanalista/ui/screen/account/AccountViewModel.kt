@@ -20,30 +20,28 @@ class AccountViewModel(
 
     fun logout() {
         _uiState.value = AccountScreenState.Loading(text = "Saindo da sua conta...")
-        logout.invoke(
-            onSuccess = {
+
+        logout.invoke()
+            .onSuccess {
                 _uiState.value = AccountScreenState.Success(
                     text = "Você saiu da sua conta com sucesso."
                 )
-            },
-            onFailure = {
+            }.onFailure {
                 _uiState.value = AccountScreenState.Error(
                     text = "Não foi possível sair da sua conta. Tente novamente."
                 )
             }
-        )
     }
 
     fun deleteAccount() {
         _uiState.value = AccountScreenState.Loading(text = "Excluindo sua conta...")
         viewModelScope.launch {
-            deleteAccount.invoke(
-                onSuccess = {
+            deleteAccount.invoke()
+                .onSuccess {
                     _uiState.value = AccountScreenState.Success(
                         text = "Sua conta foi excluída com sucesso."
                     )
-                },
-                onFailure = {
+                }.onFailure {
                     _uiState.value = AccountScreenState.Error(
                         text = when (it) {
                             is FirebaseAuthRecentLoginRequiredException -> "Para a excluir sua conta, você precisa sair e fazer login novamente."
@@ -51,7 +49,6 @@ class AccountViewModel(
                         }
                     )
                 }
-            )
         }
     }
 

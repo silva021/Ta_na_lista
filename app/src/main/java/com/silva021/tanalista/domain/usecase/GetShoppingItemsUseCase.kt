@@ -11,10 +11,8 @@ import kotlinx.coroutines.tasks.await
 class GetShoppingItemsUseCase() {
     suspend operator fun invoke(
         listId: String,
-        onSuccess: (List<ShoppingItem>) -> Unit,
-        onFailure: () -> Unit,
-    ) {
-        try {
+    ) : Result<List<ShoppingItem>> {
+        return try {
             val query = getShoppingItemsCollection(listId)
                 .get()
                 .await()
@@ -24,12 +22,11 @@ class GetShoppingItemsUseCase() {
                     id = it.id
                 )?.toModel()
             }
-            onSuccess.invoke(list)
-
+            Result.success(list)
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)
             e.printStackTrace()
-            onFailure.invoke()
+            Result.failure(e)
         }
     }
 }

@@ -19,14 +19,12 @@ class ForgotPasswordViewModel(
         this@ForgotPasswordViewModel.email = email
         viewModelScope.launch {
             resetPassword.invoke(
-                email = email,
-                onSuccess = {
-                    _state.value = ResetPasswordState.Success
-                },
-                onFailure = {
-                    _state.value = ResetPasswordState.Error
-                }
-            )
+                email = email
+            ).onSuccess {
+                _state.value = ResetPasswordState.Success
+            }.onFailure {
+                _state.value = ResetPasswordState.Error
+            }
         }
     }
 

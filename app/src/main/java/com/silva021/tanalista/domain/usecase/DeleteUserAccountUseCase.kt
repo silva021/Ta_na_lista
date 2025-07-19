@@ -8,18 +8,16 @@ import kotlinx.coroutines.tasks.await
 
 class DeleteUserAccountUseCase {
     suspend fun invoke(
-        onSuccess: () -> Unit,
-        onFailure: (Exception) -> Unit,
-    ) {
-        try {
+    ) : Result<Unit> {
+        return try {
             val user = Firebase.auth.currentUser
             usersCollection.document(user?.uid.orEmpty()).delete().await()
             user?.delete()?.await()
-            onSuccess.invoke()
+            Result.success(Unit)
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)
             e.printStackTrace()
-            onFailure.invoke(e)
+            Result.failure(e)
         }
     }
 }

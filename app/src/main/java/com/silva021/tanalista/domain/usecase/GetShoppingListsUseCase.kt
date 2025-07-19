@@ -10,12 +10,9 @@ import com.silva021.tanalista.domain.model.ShoppingList
 import kotlinx.coroutines.tasks.await
 
 class GetShoppingListsUseCase() {
-    suspend operator fun invoke(
-        onSuccess: (List<ShoppingList>) -> Unit,
-        onFailure: (Exception) -> Unit,
-    ) {
+    suspend operator fun invoke() : Result<List<ShoppingList>> {
         val uid = FirebaseAuth.getInstance().currentUser?.uid ?: throw Exception("Usuário não autenticado")
-        try {
+        return try {
             val ownerListsQuery = FireStoreHelper.shoppingListCollection
                 .whereEqualTo("ownerUID", uid)
                 .get()
@@ -36,12 +33,12 @@ class GetShoppingListsUseCase() {
 
             val combinedLists = (ownerLists + sharedLists).distinctBy { it.id }.map { it.toModel() }
 
-            onSuccess.invoke(combinedLists)
+            Result.success(combinedLists)
 
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)
             e.printStackTrace()
-            onFailure.invoke(e)
+            Result.failure(e)
         }
     }
 }

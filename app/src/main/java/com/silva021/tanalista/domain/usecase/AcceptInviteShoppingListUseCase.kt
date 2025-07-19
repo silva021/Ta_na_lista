@@ -10,11 +10,9 @@ import kotlinx.coroutines.tasks.await
 
 class AcceptInviteShoppingListUseCase() {
     suspend operator fun invoke(
-        shoppingList: ShoppingList,
-        onSuccess: () -> Unit,
-        onFailure: () -> Unit,
-    ) {
-        try {
+        shoppingList: ShoppingList
+    ) : Result<Unit> {
+        return try {
             val updates = mutableMapOf<String, Any>()
             val newSharedList = shoppingList.sharedWith.distinct().toMutableList().apply {
                 add(Firebase.auth.uid.orEmpty())
@@ -23,11 +21,11 @@ class AcceptInviteShoppingListUseCase() {
             updates["sharedWith"] = newSharedList
 
             shoppingListCollection.document(shoppingList.id).update(updates).await()
-            onSuccess.invoke()
+            Result.success(Unit)
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)
             e.printStackTrace()
-            onFailure.invoke()
+            Result.failure(e)
         }
     }
 }

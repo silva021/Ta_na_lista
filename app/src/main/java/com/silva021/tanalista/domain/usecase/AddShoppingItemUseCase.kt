@@ -10,16 +10,13 @@ class AddShoppingItemUseCase() {
     suspend operator fun invoke(
         listId: String,
         item: ShoppingItem,
-        onSuccess: () -> Unit,
-        onFailure: () -> Unit
-    ) {
+    ) =
         try {
             FireStoreHelper.getShoppingItemsCollection(listId).document(item.id).set(item).await()
-            onSuccess.invoke()
+            Result.success(Unit)
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)
             e.printStackTrace()
-            onFailure.invoke()
+            Result.failure(e)
         }
-    }
 }

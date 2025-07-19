@@ -11,11 +11,9 @@ import kotlinx.coroutines.tasks.await
 
 class GetShoppingListByIdUseCase() {
     suspend operator fun invoke(
-        listId: String,
-        onSuccess: (ShoppingList) -> Unit,
-        onFailure: () -> Unit,
-    ) {
-        try {
+        listId: String
+    ) : Result<ShoppingList> {
+        return try {
             val query = shoppingListCollection
                 .document(listId)
                 .get()
@@ -23,11 +21,11 @@ class GetShoppingListByIdUseCase() {
 
             val shoppingList = query.toObject(ShoppingListDTO::class.java)?.toModel() ?:
                 throw Exception("Shopping list not found for ID: $listId")
-            onSuccess.invoke(shoppingList)
+            Result.success(shoppingList)
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)
             e.printStackTrace()
-            onFailure.invoke()
+            Result.failure(e)
         }
     }
 }
