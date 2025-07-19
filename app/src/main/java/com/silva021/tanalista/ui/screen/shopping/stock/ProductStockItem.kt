@@ -27,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -81,6 +82,7 @@ fun ProductStockItem(
                         ) {
                             onDeleteShoppingItem(item)
                         }
+                        .testTag("delete_button")
                 )
             }
 
@@ -148,7 +150,10 @@ fun QuantitySelector(
     ) {
         IconButton(
             onClick = onDecrease,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier
+                .size(24.dp)
+                .testTag("decrease_button"),
+            enabled = item.quantity > 0f
         ) {
             Icon(Icons.Default.Remove, contentDescription = "Diminuir")
         }
@@ -162,7 +167,9 @@ fun QuantitySelector(
 
         IconButton(
             onClick = onIncrease,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier
+                .size(24.dp)
+                .testTag("increase_button")
         ) {
             Icon(Icons.Default.Add, contentDescription = "Aumentar")
         }

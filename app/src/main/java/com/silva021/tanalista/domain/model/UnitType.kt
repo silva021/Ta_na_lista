@@ -10,7 +10,7 @@ enum class UnitType(val label: String) {
     KILOGRAM("KG"),
     MILLILITER("mL"),
     LITER("L"),
-    PACKAGE("Pacote"),
+    PACKAGE("Pacotes"),
     BOX("Caixa"),
     OTHER("Outro")
 }

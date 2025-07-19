@@ -1,6 +1,5 @@
 package com.silva021.tanalista.ui.screen.shopping.stock
 
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState

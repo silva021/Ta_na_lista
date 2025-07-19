@@ -1,4 +1,4 @@
-package com.silva021.tanalista.util.factory
+package com.silva021.tanalista.factory
 
 import com.silva021.tanalista.domain.model.CategoryType
 import com.silva021.tanalista.domain.model.ShoppingItem
@@ -8,7 +8,7 @@ import java.util.UUID
 
 object ShoppingFactory {
     fun createShoppingList(
-        name: String = "Nova Lista",
+        name: String = "Nova Lista 2",
         type: CategoryType = CategoryType.OTHER,
         id: String = UUID.randomUUID().toString(),
         isMine: Boolean = true
@@ -29,7 +29,7 @@ object ShoppingFactory {
         quantity: Float = 1f,
         minRequired: Float = 1f,
         unitType: UnitType = UnitType.UNIT,
-        listId: String,
+        listId: String = UUID.randomUUID().toString(),
         id: String = UUID.randomUUID().toString()
     ): ShoppingItem {
         return ShoppingItem(
