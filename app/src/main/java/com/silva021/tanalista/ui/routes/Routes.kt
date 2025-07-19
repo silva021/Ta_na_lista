@@ -70,4 +70,9 @@ sealed class Routes(val route: String) {
         }
     }
 
+    object AboutAppScreen : Routes("about_app_screen") {
+        fun navigateToAboutAppScreen(navController: NavController) {
+            navController.navigate(AboutAppScreen.route)
+        }
+    }
 }
