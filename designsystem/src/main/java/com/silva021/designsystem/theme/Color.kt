@@ -4,8 +4,6 @@ import androidx.compose.ui.graphics.Color
 
 object Palette {
 
-    val Purple80 = Color(0xFFD0BCFF)
-
     val Black = Color(0xFF000000)
     val White = Color(0xFFFFFFFF)
 
@@ -18,7 +16,7 @@ object Palette {
     val greenButton = Color(0xFF81C784)
     val backgroundColor = Color(0xFFfefef8)
     val progressColor = Color(0xFFE5E5E5)
-    val buttonColor = Color(0xFF70A090)
+    val Green = Color(0xFF70A090)
     val chipUnselected = Color(0xFFF0F0F0)
     val chipSelected = Color(0xFF70A090)
     val textFieldBackground = Color(0xFFF9F7F5)

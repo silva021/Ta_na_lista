@@ -3,7 +3,6 @@ package com.silva021.tanalista.ui.screen.shopping.add.list
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,16 +11,17 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ChipDefaults
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.FilterChip
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChipDefaults
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -37,7 +37,6 @@ import androidx.compose.ui.unit.dp
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.silva021.designsystem.components.CustomButton
-import com.silva021.designsystem.components.Description
 import com.silva021.designsystem.components.Label
 import com.silva021.designsystem.components.Title
 import com.silva021.designsystem.components.model.ButtonModel
@@ -45,11 +44,13 @@ import com.silva021.designsystem.extension.ThemedScreen
 import com.silva021.designsystem.theme.AppShapes
 import com.silva021.designsystem.theme.Palette
 import com.silva021.designsystem.theme.Scaffold
-import com.silva021.designsystem.theme.getTextFieldColors
+import com.silva021.designsystem.theme.textFieldDefaultColors
+import com.silva021.designsystem.theme.topBarDefaultColors
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.CategoryType
 import com.silva021.tanalista.domain.model.ShoppingList
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddShoppingListContent(
     shoppingList: ShoppingList? = null,
@@ -66,8 +67,7 @@ fun AddShoppingListContent(
     Scaffold(
         topBar = {
             TopAppBar(
-                backgroundColor = Palette.backgroundColor,
-                elevation = 0.dp,
+                colors = topBarDefaultColors(),
                 title = { },
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
@@ -76,7 +76,7 @@ fun AddShoppingListContent(
                 }
             )
         }
-    ) { padding ->
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -98,19 +98,18 @@ fun AddShoppingListContent(
                     .background(Color.White)
                     .padding(24.dp)
             ) {
-                Label(stringResource(R.string.placeholder_list_name))
-                Spacer(modifier = Modifier.height(8.dp))
                 TextField(
                     value = name,
                     onValueChange = {
                         name = it
                     },
-                    placeholder = { Text("Mercadinho") },
+                    label = { Text(stringResource(R.string.placeholder_list_name)) },
+                    placeholder = { Text("Ex: Mercadinho") },
                     singleLine = true,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(56.dp),
-                    colors = getTextFieldColors(),
+                    colors = textFieldDefaultColors(),
                     shape = AppShapes.Rounded
                 )
 
@@ -160,7 +159,6 @@ fun AddShoppingListContent(
 }
 
 
-@OptIn(ExperimentalMaterialApi::class, ExperimentalLayoutApi::class)
 @Composable
 fun CategorySelector(
     categories: List<CategoryType>,
@@ -180,19 +178,18 @@ fun CategorySelector(
                 FilterChip(
                     selected = (type == categorySelected),
                     onClick = { onCategorySelected(type) },
-                    colors = ChipDefaults.filterChipColors(
-                        backgroundColor = Palette.chipUnselected,
-                        contentColor = Color.Black,
-                        leadingIconColor = Color.Black,
-                        selectedBackgroundColor = Palette.chipSelected,
-                        selectedContentColor = Color.White,
-                        selectedLeadingIconColor = Color.White
-                    ),
-                    content = { Text(type.label) },
+                    colors = FilterChipDefaults.filterChipColors()
+                        .copy(
+                            selectedContainerColor = type.color.copy(alpha = 0.2f),
+                            selectedLabelColor = type.color,
+                            leadingIconColor = type.color
+                        ),
+                    label = { Text(type.label) },
                     leadingIcon = {
                         Icon(
                             modifier = Modifier.padding(start = 6.dp).size(20.dp),
                             imageVector = type.icon,
+                            tint = type.color,
                             contentDescription = null
                         )
                     },

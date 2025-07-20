@@ -64,7 +64,6 @@ fun ErrorScreen(
             SubTitle(
                 text = description,
                 color = RedDark,
-                fontWeight = FontWeight.SemiBold,
                 textAlign = TextAlign.Center,
             )
         }

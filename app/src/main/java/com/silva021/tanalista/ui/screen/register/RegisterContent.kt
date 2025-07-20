@@ -13,13 +13,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Checkbox
-import androidx.compose.material.CheckboxDefaults
-import androidx.compose.material.Icon
-import androidx.compose.material.SnackbarHost
-import androidx.compose.material.SnackbarHostState
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,7 +44,7 @@ import com.silva021.designsystem.theme.AppShapes
 import com.silva021.designsystem.theme.Palette
 import com.silva021.designsystem.theme.Palette.backgroundColor
 import com.silva021.designsystem.theme.Scaffold
-import com.silva021.designsystem.theme.getTextFieldColors
+import com.silva021.designsystem.theme.textFieldDefaultColors
 import com.silva021.tanalista.R
 import com.silva021.tanalista.ui.model.RegisterScreenModel
 import com.silva021.tanalista.util.isValidEmail
@@ -67,8 +67,7 @@ fun RegisterContent(
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) }
-    ) { padding ->
-
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -103,15 +102,15 @@ fun RegisterContent(
                     .padding(24.dp)
             ) {
 
-
                 TextField(
                     value = model.name,
                     onValueChange = onNameChange,
-                    placeholder = { Text(stringResource(R.string.placeholder_name)) },
+                    placeholder = { Text("Ex: Lucas Silva") },
+                    label = { Text(stringResource(R.string.placeholder_name)) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 16.dp),
-                    colors = getTextFieldColors(),
+                    colors = textFieldDefaultColors(),
                     shape = AppShapes.Rounded,
                     singleLine = true
                 )
@@ -119,11 +118,12 @@ fun RegisterContent(
                 TextField(
                     value = model.email,
                     onValueChange = onEmailChange,
-                    placeholder = { Text(stringResource(R.string.placeholder_email)) },
+                    label = { Text(stringResource(R.string.placeholder_email)) },
+                    placeholder = { Text("Ex: nome@email.com") },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 16.dp),
-                    colors = getTextFieldColors(),
+                    colors = textFieldDefaultColors(),
                     shape = AppShapes.Rounded,
                     singleLine = true
                 )
@@ -131,12 +131,13 @@ fun RegisterContent(
                 TextField(
                     value = model.password,
                     onValueChange = onPasswordChange,
-                    placeholder = { Text(stringResource(R.string.placeholder_password)) },
+                    label = { Text(stringResource(R.string.placeholder_password)) },
+                    placeholder = { Text("Ex: ••••••••") },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 12.dp),
                     visualTransformation = PasswordVisualTransformation(),
-                    colors = getTextFieldColors(),
+                    colors = textFieldDefaultColors(),
                     shape = AppShapes.Rounded,
                     singleLine = true
                 )

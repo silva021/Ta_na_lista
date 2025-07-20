@@ -9,12 +9,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,8 +32,10 @@ import com.silva021.designsystem.components.Label
 import com.silva021.designsystem.components.SubTitle
 import com.silva021.designsystem.theme.Palette
 import com.silva021.designsystem.theme.Scaffold
+import com.silva021.designsystem.theme.topBarDefaultColors
 import com.silva021.tanalista.R
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutAppScreen(
     onBackPressed: () -> Unit,
@@ -47,25 +51,23 @@ fun AboutAppScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                backgroundColor = Palette.backgroundColor,
-                elevation = 0.dp,
+                colors = topBarDefaultColors(),
                 title = { Text("Sobre o app") },
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Voltar")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Voltar")
                     }
                 }
             )
         }
-    ) { padding ->
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding)
                 .padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            SubTitle("📱 Tá na Lista", fontWeight = FontWeight.Bold)
+            SubTitle("📱 Tá na Lista")
             Description("Este aplicativo foi criado para ajudar você a organizar suas compras de forma simples e prática.")
 
             Spacer(modifier = Modifier.weight(1f))
@@ -83,6 +85,7 @@ fun AboutAppScreen(
                 Icon(
                     painter = painterResource(R.drawable.ic_linkedin),
                     contentDescription = "LinkedIn",
+                    tint = Palette.Black
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Description(
@@ -99,6 +102,7 @@ fun AboutAppScreen(
                 Icon(
                     painter = painterResource(R.drawable.ic_github),
                     contentDescription = "LinkedIn",
+                    tint = Palette.Black
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Description(

@@ -19,7 +19,7 @@ fun LoginScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
     val state by viewModel.state.collectAsState()
 
-    Scaffold { _ ->
+    Scaffold {
         when (val newState = state) {
             is LoginScreenState.Success -> {
                 LoginContent(

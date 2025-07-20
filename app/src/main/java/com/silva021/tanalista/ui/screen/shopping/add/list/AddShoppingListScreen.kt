@@ -22,7 +22,7 @@ fun AddShoppingListScreen(
         viewModel.getShoppingList(listId)
     }
 
-    Scaffold { padding ->
+    Scaffold {
         when (val state = uiState) {
             is AddShoppingListUiState.Idle -> {
                 AddShoppingListContent(

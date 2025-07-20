@@ -13,16 +13,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Remove
-import androidx.compose.material.ripple
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,8 +53,11 @@ fun ProductStockItem(
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
-        elevation = 4.dp,
-        backgroundColor = Color.White,
+        colors = CardDefaults.cardColors().copy(
+            containerColor = Color.White,
+            contentColor = Palette.Black
+        ),
+        elevation = CardDefaults.cardElevation(4.dp),
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
@@ -65,7 +69,7 @@ fun ProductStockItem(
                 modifier = Modifier.height(24.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Description(item.name, fontWeight = FontWeight.Bold)
+                Description(item.name)
 
                 Spacer(Modifier.weight(1f))
 
@@ -158,10 +162,8 @@ fun QuantitySelector(
             Icon(Icons.Default.Remove, contentDescription = "Diminuir")
         }
 
-        Text(
+        Label(
             text = item.unitType.formatQuantity(item.quantity),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(horizontal = 8.dp)
         )
 
@@ -254,6 +256,7 @@ fun PreviewProductStockItem() {
                     onDeleteShoppingItem = {},
                     item = it,
                 )
+                Spacer(Modifier.height(4.dp))
             }
         }
     }

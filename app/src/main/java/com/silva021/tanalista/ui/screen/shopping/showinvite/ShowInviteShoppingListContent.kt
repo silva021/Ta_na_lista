@@ -12,20 +12,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,11 +38,14 @@ import com.silva021.designsystem.components.Title
 import com.silva021.designsystem.components.model.ButtonModel
 import com.silva021.designsystem.theme.AppShapes
 import com.silva021.designsystem.theme.Palette
+import com.silva021.designsystem.theme.Palette.White
 import com.silva021.designsystem.theme.Scaffold
+import com.silva021.designsystem.theme.topBarDefaultColors
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.CategoryType
 import com.silva021.tanalista.domain.model.ShoppingList
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShowInviteShoppingListContent(
     shoppingList: ShoppingList,
@@ -52,8 +56,7 @@ fun ShowInviteShoppingListContent(
     Scaffold(
         topBar = {
             TopAppBar(
-                backgroundColor = Palette.backgroundColor,
-                elevation = 0.dp,
+                colors = topBarDefaultColors(),
                 title = {},
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
@@ -64,7 +67,8 @@ fun ShowInviteShoppingListContent(
                     }
                 },
             )
-        }) { padding ->
+        }
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -74,7 +78,6 @@ fun ShowInviteShoppingListContent(
             Title(
                 text = "Alguém compartilhou uma lista com você!",
                 color = Palette.TextDarkGray,
-                fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
 
@@ -127,7 +130,8 @@ fun SharedListInviteCard(
         modifier = Modifier
             .fillMaxWidth(),
         shape = RoundedCornerShape(8.dp),
-        elevation = 2.dp
+        colors = CardDefaults.cardColors().copy(containerColor = White),
+        elevation = CardDefaults.cardElevation(4.dp),
     ) {
         Column(
             modifier = Modifier
@@ -154,12 +158,10 @@ fun SharedListInviteCard(
                 Column {
                     Description(
                         text = shoppingList.name,
-                        fontWeight = FontWeight.SemiBold,
                         color = Color.Black
                     )
                     Label(
                         text = shoppingList.ownerName,
-                        fontWeight = FontWeight.SemiBold,
                         color = Color.Gray
                     )
                 }

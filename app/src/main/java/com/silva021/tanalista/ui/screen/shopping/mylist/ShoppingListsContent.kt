@@ -15,18 +15,21 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.Card
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.ripple
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,7 +37,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpSize
@@ -45,10 +47,12 @@ import com.silva021.designsystem.components.Title
 import com.silva021.designsystem.extension.ThemedScreen
 import com.silva021.designsystem.theme.Palette
 import com.silva021.designsystem.theme.Scaffold
+import com.silva021.designsystem.theme.topBarDefaultColors
 import com.silva021.tanalista.R
 import com.silva021.tanalista.domain.model.CategoryType
 import com.silva021.tanalista.domain.model.ShoppingList
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShoppingListsContent(
     lists: List<ShoppingList>,
@@ -62,7 +66,7 @@ fun ShoppingListsContent(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = onAddClick,
-                backgroundColor = Palette.buttonColor,
+                containerColor = Palette.Green,
                 contentColor = Color.White
             ) {
                 Icon(
@@ -75,9 +79,7 @@ fun ShoppingListsContent(
         topBar = {
             TopAppBar(
                 title = {},
-                backgroundColor = Palette.backgroundColor,
-                contentColor = Color.Black,
-                elevation = 0.dp,
+                colors = topBarDefaultColors(),
                 actions = {
                     IconButton(onClick = onAccountClick) {
                         Icon(
@@ -88,13 +90,12 @@ fun ShoppingListsContent(
                 }
             )
         },
-    ) { innerPadding ->
+    ) {
         Column(
             modifier = Modifier
-                .padding(innerPadding)
                 .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
         ) {
-            SubTitle(text = stringResource(R.string.title_my_lists), fontWeight = FontWeight.Bold)
+            Title(text = stringResource(R.string.title_my_lists))
 
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -107,7 +108,6 @@ fun ShoppingListsContent(
                     SubTitle(
                         stringResource(R.string.text_no_lists),
                         textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.SemiBold,
                     )
                 }
             } else {
@@ -139,7 +139,7 @@ fun ListCard(
 
     Card(
         shape = RoundedCornerShape(24.dp),
-        backgroundColor = backgroundColor,
+        colors = CardDefaults.cardColors().copy(containerColor = backgroundColor),
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
@@ -169,7 +169,6 @@ fun ListCard(
                     modifier = Modifier.weight(1f),
                     text = shoppingList.name,
                     color = Color.White,
-                    fontWeight = FontWeight.Bold
                 )
 
                 if (shoppingList.isMine) {

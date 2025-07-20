@@ -25,7 +25,7 @@ fun ShowInviteShoppingListScreen(
         viewModel.getShoppingListById(listId)
     }
 
-    Scaffold { padding ->
+    Scaffold {
         when (val state = uiState) {
             is ShowInviteShoppingListUiState.Idle -> {
                 ShowInviteShoppingListContent(

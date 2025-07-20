@@ -12,15 +12,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,13 +29,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.silva021.designsystem.components.CustomButton
 import com.silva021.designsystem.components.Title
 import com.silva021.designsystem.components.model.ButtonModel
@@ -44,10 +40,12 @@ import com.silva021.designsystem.extension.ThemedScreen
 import com.silva021.designsystem.theme.AppShapes
 import com.silva021.designsystem.theme.Palette
 import com.silva021.designsystem.theme.Scaffold
-import com.silva021.designsystem.theme.getTextFieldColors
+import com.silva021.designsystem.theme.textFieldDefaultColors
+import com.silva021.designsystem.theme.topBarDefaultColors
 import com.silva021.tanalista.R
 import com.silva021.tanalista.util.isValidEmail
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ForgotPasswordContent(
     onBackPressed: () -> Unit,
@@ -58,8 +56,7 @@ fun ForgotPasswordContent(
     Scaffold(
         topBar = {
             TopAppBar(
-                backgroundColor = Palette.backgroundColor,
-                elevation = 0.dp,
+                colors = topBarDefaultColors(),
                 title = { },
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
@@ -71,7 +68,7 @@ fun ForgotPasswordContent(
                 }
             )
         },
-    ) { _ ->
+    ) {
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
@@ -113,7 +110,7 @@ fun ForgotPasswordContent(
                         onValueChange = { email = it },
                         placeholder = { Text(stringResource(R.string.placeholder_email)) },
                         modifier = Modifier.fillMaxWidth(),
-                        colors = getTextFieldColors(),
+                        colors = textFieldDefaultColors(),
                         shape = AppShapes.Rounded,
                         singleLine = true
                     )

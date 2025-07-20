@@ -8,25 +8,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Text
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.silva021.designsystem.components.Description
 import com.silva021.designsystem.components.SubTitle
 import com.silva021.designsystem.theme.Palette
-import com.silva021.designsystem.theme.TypographyApp
 
 @Composable
 fun LoadingScreen(
     message: String = "Carregando...",
 ) {
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -37,7 +32,7 @@ fun LoadingScreen(
     ) {
         CircularProgressIndicator(
             modifier = Modifier.size(80.dp),
-            color = Palette.buttonColor,
+            color = Palette.Green,
             strokeWidth = 4.dp
         )
 
@@ -45,9 +40,8 @@ fun LoadingScreen(
 
         SubTitle(
             text = message,
-            color = Palette.buttonColor,
+            color = Palette.Green,
             textAlign = TextAlign.Center,
-            fontWeight = FontWeight.SemiBold,
         )
     }
 }
