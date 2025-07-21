@@ -6,7 +6,9 @@ import com.silva021.tanalista.data.datastore.FireStoreHelper.getShoppingItemsCol
 import com.silva021.tanalista.domain.model.ShoppingItem
 import kotlinx.coroutines.tasks.await
 
-class UpdateShoppingItemUseCase() {
+class UpdateShoppingItemUseCase(
+    val updateLastUpdateInShoppingList: UpdateLastUpdateInShoppingListUseCase
+) {
     suspend operator fun invoke(
         shoppingItem: ShoppingItem
     ) : Result<Unit> {
@@ -23,6 +25,7 @@ class UpdateShoppingItemUseCase() {
                 .update(updates)
                 .await()
 
+            updateLastUpdateInShoppingList.invoke(shoppingItem.listId).await()
             Result.success(Unit)
         } catch (e: Exception) {
             Firebase.crashlytics.recordException(e)

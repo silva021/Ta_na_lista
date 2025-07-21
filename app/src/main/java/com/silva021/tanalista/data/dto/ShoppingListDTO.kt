@@ -6,5 +6,6 @@ data class ShoppingListDTO(
     val type: String = "OTHER",
     val ownerUID: String = "",
     val ownerName: String = "",
-    val sharedWith: List<String> = emptyList(),
+    val participants: List<String> = emptyList(),
+    val lastUpdate: Long? = null
 )

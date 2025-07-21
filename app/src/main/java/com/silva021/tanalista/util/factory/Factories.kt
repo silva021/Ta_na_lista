@@ -18,7 +18,7 @@ object ShoppingFactory {
             name = name,
             type = type,
             ownerUID = "owner-${UUID.randomUUID()}",
-            sharedWith = emptyList(),
+            participants = emptyList(),
             isMine = isMine,
             ownerName = "Owner ${UUID.randomUUID()}"
         )

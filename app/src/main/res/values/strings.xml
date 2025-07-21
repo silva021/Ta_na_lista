@@ -38,7 +38,7 @@
     <string name="title_my_lists">Minhas Listas</string>
     <string name="text_no_lists">Você ainda não tem nenhuma lista</string>
     <string name="title_stock">Estoque</string>
-    <string name="label_item">Item</string>
+    <string name="label_item">Itens</string>
     <string name="label_list_color">Cor da lista</string>
     <string name="list_created_title">Lista criada com sucesso!</string>
     <string name="shopping_item_created_title">Item criado com sucesso!</string>

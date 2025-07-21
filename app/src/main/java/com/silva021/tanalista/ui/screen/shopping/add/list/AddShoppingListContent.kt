@@ -139,13 +139,16 @@ fun AddShoppingListContent(
                                     )
                                 )
                             } else {
+                                val uid = Firebase.auth.uid.orEmpty()
                                 onCreateClick.invoke(
                                     ShoppingList(
                                         name = name,
                                         type = categoriesSelected,
-                                        ownerUID = Firebase.auth.uid.orEmpty(),
+                                        ownerUID = uid,
+                                        participants = listOf(uid),
                                         isMine = true,
-                                        ownerName = Firebase.auth.currentUser?.displayName.orEmpty()
+                                        ownerName = Firebase.auth.currentUser?.displayName.orEmpty(),
+                                        lastUpdate = System.currentTimeMillis()
                                     )
                                 )
                             }

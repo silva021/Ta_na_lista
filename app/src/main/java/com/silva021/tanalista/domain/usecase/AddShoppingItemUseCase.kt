@@ -6,17 +6,17 @@ import com.silva021.tanalista.data.datastore.FireStoreHelper
 import com.silva021.tanalista.domain.model.ShoppingItem
 import kotlinx.coroutines.tasks.await
 
-class AddShoppingItemUseCase() {
-    suspend operator fun invoke(
-        listId: String,
-        item: ShoppingItem,
-    ) =
-        try {
-            FireStoreHelper.getShoppingItemsCollection(listId).document(item.id).set(item).await()
-            Result.success(Unit)
-        } catch (e: Exception) {
-            Firebase.crashlytics.recordException(e)
-            e.printStackTrace()
-            Result.failure(e)
-        }
+class AddShoppingItemUseCase(
+    private val updateLastUpdateInShoppingList: UpdateLastUpdateInShoppingListUseCase,
+) {
+    suspend operator fun invoke(shoppingItem: ShoppingItem) = try {
+        FireStoreHelper.getShoppingItemsCollection(shoppingItem.listId).document(shoppingItem.id)
+            .set(shoppingItem).await()
+        updateLastUpdateInShoppingList.invoke(shoppingItem.listId)
+        Result.success(Unit)
+    } catch (e: Exception) {
+        Firebase.crashlytics.recordException(e)
+        e.printStackTrace()
+        Result.failure(e)
+    }
 }

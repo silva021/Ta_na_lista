@@ -17,6 +17,7 @@ import com.silva021.tanalista.domain.usecase.IsUserLoggedInUseCase
 import com.silva021.tanalista.domain.usecase.LoginUseCase
 import com.silva021.tanalista.domain.usecase.LogoutUserUseCase
 import com.silva021.tanalista.domain.usecase.ResetPasswordUseCase
+import com.silva021.tanalista.domain.usecase.UpdateLastUpdateInShoppingListUseCase
 import com.silva021.tanalista.domain.usecase.UpdateShoppingItemUseCase
 import com.silva021.tanalista.domain.usecase.UpdateShoppingListUseCase
 import com.silva021.tanalista.domain.usecase.UpdateUserUseCase
@@ -65,12 +66,13 @@ val usecasesModule = module {
     factory { GetShoppingListByIdUseCase() }
 
     factory { GetShoppingItemsUseCase() }
-    factory { AddShoppingItemUseCase() }
+    factory { AddShoppingItemUseCase(get()) }
     factory { DeleteShoppingItemUseCase() }
-    factory { UpdateShoppingItemUseCase() }
+    factory { UpdateShoppingItemUseCase(get()) }
     factory { GetShoppingItemByIdUseCase() }
 
     factory { AcceptInviteShoppingListUseCase() }
+    factory { UpdateLastUpdateInShoppingListUseCase() }
 }
 
 val sharedPreferences = module {

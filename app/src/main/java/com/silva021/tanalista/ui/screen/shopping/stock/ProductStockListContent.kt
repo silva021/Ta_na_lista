@@ -66,7 +66,7 @@ fun ProductStockListContent(
         topBar = {
             TopAppBar(
                 colors = topBarDefaultColors(),
-                title = { Text(stringResource(R.string.title_stock), color = Color.Black) },
+                title = { Title(stringResource(R.string.label_item)) },
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
                         Icon(
@@ -93,12 +93,6 @@ fun ProductStockListContent(
                     .padding(horizontal = 16.dp)
                     .weight(1f)
             ) {
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Title(stringResource(R.string.label_item))
-
-                Spacer(modifier = Modifier.height(16.dp))
-
                 if (items.isNotEmpty()) {
                     LazyColumn {
                         items(items) { item ->

@@ -38,12 +38,11 @@ class AddShoppingItemViewModel(
         }
     }
 
-    fun add(listId: String, item: ShoppingItem) {
+    fun add(item: ShoppingItem) {
         viewModelScope.launch {
             _uiState.value = AddShoppingItemUiState.Loading
-            addShoppingItem.invoke(
-                listId = listId, item = item
-            ).onSuccess {
+            addShoppingItem.invoke(shoppingItem = item)
+                .onSuccess {
                 _uiState.value = AddShoppingItemUiState.Success(isUpdated = false)
 
             }.onFailure {

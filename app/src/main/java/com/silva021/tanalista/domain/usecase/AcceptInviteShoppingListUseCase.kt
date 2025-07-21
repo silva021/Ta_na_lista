@@ -1,6 +1,5 @@
 package com.silva021.tanalista.domain.usecase
 
-import android.util.Log
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.crashlytics.crashlytics
@@ -14,11 +13,10 @@ class AcceptInviteShoppingListUseCase() {
     ) : Result<Unit> {
         return try {
             val updates = mutableMapOf<String, Any>()
-            val newSharedList = shoppingList.sharedWith.distinct().toMutableList().apply {
+            val newSharedList = shoppingList.participants.toMutableList().apply {
                 add(Firebase.auth.uid.orEmpty())
-            }
-
-            updates["sharedWith"] = newSharedList
+            }.distinct()
+            updates["participants"] = newSharedList
 
             shoppingListCollection.document(shoppingList.id).update(updates).await()
             Result.success(Unit)

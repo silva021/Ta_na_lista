@@ -53,7 +53,8 @@ class ShoppingListsScreenTest {
                 onAddClick = { /* TODO */ },
                 onEditClick = {},
                 onBackPressed = { /* TODO */ },
-                onAccountClick = { /* TODO */ }
+                onAccountClick = { /* TODO */ },
+                finishApp = { /* TODO */ }
             )
         }
 
@@ -75,7 +76,8 @@ class ShoppingListsScreenTest {
                 onAddClick = { /* TODO */ },
                 onEditClick = {},
                 onBackPressed = { /* TODO */ },
-                onAccountClick = { /* TODO */ }
+                onAccountClick = { /* TODO */ },
+                finishApp = { /* TODO */ }
             )
         }
 

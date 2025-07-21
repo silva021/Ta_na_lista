@@ -49,7 +49,7 @@ fun AddShoppingItemScreen(
                 listId = listId,
                 shoppingItem = state.shoppingItem,
                 onAddShoppingItem = { item ->
-                    viewModel.add(listId, item)
+                    viewModel.add(item)
                 },
                 onEditShoppingItem = { item ->
                     viewModel.update(item)

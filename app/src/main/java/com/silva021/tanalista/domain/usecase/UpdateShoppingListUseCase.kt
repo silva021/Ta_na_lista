@@ -14,6 +14,7 @@ class UpdateShoppingListUseCase() {
             val updates = mutableMapOf<String, Any>()
             updates["name"] = shoppingList.name
             updates["type"] = shoppingList.type.name
+            updates["lastUpdate"] = System.currentTimeMillis()
             shoppingListCollection.document(shoppingList.id).update(updates).await()
             Result.success(Unit)
         } catch (e: Exception) {
